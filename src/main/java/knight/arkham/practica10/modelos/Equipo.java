@@ -13,6 +13,9 @@ public class Equipo implements Serializable {
     private int cantidadExistencia;
     private float costoAlquilerPorDia;
     private float tarifa;
+    private String familia;
+    private String subFamilia;
+
 
 
     public int getId() {
@@ -77,5 +80,21 @@ public class Equipo implements Serializable {
 
     public void setTarifa(float tarifa) {
         this.tarifa = tarifa;
+    }
+
+    public String getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(String familia) {
+        this.familia = familia;
+    }
+
+    public String getSubFamilia() {
+        return subFamilia;
+    }
+
+    public void setSubFamilia(String subFamilia) {
+        this.subFamilia = subFamilia;
     }
 }
