@@ -1,9 +1,15 @@
 package knight.arkham.practica10.modelos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Cliente implements Serializable {
 
+    @Id
+    @GeneratedValue // Aqui aplico generatedvalue para autoincrementar el id
     private int id;
 
     private String nombre;
@@ -12,6 +18,19 @@ public class Cliente implements Serializable {
     private String direccion;
     private String telefono;
     private String foto;
+
+
+    public Cliente() {
+    }
+
+    public Cliente(String nombre, String apellido, String cedula, String direccion, String telefono, String foto) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.foto = foto;
+    }
 
     public int getId() {
         return id;

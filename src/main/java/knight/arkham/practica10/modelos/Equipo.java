@@ -1,22 +1,43 @@
 package knight.arkham.practica10.modelos;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
 public class Equipo implements Serializable {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String nombre;
     private String marca;
-    private String modelo;
     private String imagenEquipo;
     private int cantidadExistencia;
     private float costoAlquilerPorDia;
-    private float tarifa;
-    private String familia;
-    private String subFamilia;
 
 
+    // Relaciones 1 a mucho con familia y subFamilia.
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Familia familia;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Familia subFamilia;
+
+
+
+    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, float costoAlquilerPorDia, Familia familia, Familia subFamilia) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.imagenEquipo = imagenEquipo;
+        this.cantidadExistencia = cantidadExistencia;
+        this.costoAlquilerPorDia = costoAlquilerPorDia;
+        this.familia = familia;
+        this.subFamilia = subFamilia;
+    }
+
+    public Equipo() {
+    }
 
     public int getId() {
         return id;
@@ -40,14 +61,6 @@ public class Equipo implements Serializable {
 
     public void setMarca(String marca) {
         this.marca = marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
 
     public String getImagenEquipo() {
@@ -74,27 +87,4 @@ public class Equipo implements Serializable {
         this.costoAlquilerPorDia = costoAlquilerPorDia;
     }
 
-    public float getTarifa() {
-        return tarifa;
-    }
-
-    public void setTarifa(float tarifa) {
-        this.tarifa = tarifa;
-    }
-
-    public String getFamilia() {
-        return familia;
-    }
-
-    public void setFamilia(String familia) {
-        this.familia = familia;
-    }
-
-    public String getSubFamilia() {
-        return subFamilia;
-    }
-
-    public void setSubFamilia(String subFamilia) {
-        this.subFamilia = subFamilia;
-    }
 }

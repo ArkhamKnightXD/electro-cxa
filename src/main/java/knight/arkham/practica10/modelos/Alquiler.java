@@ -1,35 +1,83 @@
 package knight.arkham.practica10.modelos;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Alquiler {
+@Entity
+public class Alquiler implements Serializable {
+    @Id
+    @GeneratedValue
+    private long id;
 
-    private int id;
+    private Date fecha;
+    private Date fechaEntrega;
 
-    private Date fechaEntregaEquipo;
-    private Date fechaDevueltaEquipo;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Cliente cliente;
 
-    public int getId() {
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Equipo> equipos;
+
+    private long total;
+
+    public Alquiler() {
+    }
+
+    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, List<Equipo> equiposNoDevueltos, long total) {
+        this.fecha = fecha;
+        this.fechaEntrega = fechaEntrega;
+        this.cliente = cliente;
+        this.equipos = equipos;
+        this.total = total;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Date getFechaEntregaEquipo() {
-        return fechaEntregaEquipo;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaEntregaEquipo(Date fechaEntregaEquipo) {
-        this.fechaEntregaEquipo = fechaEntregaEquipo;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Date getFechaDevueltaEquipo() {
-        return fechaDevueltaEquipo;
+    public Date getFechaEntrega() {
+        return fechaEntrega;
     }
 
-    public void setFechaDevueltaEquipo(Date fechaDevueltaEquipo) {
-        this.fechaDevueltaEquipo = fechaDevueltaEquipo;
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    public void setEquipos(List<Equipo> equipos) {
+        this.equipos = equipos;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
     }
 }

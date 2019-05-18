@@ -1,10 +1,15 @@
-package knight.arkham.practica10.modelos.seguridad;
+package knight.arkham.practica10.modelos;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Rol implements Serializable {
 
-    private String role;
+    @Id
+    private
+    String role;
 
     public Rol(){
 
@@ -21,5 +26,4 @@ public class Rol implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
-
 }
