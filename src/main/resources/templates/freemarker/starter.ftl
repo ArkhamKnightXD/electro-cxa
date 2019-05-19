@@ -67,7 +67,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>XA</span>
       <!-- logo for regular state and mobile devices -->
@@ -100,7 +100,7 @@ desired effect
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-
+                  Admin
                   <!--Aqui agrego el nombre del usuario logueado -->
                 </p>
               </li>
@@ -122,10 +122,10 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-primary">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/logout" class="btn btn-danger">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -158,31 +158,23 @@ desired effect
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Clientes</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Equipos</span></a></li>
+        <li><a href="/cliente/"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
+        <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>Equipos</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Negocio</span>
+          <a href="#"><i class="fa fa-briefcase"></i> <span>Negocio</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Alquiler</a></li>
-            <li><a href="#">Facturacion</a></li>
+            <li><a href="/alquiler/">Alquiler</a></li>
+            <li><a href="/familia/">Familia</a></li>
           </ul>
         </li>
       </ul>
@@ -196,17 +188,15 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <!--Aqui agregare el texto de la pagina -->
-        <small></small>
+
+        <small>Index Header</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
+
 
       <!--------------------------
         | Your Page Content Here |

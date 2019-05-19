@@ -1,5 +1,6 @@
 package knight.arkham.practica10.controladores;
 
+import knight.arkham.practica10.servicios.EquipoServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/equipo")
 public class EquipoController {
 
-
+    private EquipoServices equipoServices;
 
     @RequestMapping("/")
     public String index(Model model){

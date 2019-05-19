@@ -10,7 +10,7 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue // Aqui aplico generatedvalue para autoincrementar el id
-    private int id;
+    private long id;
 
     private String nombre;
     private String apellido;
@@ -32,11 +32,11 @@ public class Cliente implements Serializable {
         this.foto = foto;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
