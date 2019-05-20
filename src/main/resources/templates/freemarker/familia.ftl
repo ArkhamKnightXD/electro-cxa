@@ -214,23 +214,22 @@ desired effect
                             </thead>
 
                             <!--De esta forma se crea un foreach en thymeleaf -->
-                            <#list clientes as cliente>
+
                                 <tr>
                                     <!-- Aqui se establecen los datos  -->
-                                    <td>${cliente.nombre}</td>
-                                    <td>${cliente.apellido}</td>
-                                    <td>${cliente.cedula}</td>
-                                    <td>${cliente.direccion}</td>
-                                    <td>${cliente.telefono}</td>
-                                    <td>${cliente.foto}</td>
-
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <a href="">  <i class="fa fa-edit" style="font-size:20px"></i></a>
                                         <a href="" data-target="" data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
                                     </td>
                                 </tr>
                                 <!--Aqui cierro el foreach -->
-                            </#list>
+
                         </table>
 
                     </div>
