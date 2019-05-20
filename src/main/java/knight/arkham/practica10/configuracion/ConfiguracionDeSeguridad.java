@@ -35,24 +35,22 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(bCryptPasswordEncoder);
     }*/
 
-    /*
-     * Permite configurar las reglas de seguridad.
-     * @param http
-     * @throws Exception
-     */
-
-    //Aqui especifico las reglas para permitir unicamente los usuarios y cuales url este podra acceder
 
 
+    //Aqui especifico las reglas para permitir unicamente los usuarios y cuales rutas  este podra acceder
 
-   /* @Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/css/**", "/js/**").permitAll() //permitiendo llamadas a esas urls.
+
+                //Aqui especifico que permito que cualquiera pueda acceder a estas url
+                .antMatchers("/","/css/**", "/js/**").permitAll()
                 .antMatchers("/dbconsole/**").permitAll()
+
+                // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user
                 .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
-                //.anyRequest().authenticated() //cualquier llamada debe ser validada
+               // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
                 .loginPage("/login") //indicando la ruta que estaremos utilizando.
@@ -66,5 +64,5 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
         //Necesario para H2.
         http.csrf().disable();
         http.headers().frameOptions().disable();
-    }*/
+    }
 }

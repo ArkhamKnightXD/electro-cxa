@@ -1,5 +1,6 @@
 package knight.arkham.practica10.controladores;
 
+import knight.arkham.practica10.repositorios.AlquilerRepositorio;
 import knight.arkham.practica10.servicios.AlquilerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ public class AlquilerController {
 
     // En cada controlador preparo el servicio que le corresponde a cada controlador para poder trabajar con las funciones
     // del crud ya especificadas en los servicios, tener en cuenta que el services solo se puede trabajar dentro de funciones
-    // nota no hay que agregar @Autowired cuando se trabaja con los servicios en el controlador, pues ya estan instanciados
+    @Autowired
     private AlquilerServices alquilerServices;
 
 

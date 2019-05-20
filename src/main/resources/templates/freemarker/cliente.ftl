@@ -185,9 +185,9 @@ desired effect
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
+            <h1 class="text-center">
                 <!--Aqui agregare el texto de la pagina -->
-                <small></small>
+                <strong>Listado de clientes</strong>
             </h1>
 
         </section>
@@ -198,6 +198,46 @@ desired effect
             <!--------------------------
               | Your Page Content Here |
               -------------------------->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead>
+
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Foto</th>
+                            <th>Opciones</th>
+                            </thead>
+
+                            <!--De esta forma se crea un foreach en thymeleaf -->
+                            <#list clientes as cliente>
+                            <tr>
+                                <!-- Aqui se establecen los datos  -->
+                                <td>${cliente.nombre}</td>
+                                <td>${cliente.apellido}</td>
+                                <td>${cliente.cedula}</td>
+                                <td>${cliente.direccion}</td>
+                                <td>${cliente.telefono}</td>
+                                <td>${cliente.foto}</td>
+
+                                <td>
+                                    <a href="">  <i class="fa fa-edit" style="font-size:20px"></i></a>
+                                    <a href="" data-target="" data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
+                                </td>
+                            </tr>
+                                <!--Aqui cierro el foreach -->
+                            </#list>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
 
         </section>
         <!-- /.content -->

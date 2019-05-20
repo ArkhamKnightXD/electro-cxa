@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ import java.util.*;
 
 // En los servicio debo de implementar los repositorios e especificar aqui las funciones que utilizaremos para trabajar en el proyecto
 // Osea que por cada repositorio deberia de haber un servicio, esto no es 100% necesario, pero es lo mas correcto a la hora de trabajar
+
 
 public class SeguridadServices extends WebSecurityConfigurerAdapter {
 

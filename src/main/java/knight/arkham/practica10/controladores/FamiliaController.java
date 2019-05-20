@@ -1,6 +1,7 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.servicios.FamiliaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/familia")
 public class FamiliaController {
 
+    @Autowired
     private FamiliaService familiaService;
 
     @RequestMapping("/")
