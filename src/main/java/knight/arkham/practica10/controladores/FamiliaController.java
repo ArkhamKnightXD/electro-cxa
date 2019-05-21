@@ -34,7 +34,7 @@ public class FamiliaController {
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","La familia ha sido eliminada con exito");
-
+        model.addAttribute("ruta","familia");
 
         //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";

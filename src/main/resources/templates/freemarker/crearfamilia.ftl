@@ -24,14 +24,14 @@
 
 <!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
  de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-<form method="post" action="/cliente/editar/?id=${cliente.id}">
+<form method="post" action="/familia/crear/">
     <div class="row">
 
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" value="${cliente.nombre}" class="form-control" placeholder="Nombre...">
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" value="${cliente.apellido}" class="form-control" placeholder="apellido...">
+                <input type="text" name="apellido" class="form-control" placeholder="apellido...">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" value="${cliente.cedula}" class="form-control"  placeholder="Cedula...">
+                <input type="text" name="cedula" class="form-control"  placeholder="Cedula...">
             </div>
 
         </div>
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <label for="foto">Foto</label>
-                <input type="text" name="foto" value="${cliente.foto}" class="form-control" placeholder="Foto...">
+                <input type="text" name="foto" class="form-control" placeholder="Foto...">
             </div>
 
         </div>
@@ -71,7 +71,7 @@
 
             <div class="form-group">
                 <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" value="${cliente.telefono}" class="form-control" placeholder="Telefono...">
+                <input type="text" name="telefono" class="form-control" placeholder="Telefono...">
             </div>
 
         </div>
@@ -82,7 +82,7 @@
 
             <div class="form-group">
                 <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" value="${cliente.direccion}" class="form-control" placeholder="Direccion...">
+                <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
             </div>
 
         </div>
@@ -93,7 +93,7 @@
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary" type="submit">Guardar</button>
-                <button class="btn btn-danger"><a href="/cliente/">Cancelar</a></button>
+                <button class="btn btn-danger"><a href="/familia/">Cancelar</a></button>
             </div>
 
         </div>

@@ -175,6 +175,17 @@ desired effect
                         <li><a href="/familia/">Familia</a></li>
                     </ul>
                 </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-user"></i> <span>Administrador</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/usuario/">Usuarios</a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -190,7 +201,7 @@ desired effect
                 <strong>Listado de clientes</strong>
             </h1>
 
-            <a class="btn btn-primary" href="/cliente/creacion" role="button">Agregar cliente</a>
+            <a class="btn btn-primary" href="/cliente/creacion" role="button">Agregar nuevo cliente</a>
 
         </section>
 
@@ -227,8 +238,8 @@ desired effect
                                 <td>${cliente.foto}</td>
 
                                 <td>
-                                    <a href="/cliente/edicion/?id=${cliente.id}">  <i class="fa fa-edit" style="font-size:20px"></i></a>
-                                    <a href="/cliente/borrar/?id=${cliente.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
+                                    <a href="/cliente/edicion/?id=${cliente.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/cliente/borrar/?id=${cliente.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>
                                 <!--Aqui cierro el foreach -->

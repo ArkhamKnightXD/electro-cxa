@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// El controlador usuario es el mas recomendado para que maneje el inicio de pagina y el login, asi que por lo tanto
-// no se debe poner un requestmapping para que este trabaje en localhost:8080 directamente
+
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     // Aqui retorno la pagina inicial
@@ -17,6 +17,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices;
 
+
+    // A este path solo debe ser posible acceder si eres administrador debo trabajar eso en la vista, por ahora dejare la entrada aqui
+    // normal
     @RequestMapping("/")
     public String index(Model model){
 
@@ -24,31 +27,24 @@ public class UsuarioController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
         //Ubicando la vista desde resources/templates
-        return "/freemarker/starter";
+        return "/freemarker/usuario";
     }
 
 
-    @RequestMapping("/index")
-    public String index2(Model model){
+    @RequestMapping("/borrar")
+    public String eliminarUsuario(Model model,  @RequestParam(name = "id") long id){
 
-        //Indicando el modelo que será pasado a la vista.
+
+        // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
+        usuarioServices.eliminarUsuario(id);
+
         model.addAttribute("titulo", "Electrodomesticos CXA");
+        model.addAttribute("mensaje","El Alquiler ha sido eliminado con exito");
+        model.addAttribute("ruta","usuario");
 
         //Ubicando la vista desde resources/templates
-        return "/freemarker/index";
+        return "/freemarker/mensajes";
     }
-
-
-    @RequestMapping("/index2")
-    public String index3(Model model){
-
-        //Indicando el modelo que será pasado a la vista.
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-
-        //Ubicando la vista desde resources/templates
-        return "/freemarker/index2";
-    }
-
 
 
 }

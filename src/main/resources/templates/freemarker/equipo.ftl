@@ -175,6 +175,17 @@ desired effect
                         <li><a href="/familia/">Familia</a></li>
                     </ul>
                 </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-user"></i> <span>Administrador</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/usuario/">Usuarios</a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -189,6 +200,7 @@ desired effect
                 <!--Aqui agregare el texto de la pagina -->
                 <strong>Listado de equipos</strong>
             </h1>
+            <a class="btn btn-primary" href="/equipo/creacion" role="button">Agregar nuevo equipo</a>
         </section>
 
         <!-- Main content -->
@@ -223,8 +235,8 @@ desired effect
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="/equipo/editar/?id=">  <i class="fa fa-edit" style="font-size:20px"></i></a>
-                                    <a href="/equipo/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
+                                    <a href="/equipo/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/equipo/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>
                             <!--Aqui cierro el foreach -->

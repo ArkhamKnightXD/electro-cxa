@@ -162,17 +162,17 @@ desired effect
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li ><a href="/cliente/"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
+                <li><a href="/cliente/"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
                 <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>Equipos</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-briefcase""></i> <span>Negocio</span>
+                    <a href="#"><i class="fa fa-briefcase"></i> <span>Negocio</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/alquiler/">Alquiler</a></li>
-                        <li class="active"><a href="/familia/">Familia</a></li>
+                        <li><a href="/familia/">Familia</a></li>
                     </ul>
                 </li>
 
@@ -183,7 +183,7 @@ desired effect
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/usuario/">Usuarios</a></li>
+                        <li class="active"><a href="/usuario/">Usuarios</a></li>
                     </ul>
                 </li>
             </ul>
@@ -198,17 +198,16 @@ desired effect
         <section class="content-header">
             <h1 class="text-center">
                 <!--Aqui agregare el texto de la pagina -->
-                <strong>Listado de familias</strong>
+                <strong>Listado de usuarios</strong>
             </h1>
-            <a class="btn btn-primary" href="/familia/creacion" role="button">Agregar nueva familia</a>
+            <a class="btn btn-primary" href="/usuario/creacion" role="button">Agregar nuevo usuario</a>
         </section>
 
         <!-- Main content -->
         <section class="content container-fluid">
 
             <!--------------------------
-              | Your Page Content Here
-               los index de los crud por norma se usan tablas para mostrar los datos|
+              | Your Page Content Here |
               -------------------------->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -227,28 +226,26 @@ desired effect
 
                             <!--De esta forma se crea un foreach en thymeleaf -->
 
-                                <tr>
-                                    <!-- Aqui se establecen los datos  -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="/familia/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                        <a href="/familia//borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
-                                    </td>
-                                </tr>
-                                <!--Aqui cierro el foreach -->
-
+                            <tr>
+                                <!-- Aqui se establecen los datos  -->
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="/usuario/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/usuario/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
+                                </td>
+                            </tr>
+                            <!--Aqui cierro el foreach -->
                         </table>
 
                     </div>
                 </div>
 
             </div>
-
 
         </section>
         <!-- /.content -->
@@ -263,8 +260,7 @@ desired effect
     </footer>
 
     <!-- Control Sidebar -->
-
-    <!-- /.control-sidebar -->
+     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>

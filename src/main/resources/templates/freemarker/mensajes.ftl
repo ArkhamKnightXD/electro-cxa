@@ -19,6 +19,7 @@
 <body>
 <h1>${mensaje}</h1>
 
+<!--Especifico esto como una ruta dinamica para que esta pagina pueda ser usadas por diferentes paginas -->
 <a class="btn btn-danger" href="/${ruta}/" role="button">Volver atras</a>
 </body>
 </html>

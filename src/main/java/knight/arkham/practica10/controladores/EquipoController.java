@@ -34,7 +34,7 @@ public class EquipoController {
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","El equipo ha sido eliminado con exito");
-
+        model.addAttribute("ruta","equipo");
 
         //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";

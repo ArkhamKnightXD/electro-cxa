@@ -1,7 +1,6 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Cliente;
-import knight.arkham.practica10.repositorios.ClienteRepositorio;
 import knight.arkham.practica10.servicios.ClienteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,19 +72,23 @@ public class ClienteController {
 
 // La pagina editarcliente no me sale solucionar eso
     @RequestMapping("/edicion")
-    public String edicionCliente(Model model,  @RequestParam(name = "id") long id){
+    public String edicionCliente(Model model,  @RequestParam(name = "id") long id ){
 
-        // Para editar el cliente primero debo de buscarlo
-
+        //Aqui obtengo el cliente que voy a editar
         Cliente clienteToEdit = clienteServices.encontrarClientePorId(id);
 
         //Aqui le mando el cliente que editaremos a la vista de editar cliente para asi trabajar con sus datos y poder
         // modificarlos de manera correcta
         model.addAttribute("cliente",clienteToEdit);
+        model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
         return "/freemarker/editarcliente";
     }
+
+
+
+
 
     // Como tengo que obtener el cliente de la vista aqui necesito un requesparam y le mando el parametro con /?id=cliente.id
     // desde la vista hacia esta funcion mediante la url
@@ -98,13 +101,14 @@ public class ClienteController {
         // almaceno el cliente encontrado en el objeto clienteToEdit
         Cliente clienteToEdit = clienteServices.encontrarClientePorId(id);
 
+        //Le agrego los campos editados mediante las propiedades set de la clase
         clienteToEdit.setApellido(apellido);
         clienteToEdit.setCedula(cedula);
         clienteToEdit.setDireccion(direccion);
         clienteToEdit.setNombre(nombre);
         clienteToEdit.setFoto(foto);
 
-        // Aqui guardo el cliente de nuevo ya que .save funciona tanto como para crear nuevo o editar tengo que encontrar una forma de mandarle este
+        // Aqui guardo el cliente de nuevo ya que .save funciona tanto como para crear nuevo o editar.
         clienteServices.crearCliente(clienteToEdit);
 
 
@@ -113,7 +117,7 @@ public class ClienteController {
         model.addAttribute("ruta","cliente");
 
         //Ubicando la vista desde resources/templates
-        return "/freemarker/editarcliente";
+        return "/freemarker/mensajes";
     }
 
 

@@ -38,6 +38,7 @@ public class Familia implements Serializable {
         }
     }
 
+    // En este metodo calculo el promedio de alquiler dependiendo de los dias que fue alquilado el equipo
     public long getPromedio(){
         if(this.diasAlquiler.size() == 0){
             return 0;

@@ -9,6 +9,7 @@ import java.util.Set;
 public class Usuario implements Serializable {
     @Id
     private long id;
+
     private String username;
     private boolean esAdmin;
     private String password;

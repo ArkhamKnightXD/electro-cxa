@@ -1,6 +1,5 @@
 package knight.arkham.practica10.controladores;
 
-import knight.arkham.practica10.repositorios.AlquilerRepositorio;
 import knight.arkham.practica10.servicios.AlquilerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +30,10 @@ public class AlquilerController {
         return "/freemarker/alquiler";
     }
 
+
+
+
+
     @RequestMapping("/borrar")
     public String eliminarAlquiler(Model model,  @RequestParam(name = "id") long id){
 
@@ -40,9 +43,11 @@ public class AlquilerController {
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","El Alquiler ha sido eliminado con exito");
-
+        model.addAttribute("ruta","alquiler");
 
         //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
+
+
 }
