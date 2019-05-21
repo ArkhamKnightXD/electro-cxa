@@ -38,15 +38,17 @@ public class AlquilerServices {
     }
 
 
-    public Optional<Alquiler> encontrarAlquilerPorId(long id){
+    public Alquiler encontrarAlquilerPorId(long id){
 
-        return alquilerRepo.findById(id);
+        return alquilerRepo.findAlquilerById(id);
 
     }
 
-    public void eliminarAlquiler(Alquiler alquiler){
+    public void eliminarAlquiler(long id){
 
-        alquilerRepo.delete(alquiler);
+        Alquiler alquilerToDelete = alquilerRepo.findAlquilerById(id);
+
+        alquilerRepo.delete(alquilerToDelete);
     }
 
 

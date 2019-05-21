@@ -27,14 +27,15 @@ public class EquipoServices {
     }
 
 
-    public Optional<Equipo> encontrarEquipoPorId(long id){
-        return equipoRepo.findById(id);
+    public Equipo encontrarEquipoPorId(long id){
+        return equipoRepo.findEquipoById(id);
 
     }
 
 
-    public void eliminarEquipo(Equipo equipo){
+    public void eliminarEquipo(long id){
 
-        equipoRepo.delete(equipo);
+        Equipo equipoToDelete = equipoRepo.findEquipoById(id);
+        equipoRepo.delete(equipoToDelete);
     }
 }

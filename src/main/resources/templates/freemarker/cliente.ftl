@@ -190,7 +190,7 @@ desired effect
                 <strong>Listado de clientes</strong>
             </h1>
 
-            <a class="btn btn-primary" href="/cliente/crear" role="button">Agregar cliente</a>
+            <a class="btn btn-primary" href="/cliente/creacion" role="button">Agregar cliente</a>
 
         </section>
 
@@ -227,8 +227,8 @@ desired effect
                                 <td>${cliente.foto}</td>
 
                                 <td>
-                                    <a href="">  <i class="fa fa-edit" style="font-size:20px"></i></a>
-                                    <a href="/cliente/borrar" data-target="#modal-delete-${cliente.id}" data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
+                                    <a href="/cliente/edicion/?id=${cliente.id}">  <i class="fa fa-edit" style="font-size:20px"></i></a>
+                                    <a href="/cliente/borrar/?id=${cliente.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
                                 </td>
                             </tr>
                                 <!--Aqui cierro el foreach -->

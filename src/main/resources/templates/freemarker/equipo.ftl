@@ -223,8 +223,8 @@ desired effect
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="">  <i class="fa fa-edit" style="font-size:20px"></i></a>
-                                    <a href="" data-target="" data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
+                                    <a href="/equipo/editar/?id=">  <i class="fa fa-edit" style="font-size:20px"></i></a>
+                                    <a href="/equipo/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
                                 </td>
                             </tr>
                             <!--Aqui cierro el foreach -->

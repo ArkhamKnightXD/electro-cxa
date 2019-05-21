@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository // Con esto especifico que esto es un repositorio
 public interface AlquilerRepositorio extends JpaRepository<Alquiler, Long> {
+
+    Alquiler findAlquilerById(long id);
 }

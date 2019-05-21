@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FamiliaRepositorio extends JpaRepository<Familia, Long> {
+
+    Familia findFamiliaById(long id);
 }

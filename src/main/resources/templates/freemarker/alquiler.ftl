@@ -223,9 +223,9 @@ desired effect
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>
-                                    <a href="">  <i class="fa fa-edit" style="font-size:20px"></i></a>
-                                    <a href="" data-target="" data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
+                                <td> <!--Aqui solo falta agregar el parametro alquiler.id para que el href este completo -->
+                                    <a href="/alquiler/editar/?id=">  <i class="fa fa-edit" style="font-size:20px"></i></a>
+                                    <a href="/alquiler/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:18px;color:red"></i> </a>
                                 </td>
                             </tr>
                             <!--Aqui cierro el foreach -->

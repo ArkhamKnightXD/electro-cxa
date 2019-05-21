@@ -25,4 +25,20 @@ public class EquipoController {
     }
 
 
+    @RequestMapping("/borrar")
+    public String eliminarEquipo(Model model,  @RequestParam(name = "id") long id){
+
+
+        // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
+        equipoServices.eliminarEquipo(id);
+
+        model.addAttribute("titulo", "Electrodomesticos CXA");
+        model.addAttribute("mensaje","El equipo ha sido eliminado con exito");
+
+
+        //Ubicando la vista desde resources/templates
+        return "/freemarker/mensajes";
+    }
+
+
 }

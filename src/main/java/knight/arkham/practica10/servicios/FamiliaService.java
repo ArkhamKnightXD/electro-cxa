@@ -26,16 +26,17 @@ public class FamiliaService {
         return familiaRepo.findAll();
     }
 
-    public Optional<Familia> encontrarFamiliaPorId(long id){
+    public Familia encontrarFamiliaPorId(long id){
 
-        return familiaRepo.findById(id);
+        return familiaRepo.findFamiliaById(id);
 
     }
 
 
-    public void eliminarFamilia(Familia familia){
+    public void eliminarFamilia(long id){
 
-        familiaRepo.delete(familia);
+        Familia familiaToDelete = familiaRepo.findFamiliaById(id);
+        familiaRepo.delete(familiaToDelete);
     }
 
 

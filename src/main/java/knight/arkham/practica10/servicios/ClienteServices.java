@@ -27,13 +27,17 @@ public class ClienteServices {
         return clienteRepo.findAll();
     }
 
-    public Optional<Cliente> encontrarClientePorId(long id){
+    public Cliente encontrarClientePorId(long id){
 
-        return clienteRepo.findById(id);
+        return clienteRepo.findClienteById(id);
     }
 
-    public void eliminarCliente(Cliente cliente){
+    public void eliminarCliente(long id){
 
-        clienteRepo.delete(cliente);
+       // Igualo  el cliente al cliente que buscamos mediante el id
+       Cliente clienteToDelete = clienteRepo.findClienteById(id);
+
+       // y aqui lo borro
+       clienteRepo.delete(clienteToDelete);
     }
 }
