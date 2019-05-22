@@ -1,5 +1,7 @@
 package knight.arkham.practica10.controladores;
 
+import knight.arkham.practica10.servicios.UsuarioServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,8 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
+    @Autowired
+    UsuarioServices usuarioServices;
+
     @RequestMapping("/")
     public String index(Model model){
+
+        // lograr hacer funcionar la creacion de usuario admin
+       // usuarioServices.crearUsuarioAdmin();
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");

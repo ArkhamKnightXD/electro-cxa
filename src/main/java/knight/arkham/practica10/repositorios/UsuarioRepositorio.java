@@ -12,4 +12,6 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
     // La unica excepciones son cuando se desee implementar codigo SQL para ahcer algo mas especifico
 
     Usuario findUsuarioById(long id);
+
+    Usuario findByUsername(String username);
 }

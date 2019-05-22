@@ -1,12 +1,17 @@
 package knight.arkham.practica10.servicios;
 
 import knight.arkham.practica10.modelos.Cliente;
+import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
+import knight.arkham.practica10.repositorios.RolRepositorio;
 import knight.arkham.practica10.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -15,9 +20,34 @@ public class UsuarioServices {
     @Autowired
     private UsuarioRepositorio usuarioRepo;
 
+    @Autowired
+    private RolRepositorio rolRepositorio;
+
+    //Para encriptar la información
+
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
     @Transactional
+    public void crearUsuarioAdmin(){
+        //Aqui creo el rol
+        Rol rolAdmin = new Rol("ROLE_ADMIN");
+        rolRepositorio.save(rolAdmin);
+
+        // creando el usuario y agregando el rol deseado
+        Usuario admin = new Usuario();
+        admin.setUsername("Administrador");
+        admin.setEsAdmin(true);
+        admin.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
+
+        // Aqui creo la passwrod, pero tambien la encripto con el password encoder, que basicamente recibe un string y lo codifica
+
+        admin.setPassword(passwordEncoder.encode("123456"));
+
+        usuarioRepo.save(admin);
+    }
+
+
     public void crearUsuario(Usuario usuario){
 
         usuarioRepo.save(usuario);

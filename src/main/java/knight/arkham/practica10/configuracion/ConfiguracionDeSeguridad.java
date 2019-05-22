@@ -1,8 +1,12 @@
 package knight.arkham.practica10.configuracion;
 
+import knight.arkham.practica10.modelos.Usuario;
+import knight.arkham.practica10.repositorios.RolRepositorio;
+import knight.arkham.practica10.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,23 +21,41 @@ import javax.sql.DataSource;
 public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
 
 
-    //Configuracion para jpa debemos de implementar esto en un servicio
+    //Configuracion para jpa debemos de implementar esto para trabajar con la seguridad
     @Autowired
     private UserDetailsService userDetailsService;
 
-    //Esta claase es la que sirve para encriptar la contraseñas
-    /*
+
+
+    //Esta claase es la que sirve para encriptar la contraseñas la especifico aqui para luego usarla en uno de los servicios para encriptar la
+    // las contraseñas
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+        //Clase para encriptar contraseña
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 
+        //Cargando los usuarios en memoria.
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password("admin")
+                .roles("ADMIN","USER")
+                .and()
+                .withUser("usuario")
+                .password("1234")
+                .roles("USER")
+                .and()
+                .withUser("vendedor")
+                .password("1234")
+                .roles("VENDEDOR");
 
-        //Aqui configuro el accesso via  JPA.
+
+        //Configuración JPA.
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(bCryptPasswordEncoder);
-    }*/
+    }
 
 
 
@@ -49,7 +71,7 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dbconsole/**").permitAll()
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/usuario/**").hasAnyRole("ADMIN", "USER")
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
