@@ -31,6 +31,16 @@ public class Usuario implements Serializable {
         this.roles = roles;
     }
 
+    // Constructor sin rol solo para testear la creacion de usuarios
+
+
+    public Usuario(String username, boolean esAdmin, String password, boolean active) {
+        this.username = username;
+        this.esAdmin = esAdmin;
+        this.password = password;
+        this.active = active;
+    }
+
     public long getId() {
         return id;
     }

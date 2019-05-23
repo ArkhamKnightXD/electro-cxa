@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                <input type="text" name="nombre" class="form-control" required placeholder="Nombre...">
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" class="form-control" placeholder="apellido...">
+                <input type="text" name="apellido" class="form-control" required placeholder="apellido...">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" class="form-control"  placeholder="Cedula...">
+                <input type="text" name="cedula" class="form-control" required placeholder="Cedula...">
             </div>
 
         </div>
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <label for="foto">Foto</label>
-                <input type="text" name="foto" class="form-control" placeholder="Foto...">
+                <input type="text" name="foto" class="form-control" required placeholder="Foto...">
             </div>
 
         </div>
@@ -82,7 +82,7 @@
 
             <div class="form-group">
                 <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
+                <input type="text" name="direccion" class="form-control"  placeholder="Direccion...">
             </div>
 
         </div>
@@ -93,7 +93,7 @@
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary" type="submit">Guardar</button>
-                <button class="btn btn-danger"><a href="/cliente/">Cancelar</a></button>
+                <a class="btn btn-danger" href="/cliente/" role="button">Cancelar</a>
             </div>
 
         </div>

@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="username">Nombre de usuario</label>
-                <input type="text" name="username" class="form-control" placeholder="Nombre de usuario...">
+                <input type="text" name="username" class="form-control" required placeholder="Nombre de usuario...">
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Password...">
+                <input type="password" name="password" class="form-control" required placeholder="Password...">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label for="esAdmin">Es administrador</label>
-                <input type="checkbox" name="esAdmin" class="form-control"  placeholder="Es administrador...">
+                <input type="checkbox" name="esAdmin" required >
             </div>
 
         </div>
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <label for="active">Esta Activo</label>
-                <input type="checkbox" name="active" class="form-control" placeholder="Esta activo...">
+                <input type="checkbox" name="active"  required>
             </div>
 
         </div>
@@ -72,7 +72,7 @@
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary" type="submit">Guardar</button>
-                <button class="btn btn-danger"><a href="/alquiler/">Cancelar</a></button>
+                <a class="btn btn-danger" href="/usuario/" role="button">Cancelar</a>
             </div>
 
         </div>

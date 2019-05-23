@@ -217,21 +217,27 @@ desired effect
 
                             <th>Nombre de usuario</th>
                             <th>Es administrador</th>
+                            <th>Esta activo</th>
                             <th>Opciones</th>
                             </thead>
 
                             <!--De esta forma se crea un foreach en thymeleaf -->
+                            <#list usuarios as usuario>
 
                             <tr>
-                                <!-- Aqui se establecen los datos  -->
-                                <td></td>
-                                <td></td>
+                                <!-- Para los campos esAdmin y active es necesario poner un ?c para representar
+                                 estos campos en el index ya que estos campos son boolean y a la hora de presentarlos
+                                 da error, ?c lo que hace es transformar estos boolean a un String "true" y false
+                                 solo para ser presentados aqui-->
+                                <td>${usuario.username}</td>
+                                <td>${usuario.esAdmin?c}</td>
+                                <td>${usuario.active?c}</td>
                                 <td>
-                                    <a href="/usuario/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                    <a href="/usuario/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
+                                    <a href="/usuario/borrar/?id=${usuario.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>
                             <!--Aqui cierro el foreach -->
+                            </#list>
                         </table>
 
                     </div>

@@ -1,6 +1,7 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Equipo;
+import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
 import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +50,10 @@ public class UsuarioController {
     public String crearUsuario(Model model, @RequestParam(name = "username") String username, @RequestParam(name = "esAdmin") boolean esAdmin,@RequestParam(name = "password") String password,@RequestParam(name = "active") boolean active ){
 
 
+//        Rol rolAdmin = new Rol("ROLE_ADMIN");
         // Ver como lograr agregar los roles en esto, ya que es necesario que el usuario admin pueda definir los roles
         // por lo tanto debo saber como trabajar con estos tanto en el controlador como en la vista
-        Usuario usuarioToCreate = new Usuario();
+        Usuario usuarioToCreate = new Usuario(username,esAdmin,password,active);
 
         // Aqui inserto cliente
         usuarioServices.crearUsuario(usuarioToCreate);

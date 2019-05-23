@@ -61,12 +61,12 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
                 // creado en el applicatio properties al parecer tendre que crear el admind mediante los services
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
-                .loginPage("/login") //indicando la ruta que estaremos utilizando.
-                .failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
+                //.loginPage("/login") //indicando la ruta que estaremos utilizando, sino vamos a utilizar el login por defecto.
+                //.failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
                 .permitAll()
                 .and()
                 .logout()
