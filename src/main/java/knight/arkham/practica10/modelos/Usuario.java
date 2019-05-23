@@ -13,7 +13,8 @@ public class Usuario implements Serializable {
     private String username;
     private boolean esAdmin;
     private String password;
-    private int active;
+    private boolean active;
+
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private
@@ -21,13 +22,13 @@ public class Usuario implements Serializable {
 
     public Usuario(){ }
 
-    public Usuario(long id, String username, boolean esAdmin, String password, Set<Rol> roles) {
+    public Usuario(long id, String username, boolean esAdmin, String password, boolean active, Set<Rol> roles) {
         this.id = id;
         this.username = username;
         this.esAdmin = esAdmin;
         this.password = password;
+        this.active = active;
         this.roles = roles;
-        this.active = 1;
     }
 
     public long getId() {
@@ -62,6 +63,14 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public Set<Rol> getRoles() {
         return roles;
     }
@@ -69,5 +78,6 @@ public class Usuario implements Serializable {
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
+
 
 }

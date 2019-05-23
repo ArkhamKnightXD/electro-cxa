@@ -215,12 +215,8 @@ desired effect
                         <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
 
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cedula</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Foto</th>
+                            <th>Nombre de usuario</th>
+                            <th>Es administrador</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -228,10 +224,6 @@ desired effect
 
                             <tr>
                                 <!-- Aqui se establecen los datos  -->
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td>

@@ -13,5 +13,8 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
 
     Usuario findUsuarioById(long id);
 
+    // esto basicamente es para hacer consulta, es bueno pensar en esto como un where de sql, por ejemplo
+    // select * from usuario where nombre =
+
     Usuario findByUsername(String username);
 }

@@ -15,8 +15,6 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Model model){
 
-        // lograr hacer funcionar la creacion de usuario admin
-       // usuarioServices.crearUsuarioAdmin();
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");

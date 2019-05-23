@@ -40,8 +40,8 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" class="form-control" placeholder="apellido...">
+                <label for="marca">Marca</label>
+                <input type="text" name="marca" class="form-control" placeholder="marca...">
             </div>
         </div>
 
@@ -50,28 +50,8 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" class="form-control"  placeholder="Cedula...">
-            </div>
-
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="text" name="foto" class="form-control" placeholder="Foto...">
-            </div>
-
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" class="form-control" placeholder="Telefono...">
+                <label for="cantidadExistencia">Cantidad en existencia</label>
+                <input type="number" name="cantidadExistencia" class="form-control"  placeholder="Cantidad en existencia...">
             </div>
 
         </div>
@@ -81,8 +61,18 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
+                <label for="costoAlquilerPorDia">Costo del alquiler</label>
+                <input type="number" name="costoAlquilerPorDia" class="form-control" placeholder="Costo del alquiler por dia...">
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+            <div class="form-group">
+                <label for="imagenEquipo">Foto</label>
+                <input type="text" name="imagenEquipo" class="form-control" placeholder="Foto...">
             </div>
 
         </div>

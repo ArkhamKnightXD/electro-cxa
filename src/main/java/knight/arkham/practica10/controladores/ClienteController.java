@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/cliente")
@@ -47,10 +46,7 @@ public class ClienteController {
 
 
 
-    // Esta url recibira varios parametros ya que creare un usuario obteniendo cada uno de los parametros desde
-    // la vista mediante el formulario, para ser mas especifico el componente name de los input le proporcionara los parametros
-    // a esta funcion por lo tanto no hay necesidad de usar ?X= en la url
-
+    // con error a la hora de crear
     @RequestMapping("/crear")
     public String crearCliente(Model model,@RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion, @RequestParam(name = "foto") String foto,  @RequestParam(name = "telefono") String telefono){
 
@@ -70,7 +66,7 @@ public class ClienteController {
         return "/freemarker/mensajes";
     }
 
-// La pagina editarcliente no me sale solucionar eso
+
     @RequestMapping("/edicion")
     public String edicionCliente(Model model,  @RequestParam(name = "id") long id ){
 
@@ -107,6 +103,7 @@ public class ClienteController {
         clienteToEdit.setDireccion(direccion);
         clienteToEdit.setNombre(nombre);
         clienteToEdit.setFoto(foto);
+        clienteToEdit.setTelefono(telefono);
 
         // Aqui guardo el cliente de nuevo ya que .save funciona tanto como para crear nuevo o editar.
         clienteServices.crearCliente(clienteToEdit);

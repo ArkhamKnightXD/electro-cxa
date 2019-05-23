@@ -8,7 +8,7 @@ public class Equipo implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     private String nombre;
     private String marca;
@@ -36,14 +36,23 @@ public class Equipo implements Serializable {
         this.subFamilia = subFamilia;
     }
 
+    //Constructor sin familia y sub familia
+    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, float costoAlquilerPorDia) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.imagenEquipo = imagenEquipo;
+        this.cantidadExistencia = cantidadExistencia;
+        this.costoAlquilerPorDia = costoAlquilerPorDia;
+    }
+
     public Equipo() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

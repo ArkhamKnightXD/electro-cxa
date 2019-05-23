@@ -1,61 +1,50 @@
 package knight.arkham.practica10.configuracion;
 
-import knight.arkham.practica10.modelos.Usuario;
-import knight.arkham.practica10.repositorios.RolRepositorio;
-import knight.arkham.practica10.repositorios.UsuarioRepositorio;
+
+import knight.arkham.practica10.servicios.SeguridadServices;
+import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.sql.DataSource;
 
 @Configurable
 @EnableGlobalMethodSecurity(securedEnabled = true) // De esta forma indico que esta clase estara implementando springsecurity
-public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
+public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // esta clase nos exige sobresscribir un metodo, que sera el metodo donde se especificara el usuario
 
 
-    //Configuracion para jpa debemos de implementar esto para trabajar con la seguridad
+    //Configuracion para jpa debemos implementar el servicio usuario para trabajar con el user details service
     @Autowired
-    private UserDetailsService userDetailsService;
+    private SeguridadServices seguridadServices;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
+    //Clase para encriptar contraseña
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
 
-    //Esta claase es la que sirve para encriptar la contraseñas la especifico aqui para luego usarla en uno de los servicios para encriptar la
-    // las contraseñas
-
-
+    // Esta clase sirve para cargar el usuario en memoria, es parecido a cuando se crea el usuario en aplication properties
+    // pero esta es la forma correcta de hacer
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //Clase para encriptar contraseña
-        BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
-
-        //Cargando los usuarios en memoria.
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("admin")
-                .roles("ADMIN","USER")
-                .and()
-                .withUser("usuario")
-                .password("1234")
-                .roles("USER")
-                .and()
-                .withUser("vendedor")
-                .password("1234")
-                .roles("VENDEDOR");
 
 
-        //Configuración JPA.
+        //Configuracion y carga de usuarios metodo JPA de esta forma agregaremos nuestro usuario a la base de datos c
         auth
-                .userDetailsService(userDetailsService)
+                .userDetailsService(seguridadServices)
                 .passwordEncoder(bCryptPasswordEncoder);
-    }
+    }// aqui quede
+
 
 
 
@@ -70,8 +59,9 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/css/**", "/js/**").permitAll()
                 .antMatchers("/dbconsole/**").permitAll()
 
-                // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user
-                .antMatchers("/usuario/**").hasAnyRole("ADMIN", "USER")
+                // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
+                // creado en el applicatio properties al parecer tendre que crear el admind mediante los services
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()

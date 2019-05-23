@@ -216,30 +216,29 @@ desired effect
                             <thead>
 
                             <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cedula</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
+                            <th>Marca</th>
+                            <th>Cantidad en existencia</th>
+                            <th>Costo por alquiler</th>
                             <th>Foto</th>
                             <th>Opciones</th>
                             </thead>
 
                             <!--De esta forma se crea un foreach en thymeleaf -->
-
+                            <#list equipos as equipo>
                             <tr>
                                 <!-- Aqui se establecen los datos  -->
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>${equipo.nombre}</td>
+                                <td>${equipo.marca}</td>
+                                <td>${equipo.cantidadExistencia}</td>
+                                <td>${equipo.costoAlquilerPorDia}</td>
+                                <td>${equipo.imagenEquipo}</td>
                                 <td>
-                                    <a href="/equipo/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                    <a href="/equipo/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
+                                    <a href="/equipo/edicion/?id=${equipo.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/equipo/borrar/?id=${equipo.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>
                             <!--Aqui cierro el foreach -->
+                            </#list>
                         </table>
 
                     </div>
