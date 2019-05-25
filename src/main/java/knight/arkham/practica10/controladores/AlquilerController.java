@@ -1,14 +1,20 @@
 package knight.arkham.practica10.controladores;
 
+import knight.arkham.practica10.modelos.Alquiler;
 import knight.arkham.practica10.modelos.Cliente;
+import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.servicios.AlquilerServices;
+import knight.arkham.practica10.servicios.ClienteServices;
+import knight.arkham.practica10.servicios.EquipoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/alquiler")
@@ -20,16 +26,22 @@ public class AlquilerController {
     @Autowired
     private AlquilerServices alquilerServices;
 
+    // Debo mandarle al alquiler los clientes y equipos ya creados, por lo tanto instanciare equiposervices y clienteservices
+    @Autowired
+    private EquipoServices equipoServices;
+
+    @Autowired
+    private ClienteServices clienteServices;
 
 
 
     @RequestMapping("/")
     public String index(Model model){
 
-
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
+        model.addAttribute("alquileres",alquilerServices.listarAlquileres());
         //Ubicando la vista desde resources/templates
         return "/freemarker/alquiler";
     }
@@ -39,6 +51,11 @@ public class AlquilerController {
     @RequestMapping("/creacion")
     public String creacionAlquiler(Model model){
 
+
+        // Para poder crear un alquiler debo mandarle a la vista crearalquiler todos los equipos y clientes ya creados
+
+        model.addAttribute("clientes", clienteServices.listarClientes());
+        model.addAttribute("equipos", equipoServices.listarEquipos());
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
@@ -51,15 +68,21 @@ public class AlquilerController {
 
     // con error a la hora de crear
     @RequestMapping("/crear")
-    public String crearAlquiler(Model model, @RequestParam(name = "fecha")Date fecha, @RequestParam(name = "fechaEntrega") Date fechaEntrega, @RequestParam(name = "nombreCliente") String nombreCliente, @RequestParam(name = "equiposAlquilados") String equiposAlquilados){
+    public String crearAlquiler(Model model, @RequestParam(name = "fecha")String fecha, @RequestParam(name = "fechaEntrega") String fechaEntrega, @RequestParam(name = "idCliente") long idCliente,@RequestParam(name = "idEquipo") long idEquipo){
 
-        // Agregando los parametros al cliente, no es necesario agregar el parametro id ya que anteriormente especificamos
-        // que este se autogenerara cuando especificamos la entidad
+        Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(idEquipo);
 
+        List<Equipo> listaEquipo =new ArrayList<>();
+        listaEquipo.add(equipoAlquilado);
+
+        Cliente clienteQueAlquila = clienteServices.encontrarClientePorId(idCliente);
+        Alquiler alquilerToCreate = new Alquiler(fecha,fechaEntrega,clienteQueAlquila,listaEquipo);
+
+        alquilerServices.crearAlquiler(alquilerToCreate);
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El cliente ha sido creado con exito");
-        model.addAttribute("ruta","cliente");
+        model.addAttribute("mensaje","El alquiler ha sido creado con exito");
+        model.addAttribute("ruta","alquiler");
 
 
         //Ubicando la vista desde resources/templates

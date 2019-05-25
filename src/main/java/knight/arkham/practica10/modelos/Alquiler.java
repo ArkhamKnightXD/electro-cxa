@@ -2,7 +2,6 @@ package knight.arkham.practica10.modelos;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,8 +10,8 @@ public class Alquiler implements Serializable {
     @GeneratedValue
     private long id;
 
-    private Date fecha;
-    private Date fechaEntrega;
+    private String fecha;
+    private String fechaEntrega;
 
     // Relacion uno a mucho
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -27,13 +26,21 @@ public class Alquiler implements Serializable {
     public Alquiler() {
     }
 
-    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, List<Equipo> equiposNoDevueltos, long total) {
+    public Alquiler(String fecha, String fechaEntrega, Cliente cliente, List<Equipo> equipos) {
+        this.fecha = fecha;
+        this.fechaEntrega = fechaEntrega;
+        this.cliente = cliente;
+        this.equipos = equipos;
+    }
+
+
+    /*public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, List<Equipo> equiposNoDevueltos, long total) {
         this.fecha = fecha;
         this.fechaEntrega = fechaEntrega;
         this.cliente = cliente;
         this.equipos = equipos;
         this.total = total;
-    }
+    }*/
 
 
     //En este metodo manejare lo que es la existencia de los distintos equipos a la hora de hacer el alquiler de un equioo
@@ -52,19 +59,20 @@ public class Alquiler implements Serializable {
         this.id = id;
     }
 
-    public Date getFecha() {
+
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Date getFechaEntrega() {
+    public String getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 

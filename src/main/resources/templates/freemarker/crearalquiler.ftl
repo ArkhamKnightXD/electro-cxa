@@ -27,41 +27,38 @@
 <form method="post" action="/alquiler/crear/">
     <div class="row">
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-5 col-sm-5 col-md-5 col-xs-12">
 
             <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                <label for="idCliente">Cliente</label>
+                <select name="idCliente" class="form-control" id="idCliente">
+                    <#list clientes as cliente >
+                    <option value="${cliente.id}">${cliente.nombre}</option>
+                    </#list>
+                </select>
             </div>
         </div>
 
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="col-lg-5 col-sm-5 col-md-5 col-xs-12">
 
             <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" class="form-control" placeholder="apellido...">
+                <label for="idEquipo">Equipo a alquilar</label>
+                <select name="idEquipo" class="form-control" id="idEquipo">
+                    <#list equipos as equipo >
+                        <option value="${equipo.id}">${equipo.nombre}</option>
+                    </#list>
+                </select>
             </div>
         </div>
 
 
-
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" class="form-control"  placeholder="Cedula...">
-            </div>
-
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="text" name="foto" class="form-control" placeholder="Foto...">
+                <label for="fecha">Fecha del alquiler</label>
+                <input type="text" name="fecha" class="form-control"  placeholder="fecha...">
             </div>
 
         </div>
@@ -70,22 +67,12 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" class="form-control" placeholder="Telefono...">
+                <label for="fechaEntrega">Fecha de entrega</label>
+                <input type="text" name="fechaEntrega" class="form-control" placeholder="fechaEntrega...">
             </div>
 
         </div>
 
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
-            </div>
-
-        </div>
 
 
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">

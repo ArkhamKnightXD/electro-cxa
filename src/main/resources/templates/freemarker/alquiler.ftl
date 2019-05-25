@@ -215,31 +215,29 @@ desired effect
                         <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
 
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cedula</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Foto</th>
+                            <th>Cliente</th>
+                            <th>Equipo Alquilado</th>
+                            <th>Fecha</th>
+                            <th>Fecha de entrega</th>
                             <th>Opciones</th>
                             </thead>
 
                             <!--De esta forma se crea un foreach en thymeleaf -->
-
+                            <#list alquileres as alquiler >
                             <tr>
                                 <!-- Aqui se establecen los datos  -->
+
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>${alquiler.fecha}</td>
+                                <td>${alquiler.fechaEntrega}</td>
                                 <td> <!--Aqui solo falta agregar el parametro alquiler.id para que el href este completo -->
-                                    <a href="/alquiler/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                    <a href="/alquiler/borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
+                                    <a href="/alquiler/edicion/?id="${alquiler.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/alquiler/borrar/?id=${alquiler.id}" data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>
                             <!--Aqui cierro el foreach -->
+                            </#list>
                         </table>
 
                     </div>

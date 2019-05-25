@@ -1,7 +1,6 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Equipo;
-import knight.arkham.practica10.modelos.Familia;
 import knight.arkham.practica10.servicios.EquipoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
