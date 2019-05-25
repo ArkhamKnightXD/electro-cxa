@@ -4,10 +4,8 @@ import knight.arkham.practica10.modelos.Alquiler;
 import knight.arkham.practica10.repositorios.AlquilerRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
  // Indicar que esto es un service es necesario para indicar que esta clase sera la que manejara las reglas de negocio
 // Y esto tambien para que la podamos instanciar en el controlador y asi poder usarla con todas sus funciones
@@ -51,5 +49,12 @@ public class AlquilerServices {
         alquilerRepo.delete(alquilerToDelete);
     }
 
+
+    public int calcularLaCantidadDeExistencia(int cantidadExistencia){
+
+        Alquiler alquiler = new Alquiler();
+
+        return alquiler.controlarCantidadExistencia(cantidadExistencia);
+    }
 
 }

@@ -72,7 +72,7 @@ public class SeguridadServices implements UserDetailsService {
 
         // Hay que retornar un objeto de tipo userdetails por lo tanto hacemos esto y le mandamos los datos del usuario
         // UserDetails userDetails = new User(usuario.getUsername(),usuario.getPassword(),roles);
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.isActive(), true, true, true, grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(), user.isActive(), true, true, true, grantedAuthorities);
     }
 
 }

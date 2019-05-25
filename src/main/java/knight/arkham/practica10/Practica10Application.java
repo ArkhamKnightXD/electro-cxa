@@ -1,5 +1,6 @@
 package knight.arkham.practica10;
 
+import knight.arkham.practica10.servicios.SeguridadServices;
 import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,10 +26,10 @@ public class Practica10Application {
 		System.out.println("====== FIN Beans Registrados =====");
 
 		// Aqui prepara el usuario service para que pueda ser utilizado aqui
-		UsuarioServices usuarioServices = (UsuarioServices) applicationContext.getBean("usuarioServices");
+		SeguridadServices seguridadServices = (SeguridadServices) applicationContext.getBean("seguridadServices");
 
 		// y aqui finalmente creo el usuario admin
-		usuarioServices.crearUsuarioAdmin();
+		seguridadServices.crearUsuarioAdmin();
 */
 
 	}

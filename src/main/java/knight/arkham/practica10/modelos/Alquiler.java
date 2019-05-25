@@ -14,9 +14,11 @@ public class Alquiler implements Serializable {
     private Date fecha;
     private Date fechaEntrega;
 
+    // Relacion uno a mucho
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Cliente cliente;
 
+    // Relacion mucho a mucho
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Equipo> equipos;
 
@@ -31,6 +33,15 @@ public class Alquiler implements Serializable {
         this.cliente = cliente;
         this.equipos = equipos;
         this.total = total;
+    }
+
+
+    //En este metodo manejare lo que es la existencia de los distintos equipos a la hora de hacer el alquiler de un equioo
+    public int controlarCantidadExistencia(int cantidadExistencia){
+
+        cantidadExistencia--;
+
+        return cantidadExistencia;
     }
 
     public long getId() {

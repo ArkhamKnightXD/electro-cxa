@@ -2,7 +2,6 @@ package knight.arkham.practica10.configuracion;
 
 
 import knight.arkham.practica10.servicios.SeguridadServices;
-import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +9,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 
 @Configurable
@@ -21,6 +22,9 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
     //Configuracion para jpa debemos implementar el servicio usuario para trabajar con el user details service
     @Autowired
     private SeguridadServices seguridadServices;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -41,7 +45,7 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
 
         //Configuracion y carga de usuarios metodo JPA de esta forma agregaremos nuestro usuario a la base de datos c
         auth
-                .userDetailsService(seguridadServices)
+                .userDetailsService(userDetailsService)
                 .passwordEncoder(bCryptPasswordEncoder);
     }// aqui quede
 

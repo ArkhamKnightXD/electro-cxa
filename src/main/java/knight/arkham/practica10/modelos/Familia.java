@@ -51,6 +51,8 @@ public class Familia implements Serializable {
         return suma/this.diasAlquiler.size();
     }
 
+
+
     public List<Long> getDiasAlquilados() {
         return diasAlquiler;
     }
