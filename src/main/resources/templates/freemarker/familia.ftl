@@ -226,7 +226,7 @@ desired effect
                             </thead>
 
                             <!--De esta forma se crea un foreach en thymeleaf -->
-
+                                <#list familias as familia>
                                 <tr>
                                     <!-- Aqui se establecen los datos  -->
                                     <td></td>
@@ -236,12 +236,12 @@ desired effect
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <a href="/familia/edicion/?id=">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                        <a href="/familia//borrar/?id="  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
+                                        <a href="/familia/edicion/?id=${familia.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                        <a href="/familia//borrar/?id=${familia.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                     </td>
                                 </tr>
                                 <!--Aqui cierro el foreach -->
-
+                                </#list>
                         </table>
 
                     </div>

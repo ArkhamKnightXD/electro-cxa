@@ -19,7 +19,7 @@ public class FamiliaController {
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
+        model.addAttribute("familias", familiaService.listarFamilias());
         //Ubicando la vista desde resources/templates
         return "/freemarker/familia";
     }

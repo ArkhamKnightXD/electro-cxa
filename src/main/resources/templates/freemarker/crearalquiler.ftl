@@ -58,7 +58,7 @@
 
             <div class="form-group">
                 <label for="fecha">Fecha del alquiler</label>
-                <input type="text" name="fecha" class="form-control"  placeholder="fecha...">
+                <input type="date" name="fecha" class="form-control"  placeholder="fecha...">
             </div>
 
         </div>
@@ -68,7 +68,7 @@
 
             <div class="form-group">
                 <label for="fechaEntrega">Fecha de entrega</label>
-                <input type="text" name="fechaEntrega" class="form-control" placeholder="fechaEntrega...">
+                <input type="date" name="fechaEntrega" class="form-control" placeholder="fechaEntrega...">
             </div>
 
         </div>

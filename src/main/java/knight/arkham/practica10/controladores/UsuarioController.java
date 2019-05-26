@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -46,14 +47,22 @@ public class UsuarioController {
     }
 
 
-    @RequestMapping("/crear")
-    public String crearUsuario(Model model, @RequestParam(name = "username") String username, @RequestParam(name = "esAdmin") boolean esAdmin,@RequestParam(name = "password") String password,@RequestParam(name = "active") boolean active ){
+    @RequestMapping( value = "/crear", method = RequestMethod.POST)
+    public String crearUsuario(Model model, @RequestParam(name = "username") String username, @RequestParam(name = "esAdmin") boolean esAdmin,@RequestParam(name = "password") String password ){
+
+        // para la creacion de los roles puedo usar el mismo metodo que utilice en alquiler tanto en el controlador como en la vista
 
 
 //        Rol rolAdmin = new Rol("ROLE_ADMIN");
         // Ver como lograr agregar los roles en esto, ya que es necesario que el usuario admin pueda definir los roles
         // por lo tanto debo saber como trabajar con estos tanto en el controlador como en la vista
-        Usuario usuarioToCreate = new Usuario(username,esAdmin,password,active);
+        Usuario usuarioToCreate = new Usuario();
+        usuarioToCreate.setUsername(username);
+        usuarioToCreate.setPassword(password);
+        usuarioToCreate.setEsAdmin(esAdmin);
+        // No es necesario aclarar en el create que el usuario esta activo pues si se crea se supone que esta activo,
+        // asi que se puede definir de una vez aqui
+        usuarioToCreate.setActive(true);
 
         // Aqui inserto cliente
         usuarioServices.crearUsuario(usuarioToCreate);

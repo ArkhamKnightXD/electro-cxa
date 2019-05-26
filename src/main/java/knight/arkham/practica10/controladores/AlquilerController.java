@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -67,8 +68,8 @@ public class AlquilerController {
 
 
     // con error a la hora de crear
-    @RequestMapping("/crear")
-    public String crearAlquiler(Model model, @RequestParam(name = "fecha")String fecha, @RequestParam(name = "fechaEntrega") String fechaEntrega, @RequestParam(name = "idCliente") long idCliente,@RequestParam(name = "idEquipo") long idEquipo){
+    @RequestMapping(value = "/crear", method = RequestMethod.POST)
+    public String crearAlquiler(Model model, @RequestParam(name = "fecha")Date fecha, @RequestParam(name = "fechaEntrega") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente,@RequestParam(name = "idEquipo") long idEquipo){
 
         Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(idEquipo);
 

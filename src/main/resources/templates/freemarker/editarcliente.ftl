@@ -93,7 +93,7 @@
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary" type="submit">Guardar</button>
-                <button class="btn btn-danger"><a href="/cliente/">Cancelar</a></button>
+                <a class="btn btn-danger" href="/cliente/" role="button">Cancelar</a>
             </div>
 
         </div>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -47,7 +48,7 @@ public class ClienteController {
 
 
     // con error a la hora de crear
-    @RequestMapping("/crear")
+    @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearCliente(Model model,@RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion, @RequestParam(name = "foto") String foto,  @RequestParam(name = "telefono") String telefono){
 
         // Agregando los parametros al cliente, no es necesario agregar el parametro id ya que anteriormente especificamos
@@ -67,7 +68,7 @@ public class ClienteController {
     }
 
 
-    @RequestMapping("/edicion")
+    @RequestMapping(value = "/edicion" )
     public String edicionCliente(Model model,  @RequestParam(name = "id") long id ){
 
         //Aqui obtengo el cliente que voy a editar
@@ -121,7 +122,7 @@ public class ClienteController {
     // Como tengo que obtener el id de la vista aqui necesito un requesparam, tengo que ver como hacer funcionar el editar
     // Para obtener el id mediante la vista tengo que mandarselo a la url mediante un href de esta forma ?id=
     // Entonces la url para borrar estaria por ejemplo de esta forma borrar/?id=3
-    @RequestMapping("/borrar")
+    @RequestMapping( value = "/borrar")
     public String eliminarCliente(Model model,  @RequestParam(name = "id") long id){
 
 

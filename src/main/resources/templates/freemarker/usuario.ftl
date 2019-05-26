@@ -217,7 +217,6 @@ desired effect
 
                             <th>Nombre de usuario</th>
                             <th>Es administrador</th>
-                            <th>Esta activo</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -231,7 +230,6 @@ desired effect
                                  solo para ser presentados aqui-->
                                 <td>${usuario.username}</td>
                                 <td>${usuario.esAdmin?c}</td>
-                                <td>${usuario.active?c}</td>
                                 <td>
                                     <a href="/usuario/borrar/?id=${usuario.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
