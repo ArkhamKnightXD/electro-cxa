@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/familia")
 public class FamiliaController {
 
+    // El asunto de la familia y la subfamilia es lo mas irrelevante para el funcionamiento del programa, por lo tanto es recomendable
+    //hacer mas enfasis en esta clase cuando los puntos mas importantes de la tarea hayan sido resueltos
+
     @Autowired
     private FamiliaService familiaService;
 

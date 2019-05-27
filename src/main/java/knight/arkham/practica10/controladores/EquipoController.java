@@ -1,7 +1,9 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Equipo;
+import knight.arkham.practica10.modelos.Familia;
 import knight.arkham.practica10.servicios.EquipoServices;
+import knight.arkham.practica10.servicios.FamiliaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,9 @@ public class EquipoController {
 
     @Autowired
     private EquipoServices equipoServices;
+
+    @Autowired
+    private FamiliaService familiaService;
 
     @RequestMapping("/")
     public String index(Model model){
@@ -43,11 +48,13 @@ public class EquipoController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
 
-        // Tengo que ver como trabajo lo de agregar la familia y su subfamilia, por ahora solo las omitire usando otro
-        //constructor
-        //Familia familia = new Familia("Abanicos",false);
+        // intentar agregar la eleccion de familia y subfamilia en el create
+        Familia familia = new Familia("Pedestales",false);
+        Familia subFamilia = new Familia("Abanicos",true);
+        familiaService.crearFamilia(familia);
+        familiaService.crearFamilia(subFamilia);
 
-        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia);
+        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familia,subFamilia);
 
         // Aqui inserto cliente
         equipoServices.crearEquipo(equipoToCreate);

@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
 </head>
-<body>
+<!--Aqui agregare la imagen de fondo cuando tenga una decente para los formularios -->
+<body background="../../pictures/">
 
 
 <!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad

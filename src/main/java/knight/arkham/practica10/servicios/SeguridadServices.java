@@ -39,14 +39,14 @@ public class SeguridadServices implements UserDetailsService {
 
         // creando el usuario y agregando el rol deseado
         Usuario admin = new Usuario();
-        admin.setUsername("Administrador");
+        admin.setUsername("admin");
         admin.setEsAdmin(true);
         admin.setActive(true);
         admin.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
 
         // Aqui creo la passwrod, pero tambien la encripto con el password encoder, que basicamente recibe un string y lo codifica
 
-        admin.setPassword(passwordEncoder.encode("123456"));
+        admin.setPassword(passwordEncoder.encode("1234"));
 
         usuarioRepo.save(admin);
     }

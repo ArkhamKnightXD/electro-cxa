@@ -8,6 +8,7 @@ import java.util.Set;
 @Entity
 public class Usuario implements Serializable {
     @Id
+    @GeneratedValue // El problema de que solo se creaba un usuario era debido a que me faltaba el @Generatedvalue
     private long id;
 
     private String username;
@@ -16,7 +17,9 @@ public class Usuario implements Serializable {
     private boolean active;
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    // Para solucionar el problema de que no me creaba los nuevos usuarios solo tuve que cambiar el cascadeType que estaba en
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private
     Set<Rol> roles;
 

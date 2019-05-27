@@ -23,8 +23,6 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
     @Autowired
     private SeguridadServices seguridadServices;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -45,7 +43,7 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
 
         //Configuracion y carga de usuarios metodo JPA de esta forma agregaremos nuestro usuario a la base de datos c
         auth
-                .userDetailsService(userDetailsService)
+                .userDetailsService(seguridadServices)
                 .passwordEncoder(bCryptPasswordEncoder);
     }// aqui quede
 
@@ -65,7 +63,11 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
                 // creado en el applicatio properties al parecer tendre que crear el admind mediante los services
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/usuario/**").hasAnyRole("ADMIN")
+                .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()

@@ -3,13 +3,20 @@ package knight.arkham.practica10.controladores;
 import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
+import knight.arkham.practica10.repositorios.RolRepositorio;
 import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @Controller
@@ -27,6 +34,11 @@ public class UsuarioController {
     @RequestMapping("/")
     public String index(Model model){
 
+        Rol rolAdmin = new Rol("ROLE_ADMIN");
+        Rol rol = new Rol("ROLE_USER");
+        usuarioServices.crearRol(rolAdmin);
+        usuarioServices.crearRol(rol);
+
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("usuarios",usuarioServices.listarUsuarios());
 
@@ -40,26 +52,32 @@ public class UsuarioController {
 
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
+        // Debo de mandarle los roles a crear para poder seleccionar
+        model.addAttribute("roles", usuarioServices.listarRoles());
 
         //Ubicando la vista desde resources/templates
         return "/freemarker/crearusuario";
     }
 
 
+
     @RequestMapping( value = "/crear", method = RequestMethod.POST)
-    public String crearUsuario(Model model, @RequestParam(name = "username") String username, @RequestParam(name = "esAdmin") boolean esAdmin,@RequestParam(name = "password") String password ){
+    public String crearUsuario(Model model, @RequestParam(name = "username") String username, @RequestParam(name = "esAdmin") boolean esAdmin,@RequestParam(name = "password") String password, @RequestParam(name = "roles") String roles ){
 
-        // para la creacion de los roles puedo usar el mismo metodo que utilice en alquiler tanto en el controlador como en la vista
+        // El error de ahora es que solo se puede crear un solo usuarios, pero por lo menos se crea
+
+        Rol rolCreated = usuarioServices.encontrarRolPorNombre(roles);
 
 
-//        Rol rolAdmin = new Rol("ROLE_ADMIN");
         // Ver como lograr agregar los roles en esto, ya que es necesario que el usuario admin pueda definir los roles
         // por lo tanto debo saber como trabajar con estos tanto en el controlador como en la vista
         Usuario usuarioToCreate = new Usuario();
         usuarioToCreate.setUsername(username);
         usuarioToCreate.setPassword(password);
         usuarioToCreate.setEsAdmin(esAdmin);
+        // Esta es la forma correcta de mandarle el rol al usuario
+        usuarioToCreate.setRoles(new HashSet<>(Arrays.asList(rolCreated)));
+
         // No es necesario aclarar en el create que el usuario esta activo pues si se crea se supone que esta activo,
         // asi que se puede definir de una vez aqui
         usuarioToCreate.setActive(true);

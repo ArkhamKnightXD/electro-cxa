@@ -13,7 +13,8 @@ public class Practica10Application {
 
 		SpringApplication.run(Practica10Application.class, args);
 
-		// Por ahora la creacion del usuario admin me falla
+		// Por ahora la creacion del usuario admin me sigue fallando, pero me funciona de otra forma
+		//guardare este codigo aqui por si luego hace falta
 
 		// Esta funcion es necesario para obtener los distintos bean y tambien para poder llamar usuario services al
 		// main

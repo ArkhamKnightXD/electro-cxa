@@ -7,12 +7,17 @@ import knight.arkham.practica10.servicios.AlquilerServices;
 import knight.arkham.practica10.servicios.ClienteServices;
 import knight.arkham.practica10.servicios.EquipoServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +40,11 @@ public class AlquilerController {
     private ClienteServices clienteServices;
 
 
+   /* @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("mm/dd/yyyy"), true));
+    }*/
+
 
     @RequestMapping("/")
     public String index(Model model){
@@ -42,6 +52,7 @@ public class AlquilerController {
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
+        model.addAttribute("equipos", equipoServices.listarEquipos());
         model.addAttribute("alquileres",alquilerServices.listarAlquileres());
         //Ubicando la vista desde resources/templates
         return "/freemarker/alquiler";
@@ -67,9 +78,10 @@ public class AlquilerController {
 
 
 
-    // con error a la hora de crear
+    // error de fecha solucionado, para solucionarlo utilice @DatimeFormat, ya que spring me da error a la hora de mandar
+    // fechas por el controlador, y con este metodo es posible solucionar este problema, en pattern pongo el formate que mi fecha tendra
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearAlquiler(Model model, @RequestParam(name = "fecha")Date fecha, @RequestParam(name = "fechaEntrega") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente,@RequestParam(name = "idEquipo") long idEquipo){
+    public String crearAlquiler(Model model, @RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd" ) Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd" ) Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente,@RequestParam(name = "idEquipo") long idEquipo){
 
         Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(idEquipo);
 
@@ -77,7 +89,9 @@ public class AlquilerController {
         listaEquipo.add(equipoAlquilado);
 
         Cliente clienteQueAlquila = clienteServices.encontrarClientePorId(idCliente);
-        Alquiler alquilerToCreate = new Alquiler(fecha,fechaEntrega,clienteQueAlquila,listaEquipo);
+
+        // seteare el total en 500 solo para probar la correcta de un alquiler con todos sus campos
+        Alquiler alquilerToCreate = new Alquiler(fecha,fechaEntrega,clienteQueAlquila,listaEquipo, 500);
 
         alquilerServices.crearAlquiler(alquilerToCreate);
 

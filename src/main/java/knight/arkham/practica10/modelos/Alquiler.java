@@ -1,5 +1,7 @@
 package knight.arkham.practica10.modelos;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +14,7 @@ public class Alquiler implements Serializable {
     private long id;
 
     private Date fecha;
+
     private Date fechaEntrega;
 
     // Relacion uno a mucho
@@ -27,18 +30,12 @@ public class Alquiler implements Serializable {
     public Alquiler() {
     }
 
-    /*public Alquiler(String fecha, String fechaEntrega, Cliente cliente, List<Equipo> equipos) {
+    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, long total) {
         this.fecha = fecha;
         this.fechaEntrega = fechaEntrega;
         this.cliente = cliente;
         this.equipos = equipos;
-    }*/
-
-    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos) {
-        this.fecha = fecha;
-        this.fechaEntrega = fechaEntrega;
-        this.cliente = cliente;
-        this.equipos = equipos;
+        this.total = total;
     }
 
     public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, List<Equipo> equiposNoDevueltos, long total) {

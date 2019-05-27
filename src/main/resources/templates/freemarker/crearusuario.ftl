@@ -57,6 +57,19 @@
         </div>
 
 
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+            <div class="form-group">
+                <label for="roles">Rol del usuario</label>
+                <select name="roles" class="form-control" id="roles" required>
+                    <#list roles as rol >
+                        <option value="${rol.role}">${rol.role}</option>
+                    </#list>
+                </select>
+            </div>
+        </div>
+
+
 
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
