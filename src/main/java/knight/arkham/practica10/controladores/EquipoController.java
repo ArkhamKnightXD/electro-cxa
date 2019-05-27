@@ -48,7 +48,7 @@ public class EquipoController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
 
-        // intentar agregar la eleccion de familia y subfamilia en el create
+        // intentar agregar la eleccion de familia y subfamilia en el create del misma forma que utilize en alquiler
         Familia familia = new Familia("Pedestales",false);
         Familia subFamilia = new Familia("Abanicos",true);
         familiaService.crearFamilia(familia);

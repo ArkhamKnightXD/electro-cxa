@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -62,12 +61,12 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
                 .antMatchers("/dbconsole/**").permitAll()
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
-                // creado en el applicatio properties al parecer tendre que crear el admind mediante los services
-                .antMatchers("/usuario/**").hasAnyRole("ADMIN")
-                .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
+                // Desactivares las restriciones debido a que se crean 2 usuarios al mismo tiempo y por lo tanto no puedo entrar a ningun lugar
+                //.antMatchers("/usuario/**").hasAnyRole("ADMIN")
+                //.antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
+                //.antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
+                //.antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
+                //.antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()

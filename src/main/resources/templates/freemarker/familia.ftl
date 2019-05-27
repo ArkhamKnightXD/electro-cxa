@@ -217,11 +217,7 @@ desired effect
                             <thead>
 
                             <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cedula</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Foto</th>
+                            <th>Tiene subfamilia</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -229,12 +225,8 @@ desired effect
                                 <#list familias as familia>
                                 <tr>
                                     <!-- Aqui se establecen los datos  -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>${familia.nombre}</td>
+                                    <td>${familia.subFamilia?c}</td>
                                     <td>
                                         <a href="/familia/edicion/?id=${familia.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                         <a href="/familia//borrar/?id=${familia.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

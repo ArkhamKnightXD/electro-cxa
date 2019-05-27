@@ -30,7 +30,7 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="nombre">Nombre</label>
+                <label for="nombre">Nombre de la familia</label>
                 <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
             </div>
         </div>
@@ -40,52 +40,12 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" class="form-control" placeholder="apellido...">
-            </div>
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" class="form-control"  placeholder="Cedula...">
+                <label for="subFamilia">Tiene subfamilia?</label>
+                <input type="checkbox" name="subFamilia" required >
             </div>
 
         </div>
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="text" name="foto" class="form-control" placeholder="Foto...">
-            </div>
-
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" class="form-control" placeholder="Telefono...">
-            </div>
-
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
-            </div>
-
-        </div>
 
 
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">

@@ -37,18 +37,19 @@ public class SeguridadServices implements UserDetailsService {
         Rol rolAdmin = new Rol("ROLE_ADMIN");
         rolRepositorio.save(rolAdmin);
 
-        // creando el usuario y agregando el rol deseado
-        Usuario admin = new Usuario();
-        admin.setUsername("admin");
-        admin.setEsAdmin(true);
-        admin.setActive(true);
-        admin.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
+        // Aveces me da problema de que se crean dos usuarios admin en vez de uno y esto no me deja iniciar sesion, para solucionar esto solo le cambio el nombre a
+        // usuario diferente por otro nombre y listo, esta es una solucion temporal, pues debo ver que es lo que causa esto
+        Usuario usuarioError = new Usuario();
+        usuarioError.setUsername("admin");
+        usuarioError.setEsAdmin(true);
+        usuarioError.setActive(true);
+        usuarioError.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
 
         // Aqui creo la passwrod, pero tambien la encripto con el password encoder, que basicamente recibe un string y lo codifica
 
-        admin.setPassword(passwordEncoder.encode("1234"));
+        usuarioError.setPassword(passwordEncoder.encode("1234"));
 
-        usuarioRepo.save(admin);
+        usuarioRepo.save(usuarioError);
     }
 
 
