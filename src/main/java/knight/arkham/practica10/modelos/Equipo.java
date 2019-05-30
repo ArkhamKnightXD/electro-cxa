@@ -36,13 +36,14 @@ public class Equipo implements Serializable {
         this.subFamilia = subFamilia;
     }
 
-    //Constructor sin familia y sub familia solo para testing del crud
-    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, float costoAlquilerPorDia) {
+
+    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, float costoAlquilerPorDia, Familia familia) {
         this.nombre = nombre;
         this.marca = marca;
         this.imagenEquipo = imagenEquipo;
         this.cantidadExistencia = cantidadExistencia;
         this.costoAlquilerPorDia = costoAlquilerPorDia;
+        this.familia = familia;
     }
 
     public Equipo() {

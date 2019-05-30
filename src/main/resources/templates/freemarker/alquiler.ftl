@@ -92,7 +92,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Admin</span>
+                            <span class="hidden-xs">${usuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -149,7 +149,7 @@ desired effect
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>Admin</p>
+                    <p>${usuario}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -228,10 +228,12 @@ desired effect
                                 <!-- Como ya tengo una relacion establecida con la clase cliente, puedo llamarlo de esta forma  -->
                                 <td>${alquiler.cliente.nombre}</td>
 
-                                <#list equipos as equipo >
+                                <!-- Esta no es la forma correcta de trabajar para presentar equipo ya que lo unico que hace
+                                 Es mandarme todos los equipos para ser presentados uno por uno y esto hasta me
+                                 daña el espacio en que se muestran los distintos componentes del index, asi que por ahora
+                                 solo mostrare un texto estatico-->
 
-                                    <td>${equipo.nombre}</td>
-                                </#list>
+                                <td>PlayStation 2</td>
                                 <td>${alquiler.total}</td>
                                 <td>
                                     <a href="/alquiler/edicion/?id="${alquiler.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>

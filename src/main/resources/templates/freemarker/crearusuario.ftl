@@ -50,8 +50,8 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="esAdmin">Es administrador</label>
-                <input type="checkbox" name="esAdmin" required >
+                <label for="active">Esta activo</label>
+                <input type="checkbox" name="active" required >
             </div>
 
         </div>
@@ -60,10 +60,10 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="roles">Rol del usuario</label>
-                <select name="roles" class="form-control" id="roles" required>
+                <label for="idRoles">Rol del usuario</label>
+                <select name="idRoles" class="form-control" id="idRoles" required>
                     <#list roles as rol >
-                        <option value="${rol.role}">${rol.role}</option>
+                        <option value="${rol.id}">${rol.role}</option>
                     </#list>
                 </select>
             </div>

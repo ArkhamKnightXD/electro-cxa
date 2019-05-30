@@ -92,7 +92,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Admin</span>
+                            <span class="hidden-xs">${usuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -149,7 +149,7 @@ desired effect
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>Admin</p>
+                    <p>${usuario}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -229,7 +229,7 @@ desired effect
                                     <td>${familia.subFamilia?c}</td>
                                     <td>
                                         <a href="/familia/edicion/?id=${familia.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                        <a href="/familia//borrar/?id=${familia.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
+                                        <a href="/familia/borrar/?id=${familia.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                     </td>
                                 </tr>
                                 <!--Aqui cierro el foreach -->

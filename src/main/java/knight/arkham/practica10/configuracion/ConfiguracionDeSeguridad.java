@@ -1,6 +1,5 @@
 package knight.arkham.practica10.configuracion;
 
-
 import knight.arkham.practica10.servicios.SeguridadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -62,16 +61,17 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
                 // Desactivares las restriciones debido a que se crean 2 usuarios al mismo tiempo y por lo tanto no puedo entrar a ningun lugar
-                //.antMatchers("/usuario/**").hasAnyRole("ADMIN")
-                //.antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
-                //.antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
-                //.antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
-                //.antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/usuario/**").hasAnyRole("ADMIN")
+                .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
                 //.loginPage("/login") //indicando la ruta que estaremos utilizando, sino vamos a utilizar el login por defecto.
-                //.failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
+                //.failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina, esta url la utilizare para
+                // indicar cuando hay algun error en la aplicacion y mandare la pagina que aqui designe
                 .permitAll()
                 .and()
                 .logout()

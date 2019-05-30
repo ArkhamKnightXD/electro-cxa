@@ -1,22 +1,17 @@
 package knight.arkham.practica10.controladores;
 
-import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
-import knight.arkham.practica10.repositorios.RolRepositorio;
 import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.SimpleDateFormat;
+import java.security.Principal;
 import java.util.*;
 
 
@@ -35,15 +30,13 @@ public class UsuarioController {
     // A este path solo debe ser posible acceder si eres administrador debo trabajar eso en la vista, por ahora dejare la entrada aqui
     // normal
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model, Principal principal){
 
-        Rol rolAdmin = new Rol("ROLE_ADMIN");
-        Rol rol = new Rol("ROLE_USER");
-        usuarioServices.crearRol(rolAdmin);
-        usuarioServices.crearRol(rol);
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("usuarios",usuarioServices.listarUsuarios());
+
+        model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/usuario";
     }
@@ -65,14 +58,14 @@ public class UsuarioController {
 
 
     @RequestMapping( value = "/crear", method = RequestMethod.POST)
-    public String crearUsuario(Model model, @RequestParam(name = "username") String username, @RequestParam(name = "esAdmin") boolean esAdmin,@RequestParam(name = "password") String password, @RequestParam(name = "roles") String roles ){
+    public String crearUsuario(Model model, @RequestParam(name = "username") String username,@RequestParam(name = "password") String password,@RequestParam(name = "active") boolean active, @RequestParam(name = "idRoles") long idRoles ){
 
-        Rol rolCreated = usuarioServices.encontrarRolPorNombre(roles);
 
+        // Aqui le mando el id para que me busque el rol creado
+        Rol rolCreated = usuarioServices.encontrarRolPorId(idRoles);
 
         Usuario usuarioToCreate = new Usuario();
         usuarioToCreate.setUsername(username);
-        usuarioToCreate.setEsAdmin(esAdmin);
 
         // Esta es la forma correcta de mandarle el rol al usuario
         usuarioToCreate.setRoles(new HashSet<>(Arrays.asList(rolCreated)));

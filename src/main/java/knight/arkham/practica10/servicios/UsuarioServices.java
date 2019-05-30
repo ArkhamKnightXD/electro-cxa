@@ -59,9 +59,9 @@ public class UsuarioServices  {
     }
 
 
-    public Rol encontrarRolPorNombre(String rolName){
+    public Rol encontrarRolPorId(long id){
 
-        return rolRepo.findRolByRole(rolName);
+        return rolRepo.findRolById(id);
     }
 
 

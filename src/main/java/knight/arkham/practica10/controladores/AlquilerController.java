@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,13 +48,15 @@ public class AlquilerController {
 
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model, Principal principal){
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
         model.addAttribute("equipos", equipoServices.listarEquipos());
         model.addAttribute("alquileres",alquilerServices.listarAlquileres());
+
+        model.addAttribute("usuario", principal.getName());
         //Ubicando la vista desde resources/templates
         return "/freemarker/alquiler";
     }

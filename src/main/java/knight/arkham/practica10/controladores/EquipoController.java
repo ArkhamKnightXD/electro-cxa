@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/equipo")
 public class EquipoController {
@@ -22,12 +24,13 @@ public class EquipoController {
     private FamiliaService familiaService;
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model, Principal principal){
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("equipos",equipoServices.listarEquipos());
 
+        model.addAttribute("usuario", principal.getName());
         //Ubicando la vista desde resources/templates
         return "/freemarker/equipo";
     }
@@ -37,6 +40,7 @@ public class EquipoController {
     public String creacionEquipo(Model model){
 
 
+        model.addAttribute("familias", familiaService.listarFamilias());
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
@@ -46,15 +50,13 @@ public class EquipoController {
 
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
+    public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia,@RequestParam(name = "idFamilia") long idFamilia ){
 
-        // intentar agregar la eleccion de familia y subfamilia en el create del misma forma que utilize en alquiler
-        Familia familia = new Familia("Pedestales",false);
-        Familia subFamilia = new Familia("Abanicos",true);
-        familiaService.crearFamilia(familia);
-        familiaService.crearFamilia(subFamilia);
+        Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
 
-        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familia,subFamilia);
+
+
+        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familia);
 
         // Aqui inserto cliente
         equipoServices.crearEquipo(equipoToCreate);

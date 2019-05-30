@@ -18,6 +18,10 @@
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
+    <!--Agregando date picker que viene incluido en bootstrap -->
+
+
+
 </head>
 <!--Aqui agregare la imagen de fondo cuando tenga una decente para los formularios -->
 <body background="../../pictures/">
@@ -55,11 +59,13 @@
         </div>
 
 
+        <!--Por ahora validare las fechas con min y max luego intentare implementar la funcion de javascript que encontre
+         Que te calcula el dia que es hoy y eso lo puedo establecer como valor min-->
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
                 <label for="fecha">Fecha del alquiler</label>
-                <input type="date" name="fecha" class="form-control"  placeholder="fecha...">
+                <input type="date" name="fecha" min="2019-05-29" max="2019-06-29" class="form-control"  placeholder="fecha...">
             </div>
 
         </div>
@@ -69,7 +75,7 @@
 
             <div class="form-group">
                 <label for="fechaEntrega">Fecha de entrega</label>
-                <input type="date" name="fechaEntrega" class="form-control" placeholder="fechaEntrega...">
+                <input type="date" name="fechaEntrega" min="2019-05-30" max="2019-06-29" class="form-control" placeholder="fechaEntrega...">
             </div>
 
         </div>

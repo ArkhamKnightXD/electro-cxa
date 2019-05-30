@@ -14,6 +14,7 @@ public class Familia implements Serializable {
     private String nombre;
     private boolean subFamilia;
 
+    // La familia se asocia con sigo misma
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Familia familia;
 

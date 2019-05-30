@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 
 @Controller
 @RequestMapping("/cliente")
@@ -19,14 +21,18 @@ public class ClienteController {
     private ClienteServices clienteServices;
 
 
+    // Para conseguir el nombre de ussuario mediante spring security debo especificar un objeto de la clase principal aqui
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model, Principal principal){
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
         // Aqui le mando el listado de clientes a la vista
         model.addAttribute("clientes", clienteServices.listarClientes());
+
+        // Aqui le mando a la vista el nombre del usuario que esta logeado mediante principal consigo esos datos
+        model.addAttribute("usuario", principal.getName());
 
 
         //Ubicando la vista desde resources/templates

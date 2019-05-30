@@ -33,23 +33,27 @@ public class SeguridadServices implements UserDetailsService {
 
     @Transactional
     public void crearUsuarioAdmin(){
-        //Aqui creo el rol
+        //Aqui creo los roles
+
+        Rol rolUser = new Rol();
+        rolUser.setRole("ROLE_USER");
+        rolRepositorio.save(rolUser);
+
         Rol rolAdmin = new Rol("ROLE_ADMIN");
         rolRepositorio.save(rolAdmin);
 
         // Aveces me da problema de que se crean dos usuarios admin en vez de uno y esto no me deja iniciar sesion, para solucionar esto solo le cambio el nombre a
         // usuario diferente por otro nombre y listo, esta es una solucion temporal, pues debo ver que es lo que causa esto
-        Usuario usuarioError = new Usuario();
-        usuarioError.setUsername("admin");
-        usuarioError.setEsAdmin(true);
-        usuarioError.setActive(true);
-        usuarioError.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
+        Usuario usuarioAdmin = new Usuario();
+        usuarioAdmin.setUsername("admin");
+        usuarioAdmin.setActive(true);
+        usuarioAdmin.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
 
         // Aqui creo la passwrod, pero tambien la encripto con el password encoder, que basicamente recibe un string y lo codifica
 
-        usuarioError.setPassword(passwordEncoder.encode("1234"));
+        usuarioAdmin.setPassword(passwordEncoder.encode("1234"));
 
-        usuarioRepo.save(usuarioError);
+        usuarioRepo.save(usuarioAdmin);
     }
 
 

@@ -81,6 +81,20 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
+                <label for="idFamilia">Familia del equioo</label>
+                <select name="idFamilia" class="form-control" id="idFamilia">
+                    <#list familias as familia >
+                        <option value="${familia.id}">${familia.nombre}</option>
+                    </#list>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+            <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary" type="submit">Guardar</button>
                 <a class="btn btn-danger" href="/equipo/" role="button">Cancelar</a>

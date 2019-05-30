@@ -1,6 +1,7 @@
 package knight.arkham.practica10.modelos;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -8,11 +9,23 @@ import java.io.Serializable;
 public class Rol implements Serializable {
 
     @Id
-    private
-    String role;
+    @GeneratedValue
+    private long id;
+
+    private String role;
+
 
     public Rol(){
 
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Rol(String role){

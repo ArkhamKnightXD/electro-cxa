@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/familia")
 public class FamiliaController {
@@ -19,12 +21,14 @@ public class FamiliaController {
     private FamiliaService familiaService;
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model, Principal principal){
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("familias", familiaService.listarFamilias());
-        //Ubicando la vista desde resources/templates
+
+        model.addAttribute("usuario", principal.getName());
+
         return "/freemarker/familia";
     }
 

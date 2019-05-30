@@ -11,37 +11,30 @@ public class Usuario implements Serializable {
     @GeneratedValue // El problema de que solo se creaba un usuario era debido a que me faltaba el @Generatedvalue
     private long id;
 
+    // El @ column me quita el error de que se creen dos usuarios, con esto se evitan que se cree, pero en la vista me tira
+    // un error, pero aun asi el programa seguira funcionando correctamente, esta es una solucion temporal
+    @Column(name="username", unique=true)
     private String username;
-    private boolean esAdmin;
+
     private String password;
     private boolean active;
 
 
 
-    // Para solucionar el problema de que no me creaba los nuevos usuarios solo tuve que cambiar el cascadeType que estaba en
+    // Para solucionar el problema de que no me creaba los nuevos usuarios solo tuve que cambiar el cascadeType
+    // que estaba en .all por .merge
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private
     Set<Rol> roles;
 
     public Usuario(){ }
 
-    public Usuario(long id, String username, boolean esAdmin, String password, boolean active, Set<Rol> roles) {
-        this.id = id;
+
+    public Usuario(String username, String password, boolean active, Set<Rol> roles) {
         this.username = username;
-        this.esAdmin = esAdmin;
         this.password = password;
         this.active = active;
         this.roles = roles;
-    }
-
-    // Constructor sin rol solo para testear la creacion de usuarios
-
-
-    public Usuario(String username, boolean esAdmin, String password, boolean active) {
-        this.username = username;
-        this.esAdmin = esAdmin;
-        this.password = password;
-        this.active = active;
     }
 
     public long getId() {
@@ -58,14 +51,6 @@ public class Usuario implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public boolean isEsAdmin() {
-        return esAdmin;
-    }
-
-    public void setEsAdmin(boolean esAdmin) {
-        this.esAdmin = esAdmin;
     }
 
     public String getPassword() {

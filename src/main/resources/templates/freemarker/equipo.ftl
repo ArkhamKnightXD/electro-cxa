@@ -92,7 +92,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Admin</span>
+                            <span class="hidden-xs">${usuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -149,7 +149,7 @@ desired effect
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>Admin</p>
+                    <p>${usuario}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -220,6 +220,7 @@ desired effect
                             <th>Cantidad en existencia</th>
                             <th>Costo por alquiler</th>
                             <th>Foto</th>
+                            <th>Familia</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -232,6 +233,9 @@ desired effect
                                 <td>${equipo.cantidadExistencia}</td>
                                 <td>${equipo.costoAlquilerPorDia}</td>
                                 <td>${equipo.imagenEquipo}</td>
+                                <!--Me falla a la hora de poner equipo.familia.nombre
+                                por lo tanto lo quitare hasta que resuelva el problema o simplemento omito presentar este campo-->
+                                <td>Consolas</td>
                                 <td>
                                     <a href="/equipo/edicion/?id=${equipo.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                     <a href="/equipo/borrar/?id=${equipo.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

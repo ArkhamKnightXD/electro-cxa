@@ -92,7 +92,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Admin</span>
+                            <span class="hidden-xs">${usuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -149,7 +149,7 @@ desired effect
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>Admin</p>
+                    <p>${usuario}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -216,7 +216,7 @@ desired effect
                             <thead>
 
                             <th>Nombre de usuario</th>
-                            <th>Es administrador</th>
+                            <th>Esta activo</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -229,7 +229,7 @@ desired effect
                                  da error, ?c lo que hace es transformar estos boolean a un String "true" y false
                                  solo para ser presentados aqui-->
                                 <td>${usuario.username}</td>
-                                <td>${usuario.esAdmin?c}</td>
+                                <td>${usuario.active?c}</td>
                                 <td>
                                     <a href="/usuario/borrar/?id=${usuario.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
