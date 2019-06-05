@@ -50,13 +50,14 @@ public class EquipoController {
 
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia,@RequestParam(name = "idFamilia") long idFamilia ){
+    public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia,@RequestParam(name = "idFamilia") long idFamilia,@RequestParam(name = "idSubFamilia") long idSubFamilia ){
 
         Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
+        Familia subFamilia = familiaService.encontrarFamiliaPorId(idSubFamilia);
 
 
 
-        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familia);
+        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familia,subFamilia);
 
         // Aqui inserto cliente
         equipoServices.crearEquipo(equipoToCreate);

@@ -91,6 +91,21 @@
         </div>
 
 
+        <!--Determinar como poder seleccionar la subfamilia de la familia del equipo que seleccione arriba -->
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+            <div class="form-group">
+                <label for="idSubfamilia">subFamilia del equioo</label>
+                <select name="idSubFamilia" class="form-control" id="idSubFamilia">
+                    <#list familias as familia >
+                        <option value="${familia.id}">${familia.familia.nombre}</option>
+                    </#list>
+                </select>
+            </div>
+        </div>
+
+
+
 
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 

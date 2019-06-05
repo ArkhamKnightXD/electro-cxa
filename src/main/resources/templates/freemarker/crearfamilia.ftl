@@ -30,7 +30,7 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="nombre">Nombre de la familia</label>
+                <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
             </div>
         </div>
@@ -40,10 +40,28 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="subFamilia">Tiene subfamilia?</label>
-                <input type="checkbox" name="subFamilia" required >
+                <input class="form-check-input" type="checkbox" name="subFamilia" id="subFamilia" onclick="cambiar()" />
+                <label class="form-check-label" for="subFamilia">Es subfamilia</label>
             </div>
 
+        </div>
+
+        <!--Practicamente lo que debo de hacer aqui es que cuando el boton de subfamilia este en true
+         se desplegara este boton y entonces me dejara seleccionar las distintas familias creadas para poder
+         asociarlas con la subfamilia que estamos creando-->
+
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="idFamilia">
+
+            <div class="form-group">
+                <label class="input-group-text" for="inputGroupSelect01">Seleccione la familia a la que pertenece</label>
+            </div>
+            <select class="custom-select" name="idFamilia">
+                <#list familias as familia>
+                    <#if !familia.subFamilia>
+                        <option value="${familia.id}">${familia.nombre}</option>
+                    </#if>
+                </#list>
+            </select>
         </div>
 
 
@@ -67,5 +85,18 @@
 
 
 </body>
+<!--script para mostrar la seleccion de familia cuando se haga click en el boton de si es una subfamilia -->
+<script>
+    var idFamilia = document.querySelector("#idFamilia");
+    idFamilia.style.visibility = "collapse";
+
+    function cambiar() {
+        if (idFamilia.style.visibility === "collapse") {
+            document.querySelector("#idFamilia").style.visibility = "visible";
+        } else {
+            document.querySelector("#idFamilia").style.visibility = "collapse";
+        }
+    }
+</script>
 </html>
 
