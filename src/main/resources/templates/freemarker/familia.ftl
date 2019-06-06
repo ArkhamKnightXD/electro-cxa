@@ -228,7 +228,8 @@ desired effect
                                     <!-- Aqui se establecen los datos  -->
                                     <td>${familia.nombre}</td>
                                     <td>${familia.subFamilia?c}</td>
-                                    <td></td>
+
+                                   <td></td>
                                     <td>
                                         <a href="/familia/edicion/?id=${familia.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                         <a href="/familia/borrar/?id=${familia.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

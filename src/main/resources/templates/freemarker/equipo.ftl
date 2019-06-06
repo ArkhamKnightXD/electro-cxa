@@ -221,6 +221,7 @@ desired effect
                             <th>Costo por alquiler</th>
                             <th>Foto</th>
                             <th>Familia</th>
+                            <th>Subfamilia</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -235,7 +236,13 @@ desired effect
                                 <td>${equipo.imagenEquipo}</td>
                                 <!--Me falla a la hora de poner equipo.familia.nombre
                                 por lo tanto lo quitare hasta que resuelva el problema o simplemento omito presentar este campo-->
-                                <td>Consolas</td>
+                                <#if equipo.familia??>
+                                    <td>${equipo.familia.nombre}</td>
+                                </#if>
+
+                                <#if equipo.subFamilia??>
+                                    <td>${equipo.subFamilia.nombre}</td>
+                                </#if>
                                 <td>
                                     <a href="/equipo/edicion/?id=${equipo.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                     <a href="/equipo/borrar/?id=${equipo.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

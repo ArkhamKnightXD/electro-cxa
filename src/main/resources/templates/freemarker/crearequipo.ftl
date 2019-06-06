@@ -78,30 +78,25 @@
         </div>
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="idFamilia">Familia del equioo</label>
-                <select name="idFamilia" class="form-control" id="idFamilia">
-                    <#list familias as familia >
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Seleccione la familia del equipo</label>
+            </div>
+            <select class="custom-select" name="familia" id="familia" onchange="filtrarSubFamilias()">
+                <#list familias as familia>
+                    <#if !familia.subFamilia>
                         <option value="${familia.id}">${familia.nombre}</option>
-                    </#list>
-                </select>
-            </div>
+                    </#if>
+                </#list>
+            </select>
         </div>
-
-
-        <!--Determinar como poder seleccionar la subfamilia de la familia del equipo que seleccione arriba -->
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="idSubfamilia">subFamilia del equioo</label>
-                <select name="idSubFamilia" class="form-control" id="idSubFamilia">
-                    <#list familias as familia >
-                        <option value="${familia.id}">${familia.familia.nombre}</option>
-                    </#list>
-                </select>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Seleccione la subfamilia del equipo</label>
             </div>
+            <select class="custom-select" name="subFamilia" id="listaSubFamilias">
+                <#--Esto se autogenerara-->
+            </select>
         </div>
 
 
@@ -126,5 +121,30 @@
 
 
 </body>
+
+<!--Script para poder seleccionar la respectiva subfamilia de la familia seleccionada -->
+<script>
+    function filtrarSubFamilias() {
+        var listaSubFamilias = [];
+        var familiaJS = document.querySelector("#familia").value;
+
+        <#list familias as familia>
+        <#if familia.subFamilia>
+        var familiaPadreJS = "${familia.familiaPadre.id?string['0']}";
+
+        if (familiaJS == familiaPadreJS) {
+            listaSubFamilias.push({ id: "${familia.id}", nombre: "${familia.nombre}" });
+        }
+        </#if>
+        </#list>
+
+        document.querySelector("#listaSubFamilias").innerHTML = "";
+        for (var i = 0; i < listaSubFamilias.length; i++) {
+            document.querySelector("#listaSubFamilias").innerHTML += '<option value="' + listaSubFamilias[i].id +'">' + listaSubFamilias[i].nombre +'</option>';
+        }
+
+        console.table(listaSubFamilias);
+    }
+
 </html>
 
