@@ -92,7 +92,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">${usuario}</span>
+                            <span class="hidden-xs">user</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -100,7 +100,7 @@ desired effect
                                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-
+                                    user
                                     <!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
@@ -149,7 +149,7 @@ desired effect
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>${usuario}</p>
+                    <p>user</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -229,7 +229,18 @@ desired effect
                                     <td>${familia.nombre}</td>
                                     <td>${familia.subFamilia?c}</td>
 
-                                   <td></td>
+                                    <!--Esta es la forma correcta de mostrar los datos encontrados en familia,
+                                    lo primero con este codigo es que para que se muestre el nombre de la familia, subfamilia debe de ser == true
+                                     luego accedemos al dato del nombre mediante familia.familiaPadre.nombre, debo de poner un nombre diferente
+                                      porque sino dara error, osea no puedo hacer familia.familia.nombre. Por ultimo si no existe una subfamilia
+                                      en el else se especifica que se ponga N/A-->
+                                    <td>
+                                        <#if familia.subFamilia>
+                                            ${familia.familiaPadre.nombre}
+                                        <#else>
+                                            N/A
+                                        </#if>
+                                    </td>
                                     <td>
                                         <a href="/familia/edicion/?id=${familia.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                         <a href="/familia/borrar/?id=${familia.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

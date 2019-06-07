@@ -56,7 +56,8 @@ public class AlquilerController {
         model.addAttribute("equipos", equipoServices.listarEquipos());
         model.addAttribute("alquileres",alquilerServices.listarAlquileres());
 
-        model.addAttribute("usuario", principal.getName());
+        // Comento esto para no tener que estar utilizando el login siempre que toy jarto
+       // model.addAttribute("usuario", principal.getName());
         //Ubicando la vista desde resources/templates
         return "/freemarker/alquiler";
     }

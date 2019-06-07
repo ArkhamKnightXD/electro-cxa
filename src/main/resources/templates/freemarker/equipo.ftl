@@ -92,7 +92,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">${usuario}</span>
+                            <span class="hidden-xs">user</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -149,7 +149,7 @@ desired effect
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>${usuario}</p>
+                    <p>user</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -234,15 +234,26 @@ desired effect
                                 <td>${equipo.cantidadExistencia}</td>
                                 <td>${equipo.costoAlquilerPorDia}</td>
                                 <td>${equipo.imagenEquipo}</td>
-                                <!--Me falla a la hora de poner equipo.familia.nombre
-                                por lo tanto lo quitare hasta que resuelva el problema o simplemento omito presentar este campo-->
-                                <#if equipo.familia??>
-                                    <td>${equipo.familia.nombre}</td>
-                                </#if>
+                                <!--
+                                Esta es la forma correcta para mostrar las familias y subfamilia del equipo, pero por alguna razon cuando
+                                lo creo directamente en equipo controller esto no me muestra el nombre, pero por lo menos me muestra el n/a
+                                por lo tanto esto funciona, los ?? al lado de la variable sirven para que cuando el objeto es null
+                                o no es encontrado me mande directamente al else que es lo que siempre esta pasando-->
+                                <td>
+                                    <#if equipo.familia??>
+                                        ${equipo.familia.nombre}
+                                    <#else>
+                                        N/A
+                                    </#if>
+                                </td>
 
-                                <#if equipo.subFamilia??>
-                                    <td>${equipo.subFamilia.nombre}</td>
-                                </#if>
+                                <td>
+                                    <#if equipo.subFamilia??>
+                                        ${equipo.subFamilia.nombre}
+                                    <#else>
+                                        N/A
+                                    </#if>
+                                </td>
                                 <td>
                                     <a href="/equipo/edicion/?id=${equipo.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                     <a href="/equipo/borrar/?id=${equipo.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

@@ -32,7 +32,7 @@ public class ClienteController {
         model.addAttribute("clientes", clienteServices.listarClientes());
 
         // Aqui le mando a la vista el nombre del usuario que esta logeado mediante principal consigo esos datos
-        model.addAttribute("usuario", principal.getName());
+     //   model.addAttribute("usuario", principal.getName());
 
 
         //Ubicando la vista desde resources/templates

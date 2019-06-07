@@ -27,7 +27,7 @@ public class IndexController {
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
-        model.addAttribute("usuario", principal.getName());
+       // model.addAttribute("usuario", principal.getName());
 
         //Ubicando la vista desde resources/templates
         return "/freemarker/starter";

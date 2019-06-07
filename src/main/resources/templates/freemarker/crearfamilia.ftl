@@ -53,9 +53,9 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="idFamilia">
 
             <div class="form-group">
-                <label class="input-group-text" for="inputGroupSelect01">Seleccione la familia a la que pertenece</label>
+                <label for="idFamilia">Seleccione la familia a la que pertenece</label>
             </div>
-            <select class="custom-select" name="idFamilia">
+            <select class="form-control" name="idFamilia" id="idFamilia">
                 <#list familias as familia>
                     <#if !familia.subFamilia>
                         <option value="${familia.id}">${familia.nombre}</option>

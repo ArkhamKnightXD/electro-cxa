@@ -78,11 +78,11 @@
         </div>
 
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Seleccione la familia del equipo</label>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+            <div class="form-group">
+                <label for="familia">Seleccione la familia del equipo</label>
             </div>
-            <select class="custom-select" name="familia" id="familia" onchange="filtrarSubFamilias()">
+            <select class="form-control" name="familia" id="familia" onchange="filtrarSubFamilias()">
                 <#list familias as familia>
                     <#if !familia.subFamilia>
                         <option value="${familia.id}">${familia.nombre}</option>
@@ -90,11 +90,11 @@
                 </#list>
             </select>
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Seleccione la subfamilia del equipo</label>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+            <div class="form-group">
+                <label for="subFamilia">Seleccione la subfamilia del equipo</label>
             </div>
-            <select class="custom-select" name="subFamilia" id="listaSubFamilias">
+            <select class="form-control" name="subFamilia" id="subFamilia">
                 <#--Esto se autogenerara-->
             </select>
         </div>
@@ -125,7 +125,7 @@
 <!--Script para poder seleccionar la respectiva subfamilia de la familia seleccionada -->
 <script>
     function filtrarSubFamilias() {
-        var listaSubFamilias = [];
+        var subFamilia = [];
         var familiaJS = document.querySelector("#familia").value;
 
         <#list familias as familia>
@@ -133,17 +133,17 @@
         var familiaPadreJS = "${familia.familiaPadre.id?string['0']}";
 
         if (familiaJS == familiaPadreJS) {
-            listaSubFamilias.push({ id: "${familia.id}", nombre: "${familia.nombre}" });
+            subFamilia.push({ id: "${familia.id}", nombre: "${familia.nombre}" });
         }
         </#if>
         </#list>
 
-        document.querySelector("#listaSubFamilias").innerHTML = "";
-        for (var i = 0; i < listaSubFamilias.length; i++) {
-            document.querySelector("#listaSubFamilias").innerHTML += '<option value="' + listaSubFamilias[i].id +'">' + listaSubFamilias[i].nombre +'</option>';
+        document.querySelector("#subFamilia").innerHTML = "";
+        for (var i = 0; i < subFamilia.length; i++) {
+            document.querySelector("#subFamilia").innerHTML += '<option value="' + subFamilia[i].id +'">' + subFamilia[i].nombre +'</option>';
         }
 
-        console.table(listaSubFamilias);
+        console.table(subFamilia);
     }
 
 </html>

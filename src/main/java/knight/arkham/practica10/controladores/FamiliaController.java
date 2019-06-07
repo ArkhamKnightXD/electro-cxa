@@ -27,7 +27,7 @@ public class FamiliaController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("familias", familiaService.listarFamilias());
 
-        model.addAttribute("usuario", principal.getName());
+      //  model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/familia";
     }

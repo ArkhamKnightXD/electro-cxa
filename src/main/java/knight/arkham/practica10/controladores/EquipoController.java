@@ -30,7 +30,7 @@ public class EquipoController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("equipos",equipoServices.listarEquipos());
 
-        model.addAttribute("usuario", principal.getName());
+       // model.addAttribute("usuario", principal.getName());
         //Ubicando la vista desde resources/templates
         return "/freemarker/equipo";
     }
@@ -52,18 +52,18 @@ public class EquipoController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia,@RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
 
-        Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
-        Familia subFamilia = familiaService.encontrarFamiliaPorId(idSubFamilia);
+       // Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
+        //Familia subFamilia = familiaService.encontrarFamiliaPorId(idSubFamilia);
 
         // Familias y subfamilias de prueba para comprobar que se creara bien el equipo
         Familia familiaTest = new Familia("Personas",false);
         Familia subFamiliaTest = new Familia("Gente",true,familiaTest);
 
-        //familiaService.crearFamilia(familiaTest);
-        //familiaService.crearFamilia(subFamiliaTest);
+        familiaService.crearFamilia(familiaTest);
+        familiaService.crearFamilia(subFamiliaTest);
 
 
-        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familia,subFamilia);
+        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familiaTest,subFamiliaTest);
 
         // Aqui inserto cliente
         equipoServices.crearEquipo(equipoToCreate);

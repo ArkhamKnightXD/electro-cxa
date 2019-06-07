@@ -36,7 +36,7 @@ public class UsuarioController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("usuarios",usuarioServices.listarUsuarios());
 
-        model.addAttribute("usuario", principal.getName());
+      //  model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/usuario";
     }
