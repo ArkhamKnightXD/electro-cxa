@@ -63,7 +63,7 @@
                     <label for="cantidadExistencia" class="control-label col-md-3">Cantidad en existencia:</label>
 
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                        <input type="text" name="cantidadExistencia" class="form-control" placeholder="Cantidad en existencia...">
+                        <input type="number" name="cantidadExistencia" class="form-control" placeholder="Cantidad en existencia...">
                     </div>
                 </div>
 
@@ -159,6 +159,6 @@
 
         console.table(subFamilia);
     }
-
+</script>
 </html>
 

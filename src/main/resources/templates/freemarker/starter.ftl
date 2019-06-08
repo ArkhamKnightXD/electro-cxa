@@ -92,7 +92,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${usuario}</span>
+              <span class="hidden-xs">User</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -100,7 +100,7 @@ desired effect
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  ${usuario}
+                  User
                   <!--Aqui agrego el nombre del usuario logueado -->
                 </p>
               </li>
@@ -151,7 +151,7 @@ desired effect
         </div>
         <div class="pull-left info">
           <!--Aqui pongo el nombre del usuario tambien -->
-          <p>${usuario}</p>
+          <p>User</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>

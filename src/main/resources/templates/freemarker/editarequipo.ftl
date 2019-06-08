@@ -60,7 +60,7 @@
                 <label for="cantidadExistencia" class="control-label col-md-3">Cantidad en existencia:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="cantidadExistencia" value="${equipo.camtidadExistencia}" class="form-control" placeholder="Cantidad en existencia...">
+                    <input type="number" name="cantidadExistencia" value="${equipo.cantidadExistencia}" class="form-control" placeholder="Cantidad en existencia...">
                 </div>
             </div>
 
@@ -136,5 +136,28 @@
 
 
 </body>
+<script>
+    function filtrarSubFamilias() {
+        var subFamilia = [];
+        var familiaJS = document.querySelector("#familia").value;
+
+        <#list familias as familia>
+        <#if familia.subFamilia>
+        var familiaPadreJS = "${familia.familiaPadre.id?string['0']}";
+
+        if (familiaJS == familiaPadreJS) {
+            subFamilia.push({ id: "${familia.id}", nombre: "${familia.nombre}" });
+        }
+        </#if>
+        </#list>
+
+        document.querySelector("#subFamilia").innerHTML = "";
+        for (var i = 0; i < subFamilia.length; i++) {
+            document.querySelector("#subFamilia").innerHTML += '<option value="' + subFamilia[i].id +'">' + subFamilia[i].nombre +'</option>';
+        }
+
+        console.table(subFamilia);
+    }
+</script>
 </html>
 
