@@ -34,8 +34,9 @@
     </section>
 
 
-
-    <form method="post" class="form-horizontal" action="/cliente/crear/">
+<!--El enctype es lo unico necesario para hacer funcionar la subida de imagenes, ademas de que debemos de especificar
+ el input de foto como file-->
+    <form method="post" class="form-horizontal" action="/cliente/crear/" enctype="multipart/form-data">
         <div class="row">
 
             <div class="form-group">
@@ -72,16 +73,6 @@
 
 
             <div class="form-group">
-                <label for="foto" class="control-label col-md-3">Foto:</label>
-
-                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="foto" class="form-control" placeholder="Foto...">
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
                 <label for="telefono" class="control-label col-md-3">Telefono:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
@@ -96,6 +87,16 @@
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="file" class="control-label col-md-3">Foto del cliente:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="file" name="files" class="form-control" placeholder="Foto del cliente...">
                 </div>
 
             </div>

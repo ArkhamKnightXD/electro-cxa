@@ -35,7 +35,7 @@
         <br>
     </section>
 
-    <form method="post" class="form-horizontal" action="/equipo/crear/">
+    <form method="post" class="form-horizontal" action="/equipo/crear/" enctype="multipart/form-data">
         <div class="row">
 
                 <div class="form-group">
@@ -79,17 +79,6 @@
                 </div>
 
 
-                <div class="form-group">
-                    <label for="imagenEquipo" class="control-label col-md-3">Foto:</label>
-
-                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                        <input type="text" name="imagenEquipo" class="form-control" placeholder="Foto...">
-                    </div>
-
-                </div>
-
-
-
 
                 <div class="form-group">
                     <label for="familia" class="control-label col-md-3">Seleccione la familia del equipo:</label>
@@ -117,6 +106,15 @@
                         </select>
                     </div>
 
+
+            </div>
+
+            <div class="form-group">
+                <label for="file" class="control-label col-md-3">Foto del equipo:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="file" name="files" class="form-control" placeholder="Foto del equipo...">
+                </div>
 
             </div>
 

@@ -1,9 +1,6 @@
-package knight.arkham.practica10.controladores;
+package knight.arkham.practica10.servicios;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,26 +8,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
-@Controller
-@RequestMapping("/file")
-public class FileUploadController {
-
-    // Con esta variable indicaremos el directorio donde
-    // se subiran nuestros archivos
-    public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
+// En este servicio me encargo del almacenamiento y obtencion del nombre de la imagen
+@Service
+public class FileUploadServices {
 
 
-    // Retornar la vista de prueba de subida de archivos
-    @RequestMapping("/")
-    public String uploadPage(Model model){
+    // hago una unica funcion que pide como argumentos un arreglo de multipart que seria en este caso
+    // un arreglo de archivos, y el otro argumento es un string con la ubicacion del directorio
+    //al que mandare el archivo
 
+    public String almacenarAndDepurarImagen (MultipartFile[] files, String uploadDirectory){
 
-        return "/freemarker/files";
-    }
-
-    @RequestMapping("/upload")
-    public String uploadFile(Model model, @RequestParam(name = "files") MultipartFile[] files){
 
         // Aqui guardare el nombre del archivo
         StringBuilder fileNames = new StringBuilder();
@@ -60,11 +48,10 @@ public class FileUploadController {
 
         }
 
-        // Aqui finalmente le enviamos un mensaje de exito a la vista
 
-        model.addAttribute("mensaje", "Successfully uploaded files" + fileNames.toString());
-
-        return "/freemarker/uploadstatus";
+        // Aqui al final retorno el nombre del archivo para asi mandarle esto al constructor de cliente o equipo
+        // y guardar el nombre de la imagen
+        return fileNames.toString();
     }
 
 }

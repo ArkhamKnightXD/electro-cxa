@@ -4,12 +4,14 @@ import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.modelos.Familia;
 import knight.arkham.practica10.servicios.EquipoServices;
 import knight.arkham.practica10.servicios.FamiliaService;
+import knight.arkham.practica10.servicios.FileUploadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 
@@ -22,6 +24,13 @@ public class EquipoController {
 
     @Autowired
     private FamiliaService familiaService;
+
+    @Autowired
+    private FileUploadServices fileUploadServices;
+
+    // Con esta variable indicaremos el directorio donde
+    // se subiran nuestros archivos
+    public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
     @RequestMapping("/")
     public String index(Model model, Principal principal){
@@ -50,9 +59,12 @@ public class EquipoController {
 
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearEquipo(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia,@RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
+    public String crearEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia, @RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
 
-       // Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
+        //Manejando la imagen para conseguir su nombre y almacenarla
+        String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
+
+         Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
         //Familia subFamilia = familiaService.encontrarFamiliaPorId(idSubFamilia);
 
         // Familias y subfamilias de prueba para comprobar que se creara bien el equipo
@@ -63,7 +75,8 @@ public class EquipoController {
         familiaService.crearFamilia(subFamiliaTest);
 
 
-        Equipo equipoToCreate = new Equipo(nombre,marca,imagenEquipo,cantidadExistencia,costoAlquilerPorDia,familiaTest,subFamiliaTest);
+        //Ahora mismo lo unico que me falla de equipo es lo de obtener la subfamilia mediante el formulario
+        Equipo equipoToCreate = new Equipo(nombre,marca,nombreDeLaFoto,cantidadExistencia,costoAlquilerPorDia,familia,subFamiliaTest);
 
         // Aqui inserto cliente
         equipoServices.crearEquipo(equipoToCreate);
@@ -102,12 +115,12 @@ public class EquipoController {
     // Como tengo que obtener el cliente de la vista aqui necesito un requesparam y le mando el parametro con /?id=cliente.id
     // desde la vista hacia esta funcion mediante la url
     @RequestMapping("/editar")
-    public String editarEquipo(Model model,@RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca,@RequestParam(name = "imagenEquipo") String imagenEquipo,@RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
+    public String editarEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
 
-        // Para editar el cliente primero debo de buscarlo
+        //Manejo de imagen
 
+        String imagenEquipo = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
-        // almaceno el cliente encontrado en el objeto clienteToEdit
         Equipo equipoToEdit = equipoServices.encontrarEquipoPorId(id);
 
         equipoToEdit.setNombre(nombre);
