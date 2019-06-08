@@ -26,77 +26,89 @@
 <!--Aqui agregare la imagen de fondo cuando tenga una decente para los formularios -->
 <body background="../../pictures/">
 
+<div class="container">
+
+    <section class="content-header">
+        <h1 class="text-center">
+            <!--Aqui agregare el texto de la pagina -->
+            <strong>Agregar nuevo alquiler</strong>
+        </h1>
+
+        <br>
+    </section>
+
+    <form method="post" class="form-horizontal" action="/alquiler/crear/">
+        <div class="row">
+
+
+            <div class="form-group">
+                <label for="idCliente" class="control-label col-md-3">Cliente</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <select name="idCliente" class="form-control" id="idCliente">
+                        <#list clientes as cliente >
+                            <option value="${cliente.id}">${cliente.nombre}</option>
+                        </#list>
+                    </select>
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="idEquipo" class="control-label col-md-3">Equipo a alquilar</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <select name="idEquipo" class="form-control" id="idEquipo">
+                        <#list equipos as equipo >
+                            <option value="${equipo.id}">${equipo.nombre}</option>
+                        </#list>
+                    </select>
+                </div>
+
+
+            </div>
+
+
+            <!--Por ahora validare las fechas con min y max luego intentare implementar la funcion de javascript que encontre
+             Que te calcula el dia que es hoy y eso lo puedo establecer como valor min-->
+            <div class="form-group">
+                <label for="fecha" class="control-label col-md-3">Fecha:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="date" name="fecha" min="2019-05-29" max="2019-06-29" class="form-control" placeholder="Fecha...">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="fechaEntrega" class="control-label col-md-3">Fecha de entrega:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="date" name="fechaEntrega" min="2019-05-29" max="2019-06-29" class="form-control" placeholder="Fecha de entrega...">
+                </div>
+
+            </div>
+
+
+                <div class="form-group">
+                    <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
+                    <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
+                    <a class="btn btn-danger" href="/alquiler/" role="button">Cancelar</a>
+                </div>
+
+
+        </div>
+
+    </form>
+
+</div>
 
 <!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
  de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-<form method="post" action="/alquiler/crear/">
-    <div class="row">
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="idCliente">Cliente</label>
-                <select name="idCliente" class="form-control" id="idCliente">
-                    <#list clientes as cliente >
-                    <option value="${cliente.id}">${cliente.nombre}</option>
-                    </#list>
-                </select>
-            </div>
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="idEquipo">Equipo a alquilar</label>
-                <select name="idEquipo" class="form-control" id="idEquipo">
-                    <#list equipos as equipo >
-                        <option value="${equipo.id}">${equipo.nombre}</option>
-                    </#list>
-                </select>
-            </div>
-        </div>
-
-
-        <!--Por ahora validare las fechas con min y max luego intentare implementar la funcion de javascript que encontre
-         Que te calcula el dia que es hoy y eso lo puedo establecer como valor min-->
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="fecha">Fecha del alquiler</label>
-                <input type="date" name="fecha" min="2019-05-29" max="2019-06-29" class="form-control"  placeholder="fecha...">
-            </div>
-
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="fechaEntrega">Fecha de entrega</label>
-                <input type="date" name="fechaEntrega" min="2019-05-30" max="2019-06-29" class="form-control" placeholder="fechaEntrega...">
-            </div>
-
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
-                <button class="btn btn-primary" type="submit">Guardar</button>
-                <a class="btn btn-danger" href="/alquiler/" role="button">Cancelar</a>
-            </div>
-
-        </div>
-
-
-
-    </div>
-
-</form>
 
 
 

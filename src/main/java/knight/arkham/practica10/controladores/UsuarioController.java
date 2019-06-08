@@ -58,7 +58,7 @@ public class UsuarioController {
 
 
     @RequestMapping( value = "/crear", method = RequestMethod.POST)
-    public String crearUsuario(Model model, @RequestParam(name = "username") String username,@RequestParam(name = "password") String password,@RequestParam(name = "active") boolean active, @RequestParam(name = "idRoles") long idRoles ){
+    public String crearUsuario(Model model, @RequestParam(name = "username") String username,@RequestParam(name = "password") String password, @RequestParam(name = "idRoles") long idRoles ){
 
 
         // Aqui le mando el id para que me busque el rol creado

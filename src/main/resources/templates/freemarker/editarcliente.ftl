@@ -21,88 +21,100 @@
 </head>
 <body>
 
+<div class="container">
 
-<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
- de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-<form method="post" action="/cliente/editar/?id=${cliente.id}">
-    <div class="row">
+    <section class="content-header">
+        <h1 class="text-center">
+            <!--Aqui agregare el texto de la pagina -->
+            <strong>Editar cliente</strong>
+        </h1>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <br>
+    </section>
 
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" value="${cliente.nombre}" class="form-control" placeholder="Nombre...">
-            </div>
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+    <form method="post" class="form-horizontal" action="/cliente/editar/?id=${cliente.id}">
+        <div class="row">
 
             <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" value="${cliente.apellido}" class="form-control" placeholder="apellido...">
+                <label for="nombre" class="control-label col-md-3">Nombre:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="nombre" value="${cliente.nombre}" class="form-control" placeholder="Nombre...">
+                </div>
+
             </div>
-        </div>
 
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" value="${cliente.cedula}" class="form-control"  placeholder="Cedula...">
+                <label for="apellido" class="control-label col-md-3">Apellido:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="apellido" value="${cliente.apellido}" class="form-control" placeholder="Apellido...">
+                </div>
+
             </div>
 
-        </div>
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="text" name="foto" value="${cliente.foto}" class="form-control" placeholder="Foto...">
+                <label for="cedula" class="control-label col-md-3">Cedula:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="cedula" value="${cliente.cedula}" class="form-control" placeholder="Cedula...">
+                </div>
+
             </div>
 
-        </div>
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="telefono">Telefono</label>
-                <input type="number" name="telefono" value="${cliente.telefono}" class="form-control" placeholder="Telefono...">
+                <label for="foto" class="control-label col-md-3">Foto:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="foto" value="${cliente.foto}" class="form-control" placeholder="Foto...">
+                </div>
+
             </div>
 
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" value="${cliente.direccion}" class="form-control" placeholder="Direccion...">
+                <label for="telefono" class="control-label col-md-3">Telefono:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="telefono" value="${cliente.telefono}" class="form-control" placeholder="Telefono...">
+                </div>
+
             </div>
 
-        </div>
+
+            <div class="form-group">
+                <label for="direccion" class="control-label col-md-3">Direccion:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="direccion" value="${cliente.direccion}" class="form-control" placeholder="Direccion...">
+                </div>
+
+            </div>
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
-                <button class="btn btn-primary" type="submit">Guardar</button>
+                <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
                 <a class="btn btn-danger" href="/cliente/" role="button">Cancelar</a>
             </div>
 
+
         </div>
 
+    </form>
 
 
-    </div>
+</div>
 
-</form>
+<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
+ de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
 
 
 

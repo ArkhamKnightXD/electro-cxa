@@ -22,87 +22,102 @@
 <body>
 
 
-<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
- de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-<form method="post" action="/cliente/crear/">
-    <div class="row">
+<div class="container">
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+    <section class="content-header">
+        <h1 class="text-center">
+            <!--Aqui agregare el texto de la pagina -->
+            <strong>Agregar nuevo cliente</strong>
+        </h1>
 
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" class="form-control" required placeholder="Nombre...">
-            </div>
-        </div>
+        <br>
+    </section>
 
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" class="form-control" required placeholder="apellido...">
-            </div>
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+    <form method="post" class="form-horizontal" action="/cliente/crear/">
+        <div class="row">
 
             <div class="form-group">
-                <label for="cedula">Cedula</label>
-                <input type="text" name="cedula" class="form-control" required placeholder="Cedula...">
+                <label for="nombre" class="control-label col-md-3">Nombre:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                </div>
+
             </div>
 
-        </div>
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="text" name="foto" class="form-control" required placeholder="Foto...">
+                <label for="apellido" class="control-label col-md-3">Apellido:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="apellido" class="form-control" placeholder="Apellido...">
+                </div>
+
             </div>
 
-        </div>
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="telefono">Telefono</label>
-                <input type="number" name="telefono" class="form-control" placeholder="Telefono...">
+                <label for="cedula" class="control-label col-md-3">Cedula:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="cedula" class="form-control" placeholder="Cedula...">
+                </div>
+
             </div>
 
-        </div>
 
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" class="form-control"  placeholder="Direccion...">
+                <label for="foto" class="control-label col-md-3">Foto:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="foto" class="form-control" placeholder="Foto...">
+                </div>
+
             </div>
 
-        </div>
+
+            <div class="form-group">
+                <label for="telefono" class="control-label col-md-3">Telefono:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="telefono" class="form-control" placeholder="Telefono...">
+                </div>
+
+            </div>
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+            <div class="form-group">
+                <label for="direccion" class="control-label col-md-3">Direccion:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="direccion" class="form-control" placeholder="Direccion...">
+                </div>
+
+            </div>
+
+
 
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
-                <button class="btn btn-primary" type="submit">Guardar</button>
+                <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
                 <a class="btn btn-danger" href="/cliente/" role="button">Cancelar</a>
             </div>
+
 
         </div>
 
 
+    </form>
 
-    </div>
 
-</form>
+</div>
+<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
+ de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
 
 
 

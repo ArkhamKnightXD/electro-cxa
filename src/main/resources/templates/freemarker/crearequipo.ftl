@@ -24,100 +24,116 @@
 
 <!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
  de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-<form method="post" action="/equipo/crear/">
-    <div class="row">
+<div class="container">
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+    <section class="content-header">
+        <h1 class="text-center">
+            <!--Aqui agregare el texto de la pagina -->
+            <strong>Agregar nuevo equipo</strong>
+        </h1>
 
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
-            </div>
-        </div>
+        <br>
+    </section>
 
+    <form method="post" class="form-horizontal" action="/equipo/crear/">
+        <div class="row">
 
+                <div class="form-group">
+                    <label for="nombre" class="control-label col-md-3">Nombre:</label>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                    </div>
 
-            <div class="form-group">
-                <label for="marca">Marca</label>
-                <input type="text" name="marca" class="form-control" placeholder="marca...">
-            </div>
-        </div>
-
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="cantidadExistencia">Cantidad en existencia</label>
-                <input type="number" name="cantidadExistencia" class="form-control"  placeholder="Cantidad en existencia...">
-            </div>
-
-        </div>
+                </div>
 
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <div class="form-group">
+                    <label for="marca" class="control-label col-md-3">Marca:</label>
 
-            <div class="form-group">
-                <label for="costoAlquilerPorDia">Costo del alquiler</label>
-                <input type="number" name="costoAlquilerPorDia" class="form-control" placeholder="Costo del alquiler por dia...">
-            </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <input type="text" name="marca" class="form-control" placeholder="Marca...">
+                    </div>
 
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="imagenEquipo">Foto</label>
-                <input type="text" name="imagenEquipo" class="form-control" placeholder="Foto...">
-            </div>
-
-        </div>
+                </div>
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-            <div class="form-group">
-                <label for="familia">Seleccione la familia del equipo</label>
-            </div>
-            <select class="form-control" name="familia" id="familia" onchange="filtrarSubFamilias()">
-                <#list familias as familia>
-                    <#if !familia.subFamilia>
-                        <option value="${familia.id}">${familia.nombre}</option>
-                    </#if>
-                </#list>
-            </select>
-        </div>
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-            <div class="form-group">
-                <label for="subFamilia">Seleccione la subfamilia del equipo</label>
-            </div>
-            <select class="form-control" name="subFamilia" id="subFamilia">
-                <#--Esto se autogenerara-->
-            </select>
-        </div>
+                <div class="form-group">
+                    <label for="cantidadExistencia" class="control-label col-md-3">Cantidad en existencia:</label>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <input type="text" name="cantidadExistencia" class="form-control" placeholder="Cantidad en existencia...">
+                    </div>
+                </div>
 
 
 
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <div class="form-group">
+                    <label for="costoAlquilerPorDia" class="control-label col-md-3">Costo del alquiler:</label>
 
-            <div class="form-group">
-                <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
-                <button class="btn btn-primary" type="submit">Guardar</button>
-                <a class="btn btn-danger" href="/equipo/" role="button">Cancelar</a>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <input type="number" name="costoAlquilerPorDia" class="form-control" placeholder="Costo del alquiler por dia...">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="imagenEquipo" class="control-label col-md-3">Foto:</label>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <input type="text" name="imagenEquipo" class="form-control" placeholder="Foto...">
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label for="familia" class="control-label col-md-3">Seleccione la familia del equipo:</label>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <select class="form-control" name="familia" id="familia" onchange="filtrarSubFamilias()">
+                            <#list familias as familia>
+                                <#if !familia.subFamilia>
+                                    <option value="${familia.id}">${familia.nombre}</option>
+                                </#if>
+                            </#list>
+                        </select>
+                    </div>
+
             </div>
 
+
+
+                <div class="form-group">
+                    <label for="subFamilia" class="control-label col-md-3">Seleccione la subfamilia del equipo:</label>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <select class="form-control" name="subFamilia" id="subFamilia">
+                            <#--Esto se autogenerara-->
+                        </select>
+                    </div>
+
+
+            </div>
+
+
+                <div class="form-group">
+                    <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
+                    <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
+                    <a class="btn btn-danger" href="/equipo/" role="button">Cancelar</a>
+                </div>
+
+
         </div>
 
+    </form>
 
 
-    </div>
-
-</form>
-
+</div>
 
 
 </body>

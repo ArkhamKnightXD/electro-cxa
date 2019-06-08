@@ -21,72 +21,70 @@
 </head>
 <body>
 
+<div class="container">
 
-<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
- de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-<form method="post" action="/usuario/crear/">
-    <div class="row">
+    <section class="content-header">
+        <h1 class="text-center">
+            <!--Aqui agregare el texto de la pagina -->
+            <strong>Agregar nuevo usuario</strong>
+        </h1>
 
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-
-            <div class="form-group">
-                <label for="username">Nombre de usuario</label>
-                <input type="text" name="username" class="form-control" required placeholder="Nombre de usuario...">
-            </div>
-        </div>
+        <br>
+    </section>
 
 
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+    <form method="post" class="form-horizontal" action="/usuario/crear/">
+        <div class="row">
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" required placeholder="Password...">
+                <label for="username" class="control-label col-md-3">Nombre de usuario:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="text" name="username" class="form-control" placeholder="Nombre de usuario...">
+                </div>
+
             </div>
-        </div>
 
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="active">Esta activo</label>
-                <input type="checkbox" name="active" required >
+                <label for="password" class="control-label col-md-3">Password:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="password" name="password" class="form-control" placeholder="Password...">
+                </div>
+
             </div>
 
-        </div>
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
-                <label for="idRoles">Rol del usuario</label>
-                <select name="idRoles" class="form-control" id="idRoles" required>
-                    <#list roles as rol >
-                        <option value="${rol.id}">${rol.role}</option>
-                    </#list>
-                </select>
+                <label for="idRoles" class="control-label col-md-3">Rol del usuario</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <select name="idRoles" class="form-control" id="idRoles" required>
+                        <#list roles as rol >
+                            <option value="${rol.id}">${rol.role}</option>
+                        </#list>
+                    </select>
+                </div>
+
             </div>
-        </div>
 
-
-
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 
             <div class="form-group">
                 <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
-                <button class="btn btn-primary" type="submit">Guardar</button>
+                <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
                 <a class="btn btn-danger" href="/usuario/" role="button">Cancelar</a>
             </div>
 
+
         </div>
 
+    </form>
 
+</div>
 
-    </div>
-
-</form>
-
+<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
+ de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
 
 
 </body>
