@@ -15,15 +15,12 @@ import java.security.Principal;
 @RequestMapping("/familia")
 public class FamiliaController {
 
-    // Trabajar con familia para ya terminar un equipo completo
-
     @Autowired
     private FamiliaService familiaService;
 
     @RequestMapping("/")
     public String index(Model model, Principal principal){
 
-        //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("familias", familiaService.listarFamilias());
 
@@ -40,7 +37,6 @@ public class FamiliaController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("familias", familiaService.listarFamilias());
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/crearfamilia";
     }
 
@@ -51,9 +47,6 @@ public class FamiliaController {
     // Y se soluciona basicamente cambiando long por Long
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearFamilia(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "subFamilia", required = false) boolean subFamilia,@RequestParam(name = "idFamilia", required = false) Long idFamilia){
-
-        // intentar agregar la eleccion de familia y subfamilia en el create del misma forma que utilize en alquiler
-
 
         //Ahora aqui debe de haber una eleccion, pues o se creara una familia normal o se creara una
         // subfamilia que va a tener una familia padre, por lo tanto usare un if aqui
@@ -84,18 +77,11 @@ public class FamiliaController {
         }
 
 
-
-
-
-
-
-
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","La familia ha sido creada con exito");
         model.addAttribute("ruta","familia");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 
@@ -104,14 +90,12 @@ public class FamiliaController {
     public String eliminarFamilia(Model model,  @RequestParam(name = "id") long id){
 
 
-        // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
         familiaService.eliminarFamilia(id);
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","La familia ha sido eliminada con exito");
         model.addAttribute("ruta","familia");
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 

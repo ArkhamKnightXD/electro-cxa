@@ -7,18 +7,13 @@ import knight.arkham.practica10.servicios.AlquilerServices;
 import knight.arkham.practica10.servicios.ClienteServices;
 import knight.arkham.practica10.servicios.EquipoServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,11 +35,6 @@ public class AlquilerController {
     @Autowired
     private ClienteServices clienteServices;
 
-
-   /* @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("mm/dd/yyyy"), true));
-    }*/
 
 
     @RequestMapping("/")
@@ -76,7 +66,6 @@ public class AlquilerController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/crearalquiler";
     }
 
@@ -104,7 +93,6 @@ public class AlquilerController {
         model.addAttribute("ruta","alquiler");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 
@@ -121,7 +109,6 @@ public class AlquilerController {
         model.addAttribute("mensaje","El Alquiler ha sido eliminado con exito");
         model.addAttribute("ruta","alquiler");
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 

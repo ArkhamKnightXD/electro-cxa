@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--Nota no se pueden copiar y pegar la misma plantilla para usarse, pues dara error, por lo tanto es necesario poner una plantilla
- de base y que las demas hereden-->
-
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,9 +7,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <!-- Nota importante para agregar recursos. los recursos se guardan en la carpeta static y esta no es necesario que se mencione
-     cuando se esta agregando el link como se ve en el link de abajo no mencione static en ningun momento
-     por ultimo para indicar que saldremos de una carpeta para ir para atras esto se indica con ../ -->
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
@@ -40,26 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -198,7 +169,6 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
-                <!--Aqui agregare el texto de la pagina -->
                 <strong>Listado de clientes</strong>
             </h1>
 
@@ -227,10 +197,9 @@ desired effect
                             <th>Opciones</th>
                             </thead>
 
-                            <!--De esta forma se crea un foreach en thymeleaf -->
                             <#list clientes as cliente>
                             <tr>
-                                <!-- Aqui se establecen los datos  -->
+
                                 <td>${cliente.nombre}</td>
                                 <td>${cliente.apellido}</td>
                                 <td>${cliente.cedula}</td>
@@ -243,7 +212,6 @@ desired effect
                                     <a href="/cliente/borrar/?id=${cliente.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>
-                                <!--Aqui cierro el foreach -->
                             </#list>
                         </table>
 

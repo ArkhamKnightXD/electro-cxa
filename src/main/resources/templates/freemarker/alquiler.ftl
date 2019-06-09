@@ -221,7 +221,7 @@ desired effect
                             <th>Opciones</th>
                             </thead>
 
-                            <!--De esta forma se crea un foreach en thymeleaf -->
+                            <!--De esta forma se crea un foreach en freemarker -->
                             <#list alquileres as alquiler >
                             <tr>
 

@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
 
 
@@ -25,20 +21,19 @@ public class ClienteController {
     @Autowired
     private ClienteServices clienteServices;
 
+    // Instancio este servicio para poder trabajar los archivos o imagenes
     @Autowired
     private FileUploadServices fileUploadServices;
 
 
-    // Con esta variable indicaremos el directorio donde
-    // se subiran nuestros archivos
+    // Con esta variable indicaremos el directorio donde se subiran nuestros archivos
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
 
-    // Para conseguir el nombre de ussuario mediante spring security debo especificar un objeto de la clase principal aqui
+    // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
     @RequestMapping("/")
     public String index(Model model, Principal principal){
 
-        //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
         // Aqui le mando el listado de clientes a la vista
@@ -48,7 +43,6 @@ public class ClienteController {
      //   model.addAttribute("usuario", principal.getName());
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/cliente";
     }
 
@@ -60,24 +54,20 @@ public class ClienteController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/crearcliente";
     }
 
 
 
-    // con error a la hora de crear
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearCliente(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
 
-        //Primero manejo la imagen esta funcion me devuelve un string con el nombre del archivo que fue insertado
-        //en el formulario
+        //Primero manejo la imagen esta funcion me devuelve un string con el nombre del archivo que fue insertad en el formulario
         String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
 
         // Agregando los parametros al cliente, no es necesario agregar el parametro id ya que anteriormente especificamos
-        // que este se autogenerara cuando especificamos la entidad, al final le mando el filename.tostring para que me de
-        //el nombre de la imagen en un string y asi guardarlo en el cliente
+        // que este se autogenerara cuando especificamos la entidad
         Cliente cliente = new Cliente(nombre,apellido,cedula,direccion,telefono,nombreDeLaFoto);
 
         // Aqui inserto cliente
@@ -88,7 +78,6 @@ public class ClienteController {
         model.addAttribute("ruta","cliente");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 
@@ -117,8 +106,7 @@ public class ClienteController {
     @RequestMapping("/editar")
     public String editarCliente(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id,@RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
 
-        //problemas a la hora de editar la imagen al parecer no se puede realizar este proceso dos veces en un mismo controlador
-
+        //Aqui obtengo el nombre de la imagen
         String fotoName = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
         // Para editar el cliente primero debo de buscarlo
@@ -160,7 +148,6 @@ public class ClienteController {
           model.addAttribute("mensaje","El cliente ha sido eliminado con exito");
           model.addAttribute("ruta","cliente");
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 

@@ -25,7 +25,6 @@
 
     <section class="content-header">
         <h1 class="text-center">
-            <!--Aqui agregare el texto de la pagina -->
             <strong>Agregar nuevo usuario</strong>
         </h1>
 
@@ -71,7 +70,6 @@
 
 
             <div class="form-group">
-                <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
                 <a class="btn btn-danger" href="/usuario/" role="button">Cancelar</a>
             </div>
@@ -82,10 +80,6 @@
     </form>
 
 </div>
-
-<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
- de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-
 
 </body>
 </html>

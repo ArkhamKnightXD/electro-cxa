@@ -19,7 +19,6 @@ import java.util.*;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    // Aqui retorno la pagina inicial
 
     @Autowired
     private UsuarioServices usuarioServices;
@@ -27,8 +26,6 @@ public class UsuarioController {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
-    // A este path solo debe ser posible acceder si eres administrador debo trabajar eso en la vista, por ahora dejare la entrada aqui
-    // normal
     @RequestMapping("/")
     public String index(Model model, Principal principal){
 
@@ -48,10 +45,10 @@ public class UsuarioController {
 
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
-        // Debo de mandarle los roles a crear para poder seleccionar
+
+        //Aqui mando los roles a la ventana de crear usuario
         model.addAttribute("roles", usuarioServices.listarRoles());
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/crearusuario";
     }
 
@@ -91,19 +88,16 @@ public class UsuarioController {
 
 
     // Considero que editar usuario no es necesario, por lo tanto no creare estas funciones
-
     @RequestMapping("/borrar")
     public String eliminarUsuario(Model model,  @RequestParam(name = "id") long id){
 
 
-        // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
         usuarioServices.eliminarUsuario(id);
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","El usuario ha sido eliminado con exito");
         model.addAttribute("ruta","usuario");
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 

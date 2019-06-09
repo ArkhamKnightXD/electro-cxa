@@ -28,19 +28,17 @@ public class EquipoController {
     @Autowired
     private FileUploadServices fileUploadServices;
 
-    // Con esta variable indicaremos el directorio donde
-    // se subiran nuestros archivos
+
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
+
 
     @RequestMapping("/")
     public String index(Model model, Principal principal){
 
-        //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("equipos",equipoServices.listarEquipos());
 
        // model.addAttribute("usuario", principal.getName());
-        //Ubicando la vista desde resources/templates
         return "/freemarker/equipo";
     }
 
@@ -53,7 +51,6 @@ public class EquipoController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/crearequipo";
     }
 
@@ -78,7 +75,6 @@ public class EquipoController {
         //Ahora mismo lo unico que me falla de equipo es lo de obtener la subfamilia mediante el formulario
         Equipo equipoToCreate = new Equipo(nombre,marca,nombreDeLaFoto,cantidadExistencia,costoAlquilerPorDia,familia,subFamiliaTest);
 
-        // Aqui inserto cliente
         equipoServices.crearEquipo(equipoToCreate);
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
@@ -86,7 +82,6 @@ public class EquipoController {
         model.addAttribute("ruta","equipo");
 
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 
@@ -95,12 +90,8 @@ public class EquipoController {
     @RequestMapping("/edicion")
     public String edicionEquipo(Model model,  @RequestParam(name = "id") long id ){
 
-        //Aqui obtengo el cliente que voy a editar
         Equipo equipoToEdit = equipoServices.encontrarEquipoPorId(id);
 
-
-        //Aqui le mando el cliente que editaremos a la vista de editar cliente para asi trabajar con sus datos y poder
-        // modificarlos de manera correcta
         model.addAttribute("equipo",equipoToEdit);
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
@@ -110,14 +101,9 @@ public class EquipoController {
 
 
 
-
-
-    // Como tengo que obtener el cliente de la vista aqui necesito un requesparam y le mando el parametro con /?id=cliente.id
-    // desde la vista hacia esta funcion mediante la url
     @RequestMapping("/editar")
     public String editarEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
 
-        //Manejo de imagen
 
         String imagenEquipo = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
@@ -129,9 +115,7 @@ public class EquipoController {
         equipoToEdit.setImagenEquipo(imagenEquipo);
         equipoToEdit.setCostoAlquilerPorDia(costoAlquilerPorDia);
 
-        //Le agrego los campos editados mediante las propiedades set de la clase
 
-        // Aqui guardo el cliente de nuevo ya que .save funciona tanto como para crear nuevo o editar.
         equipoServices.crearEquipo(equipoToEdit);
 
 
@@ -139,7 +123,6 @@ public class EquipoController {
         model.addAttribute("mensaje","El equipo ha sido editado con exito");
         model.addAttribute("ruta","equipo");
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 
@@ -150,14 +133,12 @@ public class EquipoController {
     public String eliminarEquipo(Model model,  @RequestParam(name = "id") long id){
 
 
-        // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
         equipoServices.eliminarEquipo(id);
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("mensaje","El equipo ha sido eliminado con exito");
         model.addAttribute("ruta","equipo");
 
-        //Ubicando la vista desde resources/templates
         return "/freemarker/mensajes";
     }
 

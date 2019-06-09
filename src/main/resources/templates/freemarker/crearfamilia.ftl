@@ -22,9 +22,6 @@
 <body>
 
 
-<!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
- de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
-
 <div class="container">
 
 
@@ -83,10 +80,7 @@
             </div>
 
 
-
-
             <div class="form-group">
-                <!--Cuando presion el submit esto indica que se activara el action ubicado en el inicio del  form -->
                 <button class="btn btn-primary col-md-offset-3" type="submit">Guardar</button>
                 <a class="btn btn-danger" href="/familia/" role="button">Cancelar</a>
             </div>
