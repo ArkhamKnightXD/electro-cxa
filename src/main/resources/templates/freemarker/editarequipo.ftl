@@ -76,13 +76,17 @@
 
 
 
+            <!--De esta forma manejo la seleccion de la familia elegida para conseguirla de nuevo aqui en el edit
+             y mediante este codigo me aseguro que se elija la correcta-->
             <div class="form-group">
                 <label for="familia" class="control-label col-md-3">Seleccione la familia del equipo:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <select class="form-control" name="familia"  id="familia" onchange="filtrarSubFamilias()">
+                    <select class="form-control" name="familia">
                         <#list familias as familia>
-                            <#if !familia.subFamilia>
+                            <#if equipo.familia.id == familia.id>
+                                <option value="${equipo.familia.id}" >${equipo.familia.nombre}</option>
+                            <#else>
                                 <option value="${familia.id}">${familia.nombre}</option>
                             </#if>
                         </#list>
@@ -97,8 +101,16 @@
                 <label for="subFamilia" class="control-label col-md-3">Seleccione la subfamilia del equipo:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <select class="form-control" name="subFamilia" id="subFamilia">
-                        <#--Esto se autogenerara-->
+                    <select class="form-control" name="subFamilia">
+                        <#list familias as familia>
+                            <#if familia.subFamilia>
+                                <#if equipo.subFamilia.id == familia.id>
+                                    <option value="${equipo.familia.id}" >${equipo.familia.nombre}</option>
+                                <#else>
+                                    <option value="${familia.id}">${familia.nombre}</option>
+                                </#if>
+                            </#if>
+                        </#list>
                     </select>
                 </div>
 
@@ -129,28 +141,6 @@
 
 
 </body>
-<script>
-    function filtrarSubFamilias() {
-        var subFamilia = [];
-        var familiaJS = document.querySelector("#familia").value;
 
-        <#list familias as familia>
-        <#if familia.subFamilia>
-        var familiaPadreJS = "${familia.familiaPadre.id?string['0']}";
-
-        if (familiaJS == familiaPadreJS) {
-            subFamilia.push({ id: "${familia.id}", nombre: "${familia.nombre}" });
-        }
-        </#if>
-        </#list>
-
-        document.querySelector("#subFamilia").innerHTML = "";
-        for (var i = 0; i < subFamilia.length; i++) {
-            document.querySelector("#subFamilia").innerHTML += '<option value="' + subFamilia[i].id +'">' + subFamilia[i].nombre +'</option>';
-        }
-
-        console.table(subFamilia);
-    }
-</script>
 </html>
 

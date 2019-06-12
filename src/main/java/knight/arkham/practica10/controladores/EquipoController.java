@@ -62,18 +62,18 @@ public class EquipoController {
         String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
          Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
-        //Familia subFamilia = familiaService.encontrarFamiliaPorId(idSubFamilia);
+        Familia subFamiliaToFind = familiaService.encontrarFamiliaPorId(idSubFamilia);
 
         // Familias y subfamilias de prueba para comprobar que se creara bien el equipo
-        Familia familiaTest = new Familia("Personas",false);
-        Familia subFamiliaTest = new Familia("Gente",true,familiaTest);
+//        Familia familiaTest = new Familia("Personas",false);
+  //      Familia subFamiliaTest = new Familia("Gente",true,familiaTest);
 
-        familiaService.crearFamilia(familiaTest);
-        familiaService.crearFamilia(subFamiliaTest);
+    //    familiaService.crearFamilia(familiaTest);
+      //  familiaService.crearFamilia(subFamiliaTest);
 
 
         //Ahora mismo lo unico que me falla de equipo es lo de obtener la subfamilia mediante el formulario
-        Equipo equipoToCreate = new Equipo(nombre,marca,nombreDeLaFoto,cantidadExistencia,costoAlquilerPorDia,familia,subFamiliaTest);
+        Equipo equipoToCreate = new Equipo(nombre,marca,nombreDeLaFoto,cantidadExistencia,costoAlquilerPorDia,familia,subFamiliaToFind);
 
         equipoServices.crearEquipo(equipoToCreate);
 
@@ -92,7 +92,9 @@ public class EquipoController {
 
         Equipo equipoToEdit = equipoServices.encontrarEquipoPorId(id);
 
+
         model.addAttribute("equipo",equipoToEdit);
+        model.addAttribute("familias", familiaService.listarFamilias());
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
@@ -102,18 +104,26 @@ public class EquipoController {
 
 
     @RequestMapping("/editar")
-    public String editarEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia ){
+    public String editarEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long subFamilia ){
 
 
         String imagenEquipo = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
         Equipo equipoToEdit = equipoServices.encontrarEquipoPorId(id);
 
+        Familia familiaToEdit = familiaService.encontrarFamiliaPorId(idFamilia);
+
+        Familia subFamiliaToEdit = familiaService.encontrarFamiliaPorId(idFamilia);
+
         equipoToEdit.setNombre(nombre);
         equipoToEdit.setMarca(marca);
         equipoToEdit.setCantidadExistencia(cantidadExistencia);
         equipoToEdit.setImagenEquipo(imagenEquipo);
         equipoToEdit.setCostoAlquilerPorDia(costoAlquilerPorDia);
+
+        //Aqui le mando las familias y subfamilias
+        equipoToEdit.setFamilia(familiaToEdit);
+        equipoToEdit.setSubFamilia(subFamiliaToEdit);
 
 
         equipoServices.crearEquipo(equipoToEdit);

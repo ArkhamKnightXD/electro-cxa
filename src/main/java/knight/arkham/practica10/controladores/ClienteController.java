@@ -62,7 +62,8 @@ public class ClienteController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearCliente(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
 
-        //Primero manejo la imagen esta funcion me devuelve un string con el nombre del archivo que fue insertad en el formulario
+        //Primero manejo la imagen esta funcion me devuelve un string con el nombre
+        // del archivo que fue insertado en el formulario
         String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
 

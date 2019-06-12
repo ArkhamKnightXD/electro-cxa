@@ -191,9 +191,9 @@
                             <th>Marca</th>
                             <th>Cantidad en existencia</th>
                             <th>Costo por alquiler</th>
-                            <th>Foto</th>
                             <th>Familia</th>
                             <th>Subfamilia</th>
+                            <th>Foto</th>
                             <th>Opciones</th>
                             </thead>
 
@@ -203,26 +203,18 @@
                                 <td>${equipo.marca}</td>
                                 <td>${equipo.cantidadExistencia}</td>
                                 <td>${equipo.costoAlquilerPorDia}</td>
-                                <td>${equipo.imagenEquipo}</td>
                                 <!--
-                                Esta es la forma correcta para mostrar las familias y subfamilia del equipo, pero por alguna razon cuando
-                                lo creo directamente en equipo controller esto no me muestra el nombre, pero por lo menos me muestra el n/a
-                                por lo tanto esto funciona, los ?? al lado de la variable sirven para que cuando el objeto es null
-                                o no es encontrado me mande directamente al else que es lo que siempre esta pasando-->
-                                <td>
-                                    <#if equipo.familia??>
-                                        ${equipo.familia.nombre}
-                                    <#else>
-                                        N/A
-                                    </#if>
-                                </td>
+                                Esta es la forma correcta para mostrar las familias y subfamilia del equipo, primero compruebo mediante
+                                un if su existencia y si existe muestro el nombre de la familia accedo a esto mediante equipo-->
+                                <#if equipo.familia??>
+                                    <td>${equipo.familia.nombre}</td>
+                                </#if>
+                                <#if equipo.subFamilia??>
+                                    <td>${equipo.subFamilia.nombre}</td>
+                                </#if>
 
                                 <td>
-                                    <#if equipo.subFamilia??>
-                                        ${equipo.subFamilia.nombre}
-                                    <#else>
-                                        N/A
-                                    </#if>
+                                    <img src="../../../../../uploads/${equipo.imagenEquipo}" alt="${equipo.imagenEquipo}" height="128px" width="128px">
                                 </td>
                                 <td>
                                     <a href="/equipo/edicion/?id=${equipo.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>

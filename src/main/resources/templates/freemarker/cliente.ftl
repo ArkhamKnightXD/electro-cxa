@@ -205,7 +205,11 @@
                                 <td>${cliente.cedula}</td>
                                 <td>${cliente.direccion}</td>
                                 <td>${cliente.telefono}</td>
-                                <td>${cliente.foto}</td>
+
+                                <!--Este es el path correcto para mostrar la foto, pero por alguna razon no la muestra -->
+                                <td>
+                                    <img src="../../../../../uploads/${cliente.foto}" alt="${cliente.foto}" height="128px" width="128px">
+                                </td>
 
                                 <td>
                                     <a href="/cliente/edicion/?id=${cliente.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>

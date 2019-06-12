@@ -97,4 +97,19 @@ public class Equipo implements Serializable {
         this.costoAlquilerPorDia = costoAlquilerPorDia;
     }
 
+    public Familia getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(Familia familia) {
+        this.familia = familia;
+    }
+
+    public Familia getSubFamilia() {
+        return subFamilia;
+    }
+
+    public void setSubFamilia(Familia subFamilia) {
+        this.subFamilia = subFamilia;
+    }
 }
