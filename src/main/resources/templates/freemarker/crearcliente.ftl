@@ -64,7 +64,7 @@
                 <label for="cedula" class="control-label col-md-3">Cedula:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="cedula" class="form-control" placeholder="Cedula...">
+                    <input type="text" name="cedula" class="form-control" required placeholder="Cedula...">
                 </div>
 
             </div>
@@ -95,7 +95,7 @@
                 <label for="file" class="control-label col-md-3">Foto del cliente:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="file" name="files" class="form-control" placeholder="Foto del cliente...">
+                    <input type="file" name="files" class="form-control" required placeholder="Foto del cliente...">
                 </div>
 
             </div>

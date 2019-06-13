@@ -52,7 +52,7 @@
 
             <div class="form-group">
 
-                <label class="form-check-label col-md-2" for="subFamilia">Es subfamilia:</label>
+                <label class="form-check-label col-md-1" for="subFamilia">Es subfamilia:</label>
                 <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
                     <input class="form-check-input" type="checkbox" name="subFamilia" id="subFamilia" onclick="cambiar()" />
                 </div>

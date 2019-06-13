@@ -60,9 +60,11 @@
                 <label for="idEquipo" class="control-label col-md-3">Equipo a alquilar</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <select name="idEquipo" class="form-control" id="idEquipo">
-                        <#list equipos as equipo >
-                            <option value="${equipo.id}">${equipo.nombre}</option>
+                    <select multiple class="form-control" name="equipos">
+                        <#list equipos as equipo>
+                            <#if equipo.existencia gt 0>
+                                <option value="${equipo.id}" class="equipo-option" data-img="/img/${equipo.imagen}" >${equipo.nombre} (${equipo.existencia}) - $${equipo.costoPorDia}/${dia}</option>
+                            </#if>
                         </#list>
                     </select>
                 </div>
@@ -77,7 +79,7 @@
                 <label for="fecha" class="control-label col-md-3">Fecha:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="date" name="fecha" min="2019-05-29" max="2019-06-29" class="form-control" placeholder="Fecha...">
+                    <input type="date" name="fecha" min="2019-06-12" max="2019-08-29" required class="form-control" placeholder="Fecha...">
                 </div>
 
             </div>
@@ -87,7 +89,7 @@
                 <label for="fechaEntrega" class="control-label col-md-3">Fecha de entrega:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="date" name="fechaEntrega" min="2019-05-29" max="2019-06-29" class="form-control" placeholder="Fecha de entrega...">
+                    <input type="date" name="fechaEntrega" min="2019-06-12" max="2019-08-29" required class="form-control" placeholder="Fecha de entrega...">
                 </div>
 
             </div>
@@ -109,9 +111,14 @@
 <!--Cuando presione submit se ejecutara el accion especificado ahi que a su vez me creara un usuario y no hay necesidad
  de agregar los parametros a la url ya que el controlador obtiene los parametros mediante el name especificados en los input-->
 
-
-
-
 </body>
+<!--Este script se encarga de que se puedan seleccionar multiple equipos, ademas de que se pueda visualizar la imagen -->
+<script>
+    $(document).ready(function() {
+        $('.equipo-option').on('click', function() {
+            $("#img-equipo").prop("src", $(this).data("img"));
+        });
+    });
+</script>
 </html>
 

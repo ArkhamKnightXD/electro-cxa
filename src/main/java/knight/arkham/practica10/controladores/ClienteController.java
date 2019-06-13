@@ -4,6 +4,7 @@ import knight.arkham.practica10.modelos.Cliente;
 import knight.arkham.practica10.servicios.ClienteServices;
 import knight.arkham.practica10.servicios.FileUploadServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.Locale;
 
 
 @Controller
@@ -25,9 +27,27 @@ public class ClienteController {
     @Autowired
     private FileUploadServices fileUploadServices;
 
+    //Instancio esta dependencia que es necesaria para la internacionalizacion
+    @Autowired
+    private MessageSource messageSource;
+
 
     // Con esta variable indicaremos el directorio donde se subiran nuestros archivos
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
+
+
+    // Prueba de i18n Aqui le mando los datos para  implementar i18n a la vista greetings , lo principal es que aqui se
+    // trabaje con locale
+    @RequestMapping("/greetings")
+    public String pruebaI18n(Model model, Locale locale, @RequestParam(value="nombre", required=false, defaultValue="Mundo") String nombre){
+
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("saludo", messageSource.getMessage("saludo", null, locale));
+        model.addAttribute("con_atributo", messageSource.getMessage("con_atributo", new Object[]{20011136}, locale));
+
+        return "/freemarker/greetings";
+    }
+
 
 
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui

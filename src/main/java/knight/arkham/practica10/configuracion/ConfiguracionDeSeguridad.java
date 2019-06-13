@@ -56,7 +56,7 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
                 .authorizeRequests()
 
                 //Aqui especifico que permito que cualquiera pueda acceder a estas url
-                .antMatchers("/","/css/**", "/js/**").permitAll()
+                .antMatchers("/","/css/**", "/js/**", "../../../../../uploads/**").permitAll()
                 .antMatchers("/dbconsole/**").permitAll()
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
