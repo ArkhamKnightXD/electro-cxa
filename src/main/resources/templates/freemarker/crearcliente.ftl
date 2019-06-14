@@ -13,16 +13,18 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="../../style/style.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
 </head>
-<body>
+<body background="../../pictures/fondo.png">
 
 
-<div class="container">
+<div class="container-form center">
 
     <section class="content-header">
         <h1 class="text-center">
@@ -53,7 +55,7 @@
                 <label for="apellido" class="control-label col-md-3">Apellido:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="apellido" class="form-control" placeholder="Apellido...">
+                    <input type="text" name="apellido" class="form-control " placeholder="Apellido...">
                 </div>
 
             </div>

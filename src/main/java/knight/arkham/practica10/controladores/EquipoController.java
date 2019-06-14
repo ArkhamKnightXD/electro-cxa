@@ -56,33 +56,20 @@ public class EquipoController {
 
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia, @RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
+    public String crearEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia, @RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
 
         //Manejando la imagen para conseguir su nombre y almacenarla
         String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
-         Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
+        Familia familia = familiaService.encontrarFamiliaPorId(idFamilia);
         Familia subFamiliaToFind = familiaService.encontrarFamiliaPorId(idSubFamilia);
-
-        // Familias y subfamilias de prueba para comprobar que se creara bien el equipo
-//        Familia familiaTest = new Familia("Personas",false);
-  //      Familia subFamiliaTest = new Familia("Gente",true,familiaTest);
-
-    //    familiaService.crearFamilia(familiaTest);
-      //  familiaService.crearFamilia(subFamiliaTest);
-
 
         //Ahora mismo lo unico que me falla de equipo es lo de obtener la subfamilia mediante el formulario
         Equipo equipoToCreate = new Equipo(nombre,marca,nombreDeLaFoto,cantidadExistencia,costoAlquilerPorDia,familia,subFamiliaToFind);
 
         equipoServices.crearEquipo(equipoToCreate);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El equipo ha sido creado con exito");
-        model.addAttribute("ruta","equipo");
-
-
-        return "/freemarker/mensajes";
+        return "redirect:/equipo/";
     }
 
 
@@ -104,7 +91,7 @@ public class EquipoController {
 
 
     @RequestMapping("/editar")
-    public String editarEquipo(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long subFamilia ){
+    public String editarEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long subFamilia ){
 
 
         String imagenEquipo = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
@@ -128,28 +115,19 @@ public class EquipoController {
 
         equipoServices.crearEquipo(equipoToEdit);
 
-
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El equipo ha sido editado con exito");
-        model.addAttribute("ruta","equipo");
-
-        return "/freemarker/mensajes";
+        return "redirect:/equipo/";
     }
 
 
 
 
     @RequestMapping("/borrar")
-    public String eliminarEquipo(Model model,  @RequestParam(name = "id") long id){
+    public String eliminarEquipo(@RequestParam(name = "id") long id){
 
 
         equipoServices.eliminarEquipo(id);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El equipo ha sido eliminado con exito");
-        model.addAttribute("ruta","equipo");
-
-        return "/freemarker/mensajes";
+        return "redirect:/equipo/";
     }
 
 

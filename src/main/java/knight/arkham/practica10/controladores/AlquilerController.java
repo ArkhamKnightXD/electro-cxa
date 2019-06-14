@@ -72,7 +72,7 @@ public class AlquilerController {
     // error de fecha solucionado, para solucionarlo utilice @DatimeFormat, ya que spring me da error a la hora de mandar
     // fechas por el controlador, y con este metodo es posible solucionar este problema, en pattern pongo el formate que mi fecha tendra
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearAlquiler(Model model, @RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente, @RequestParam(name = "idEquipo") long idEquipo) {
+    public String crearAlquiler(@RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente, @RequestParam(name = "idEquipo") long idEquipo) {
 
         Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(idEquipo);
 
@@ -86,27 +86,18 @@ public class AlquilerController {
 
         alquilerServices.crearAlquiler(alquilerToCreate);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje", "El alquiler ha sido creado con exito");
-        model.addAttribute("ruta", "alquiler");
-
-
-        return "/freemarker/mensajes";
+        return "redirect:/alquiler/";
     }
 
 
     @RequestMapping("/borrar")
-    public String eliminarAlquiler(Model model, @RequestParam(name = "id") long id) {
+    public String eliminarAlquiler(@RequestParam(name = "id") long id) {
 
 
         // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
         alquilerServices.eliminarAlquiler(id);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje", "El Alquiler ha sido eliminado con exito");
-        model.addAttribute("ruta", "alquiler");
-
-        return "/freemarker/mensajes";
+        return "redirect:/alquiler/";
     }
 
 

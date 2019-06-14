@@ -39,11 +39,10 @@ public class ClienteController {
     // Prueba de i18n Aqui le mando los datos para  implementar i18n a la vista greetings , lo principal es que aqui se
     // trabaje con locale
     @RequestMapping("/greetings")
-    public String pruebaI18n(Model model, Locale locale, @RequestParam(value="nombre", required=false, defaultValue="Mundo") String nombre){
+    public String pruebaI18n(Model model, Locale locale){
 
-        model.addAttribute("nombre", nombre);
+        //De esta forma se manda los datos que tendra implementan i18n
         model.addAttribute("saludo", messageSource.getMessage("saludo", null, locale));
-        model.addAttribute("con_atributo", messageSource.getMessage("con_atributo", new Object[]{20011136}, locale));
 
         return "/freemarker/greetings";
     }
@@ -80,7 +79,7 @@ public class ClienteController {
 
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearCliente(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
+    public String crearCliente(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
 
         //Primero manejo la imagen esta funcion me devuelve un string con el nombre
         // del archivo que fue insertado en el formulario
@@ -94,12 +93,9 @@ public class ClienteController {
         // Aqui inserto cliente
         clienteServices.crearCliente(cliente);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El cliente ha sido creado con exito");
-        model.addAttribute("ruta","cliente");
-
-
-        return "/freemarker/mensajes";
+        // de esta forma redirecciono hacia la vista index, esto es recomendable cuando se crea, se elimina
+        // o se edita al final del proceso debe de redireccionar al index
+        return "redirect:/cliente/";
     }
 
 
@@ -125,7 +121,7 @@ public class ClienteController {
     // Como tengo que obtener el cliente de la vista aqui necesito un requesparam y le mando el parametro con /?id=cliente.id
     // desde la vista hacia esta funcion mediante la url
     @RequestMapping("/editar")
-    public String editarCliente(Model model, @RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id,@RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
+    public String editarCliente(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id,@RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
 
         //Aqui obtengo el nombre de la imagen
         String fotoName = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
@@ -145,13 +141,8 @@ public class ClienteController {
         // Aqui guardo el cliente de nuevo ya que .save funciona tanto como para crear nuevo o editar.
         clienteServices.crearCliente(clienteToEdit);
 
-
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El cliente ha sido editado con exito");
-        model.addAttribute("ruta","cliente");
-
         //Ubicando la vista desde resources/templates
-        return "/freemarker/mensajes";
+        return "redirect:/cliente/";
     }
 
 
@@ -159,17 +150,13 @@ public class ClienteController {
     // Para obtener el id mediante la vista tengo que mandarselo a la url mediante un href de esta forma ?id=
     // Entonces la url para borrar estaria por ejemplo de esta forma borrar/?id=3
     @RequestMapping( value = "/borrar")
-    public String eliminarCliente(Model model,  @RequestParam(name = "id") long id){
+    public String eliminarCliente(@RequestParam(name = "id") long id){
 
 
         // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
           clienteServices.eliminarCliente(id);
 
-          model.addAttribute("titulo", "Electrodomesticos CXA");
-          model.addAttribute("mensaje","El cliente ha sido eliminado con exito");
-          model.addAttribute("ruta","cliente");
-
-        return "/freemarker/mensajes";
+        return "redirect:/cliente/";
     }
 
 

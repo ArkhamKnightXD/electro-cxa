@@ -56,17 +56,16 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
                 .authorizeRequests()
 
                 //Aqui especifico que permito que cualquiera pueda acceder a estas url
-                .antMatchers("/","/css/**", "/js/**", "../../../../../uploads/**").permitAll()
+                .antMatchers("/","/css/**", "/js/**").permitAll()
                 .antMatchers("/dbconsole/**").permitAll()
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
-                // Desactivares las restriciones debido a que se crean 2 usuarios al mismo tiempo y por lo tanto no puedo entrar a ningun lugar
-              //  .antMatchers("/usuario/**").hasAnyRole("ADMIN")
-               // .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
-             //   .antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
-             //   .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
-             //   .antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
-               // .anyRequest().authenticated() //cualquier llamada debe ser validada
+                .antMatchers("/usuario/**").hasAnyRole("ADMIN")
+                .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
+                .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
                 //.loginPage("/login") //indicando la ruta que estaremos utilizando, sino vamos a utilizar el login por defecto.

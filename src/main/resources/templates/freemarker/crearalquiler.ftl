@@ -17,6 +17,7 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../../style/style.css">
 
     <!--Agregando date picker que viene incluido en bootstrap -->
 
@@ -24,9 +25,9 @@
 
 </head>
 <!--Aqui agregare la imagen de fondo cuando tenga una decente para los formularios -->
-<body background="../../pictures/">
+<body background="../../pictures/fondo.png">
 
-<div class="container">
+<div class="container-form center">
 
     <section class="content-header">
         <h1 class="text-center">
@@ -62,8 +63,8 @@
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select multiple class="form-control" name="equipos">
                         <#list equipos as equipo>
-                            <#if equipo.existencia gt 0>
-                                <option value="${equipo.id}" class="equipo-option" data-img="/img/${equipo.imagen}" >${equipo.nombre} (${equipo.existencia}) - $${equipo.costoPorDia}/${dia}</option>
+                            <#if equipo.cantidadExistencia gt 0>
+                                <option value="${equipo.id}" class="equipo-option" >${equipo.nombre} (${equipo.cantidadExistencia}) - $${equipo.costoAlquilerPorDia}/${dia}</option>
                             </#if>
                         </#list>
                     </select>

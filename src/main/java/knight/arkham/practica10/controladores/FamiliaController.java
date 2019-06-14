@@ -46,7 +46,7 @@ public class FamiliaController {
     // El id al final me daba el siguiente: error Consider declaring it as object wrapper for the corresponding primitive type.
     // Y se soluciona basicamente cambiando long por Long
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearFamilia(Model model, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "subFamilia", required = false) boolean subFamilia,@RequestParam(name = "idFamilia", required = false) Long idFamilia){
+    public String crearFamilia(@RequestParam(name = "nombre") String nombre, @RequestParam(name = "subFamilia", required = false) boolean subFamilia,@RequestParam(name = "idFamilia", required = false) Long idFamilia){
 
         //Ahora aqui debe de haber una eleccion, pues o se creara una familia normal o se creara una
         // subfamilia que va a tener una familia padre, por lo tanto usare un if aqui
@@ -76,27 +76,17 @@ public class FamiliaController {
 
         }
 
-
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","La familia ha sido creada con exito");
-        model.addAttribute("ruta","familia");
-
-
-        return "/freemarker/mensajes";
+        return "redirect:/familia/";
     }
 
 
     @RequestMapping("/borrar")
-    public String eliminarFamilia(Model model,  @RequestParam(name = "id") long id){
+    public String eliminarFamilia(@RequestParam(name = "id") long id){
 
 
         familiaService.eliminarFamilia(id);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","La familia ha sido eliminada con exito");
-        model.addAttribute("ruta","familia");
-
-        return "/freemarker/mensajes";
+        return "redirect:/familia/";
     }
 
 

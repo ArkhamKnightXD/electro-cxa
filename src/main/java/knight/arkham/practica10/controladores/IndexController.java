@@ -27,6 +27,8 @@ public class IndexController {
 
        // model.addAttribute("usuario", principal.getName());
 
-        return "/freemarker/starter";
+        //Aqui redirecciono hacia cliente para que realice el proceso creacion del usuario y no me muestre el
+        // posible error que se encuentra en la ruta localhost:8080/
+        return "redirect:/cliente/";
     }
 }

@@ -55,7 +55,7 @@ public class UsuarioController {
 
 
     @RequestMapping( value = "/crear", method = RequestMethod.POST)
-    public String crearUsuario(Model model, @RequestParam(name = "username") String username,@RequestParam(name = "password") String password, @RequestParam(name = "idRoles") long idRoles ){
+    public String crearUsuario(@RequestParam(name = "username") String username,@RequestParam(name = "password") String password, @RequestParam(name = "idRoles") long idRoles ){
 
 
         // Aqui le mando el id para que me busque el rol creado
@@ -78,27 +78,18 @@ public class UsuarioController {
         // Aqui inserto cliente
         usuarioServices.crearUsuario(usuarioToCreate);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El usuario ha sido creado con exito");
-        model.addAttribute("ruta","usuario");
-
-
-        return "/freemarker/mensajes";
+        return "redirect:/usuario/";
     }
 
 
     // Considero que editar usuario no es necesario, por lo tanto no creare estas funciones
     @RequestMapping("/borrar")
-    public String eliminarUsuario(Model model,  @RequestParam(name = "id") long id){
+    public String eliminarUsuario(@RequestParam(name = "id") long id){
 
 
         usuarioServices.eliminarUsuario(id);
 
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-        model.addAttribute("mensaje","El usuario ha sido eliminado con exito");
-        model.addAttribute("ruta","usuario");
-
-        return "/freemarker/mensajes";
+        return "redirect:/usuario/";
     }
 
 
