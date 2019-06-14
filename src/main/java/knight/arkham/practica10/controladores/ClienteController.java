@@ -50,11 +50,36 @@ public class ClienteController {
 
 
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
+    // para implementar las traducciones de i18n debo utilizar Locale
     @RequestMapping("/")
-    public String index(Model model, Principal principal){
+    public String index(Model model, Principal principal, Locale locale){
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        model.addAttribute("listaclientei18n", messageSource.getMessage("listaclientei18n", null, locale));
+        model.addAttribute("agregarclientei18n", messageSource.getMessage("agregarclientei18n", null, locale));
+        model.addAttribute("nombreclientei18n", messageSource.getMessage("nombreclientei18n", null, locale));
+        model.addAttribute("apellidoclientei18n", messageSource.getMessage("apellidoclientei18n", null, locale));
+        model.addAttribute("cedulaclientei18n", messageSource.getMessage("cedulaclientei18n", null, locale));
+        model.addAttribute("direccionclientei18n", messageSource.getMessage("direccionclientei18n", null, locale));
+        model.addAttribute("telefonoclientei18n", messageSource.getMessage("telefonoclientei18n", null, locale));
+        model.addAttribute("fotoclientei18n", messageSource.getMessage("fotoclientei18n", null, locale));
+        model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
         // Aqui le mando el listado de clientes a la vista
         model.addAttribute("clientes", clienteServices.listarClientes());
 
@@ -67,10 +92,17 @@ public class ClienteController {
 
 
     @RequestMapping("/creacion")
-    public String creacionCliente(Model model){
+    public String creacionCliente(Model model, Locale locale){
 
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
+        model.addAttribute("agregarclientei18n", messageSource.getMessage("agregarclientei18n", null, locale));
+        model.addAttribute("nombreclientei18n", messageSource.getMessage("nombreclientei18n", null, locale));
+        model.addAttribute("apellidoclientei18n", messageSource.getMessage("apellidoclientei18n", null, locale));
+        model.addAttribute("cedulaclientei18n", messageSource.getMessage("cedulaclientei18n", null, locale));
+        model.addAttribute("direccionclientei18n", messageSource.getMessage("direccionclientei18n", null, locale));
+        model.addAttribute("telefonoclientei18n", messageSource.getMessage("telefonoclientei18n", null, locale));
+        model.addAttribute("fotoclientei18n", messageSource.getMessage("fotoclientei18n", null, locale));
 
 
         return "/freemarker/crearcliente";

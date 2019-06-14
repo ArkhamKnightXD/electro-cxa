@@ -60,12 +60,12 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
                 .antMatchers("/dbconsole/**").permitAll()
 
                 // Aqui especifico que para entrar a esta ruta es necesario tener el rol Admin o user, por alguna razon falla con el usuario
-                .antMatchers("/usuario/**").hasAnyRole("ADMIN")
-                .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().authenticated() //cualquier llamada debe ser validada
+                //.antMatchers("/usuario/**").hasAnyRole("ADMIN")
+               // .antMatchers("/cliente/**").hasAnyRole("ADMIN", "USER")
+                //.antMatchers("/equipo/**").hasAnyRole("ADMIN", "USER")
+               // .antMatchers("/familia/**").hasAnyRole("ADMIN", "USER")
+                //.antMatchers("/alquiler/**").hasAnyRole("ADMIN", "USER")
+               // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
                 //.loginPage("/login") //indicando la ruta que estaremos utilizando, sino vamos a utilizar el login por defecto.
