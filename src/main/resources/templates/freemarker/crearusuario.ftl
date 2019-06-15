@@ -26,7 +26,7 @@
 
     <section class="content-header">
         <h1 class="text-center">
-            <strong>Agregar nuevo usuario</strong>
+            <strong>${agregarusuarioi18n}</strong>
         </h1>
 
         <br>
@@ -37,7 +37,7 @@
         <div class="row">
 
             <div class="form-group">
-                <label for="username" class="control-label col-md-3">Nombre de usuario:</label>
+                <label for="username" class="control-label col-md-3">${nombreusuarioi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="username" class="form-control" placeholder="Nombre de usuario...">
@@ -47,7 +47,7 @@
 
 
             <div class="form-group">
-                <label for="password" class="control-label col-md-3">Password:</label>
+                <label for="password" class="control-label col-md-3">${passwordusuarioi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="password" name="password" class="form-control" placeholder="Password...">
@@ -57,7 +57,7 @@
 
 
             <div class="form-group">
-                <label for="idRoles" class="control-label col-md-3">Rol del usuario</label>
+                <label for="idRoles" class="control-label col-md-3">${rolusuarioi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select name="idRoles" class="form-control" id="idRoles" required>
@@ -71,8 +71,8 @@
 
 
             <div class="form-group">
-                <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
-                <a class="btn btn-danger" href="/usuario/" role="button">Cancelar</a>
+                <button class="btn btn-primary col-md-offset-5" type="submit">${botonguardari18n}</button>
+                <a class="btn btn-danger" href="/usuario/" role="button">${botoncancelari18n}</a>
             </div>
 
 

@@ -7,6 +7,7 @@ import knight.arkham.practica10.servicios.AlquilerServices;
 import knight.arkham.practica10.servicios.ClienteServices;
 import knight.arkham.practica10.servicios.EquipoServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/alquiler")
@@ -36,12 +38,30 @@ public class AlquilerController {
     @Autowired
     private ClienteServices clienteServices;
 
+    @Autowired
+    private MessageSource messageSource;
+
 
     @RequestMapping("/")
-    public String index(Model model, Principal principal) {
+    public String index(Model model, Principal principal, Locale locale) {
 
         //Indicando el modelo que será pasado a la vista.
         model.addAttribute("titulo", "Electrodomesticos CXA");
+
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
         model.addAttribute("equipos", equipoServices.listarEquipos());
         model.addAttribute("alquileres", alquilerServices.listarAlquileres());
@@ -54,8 +74,12 @@ public class AlquilerController {
 
 
     @RequestMapping("/creacion")
-    public String creacionAlquiler(Model model) {
+    public String creacionAlquiler(Model model, Locale locale) {
 
+
+
+        model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
+        model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
         // Para poder crear un alquiler debo mandarle a la vista crearalquiler todos los equipos y clientes ya creados
 

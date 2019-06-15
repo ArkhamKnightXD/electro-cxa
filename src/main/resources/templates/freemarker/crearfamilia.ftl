@@ -29,7 +29,7 @@
     <section class="content-header">
         <h1 class="text-center">
             <!--Aqui agregare el texto de la pagina -->
-            <strong>Agregar nueva familia</strong>
+            <strong>${agregarfamiliai18n}</strong>
         </h1>
 
         <br>
@@ -40,7 +40,7 @@
         <div class="row">
 
             <div class="form-group">
-                <label for="nombre" class="control-label col-md-3">Nombre:</label>
+                <label for="nombre" class="control-label col-md-3">${nombrefamiliai18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
@@ -49,11 +49,9 @@
             </div>
 
 
-
-
             <div class="form-group">
 
-                <label class="form-check-label col-md-1" for="subFamilia">Es subfamilia:</label>
+                <label class="form-check-label col-md-1" for="subFamilia">${subfamiliai18n}:</label>
                 <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
                     <input class="form-check-input" type="checkbox" name="subFamilia" id="subFamilia" onclick="cambiar()" />
                 </div>
@@ -66,7 +64,7 @@
 
 
             <div class="form-group">
-                <label for="idFamilia" class="control-label col-md-3">Seleccione la familia a la que pertenece:</label>
+                <label for="idFamilia" class="control-label col-md-3">${familiai18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select class="form-control" name="idFamilia" id="idFamilia">
@@ -82,8 +80,8 @@
 
 
             <div class="form-group">
-                <button class="btn btn-primary col-md-offset-3" type="submit">Guardar</button>
-                <a class="btn btn-danger" href="/familia/" role="button">Cancelar</a>
+                <button class="btn btn-primary col-md-offset-3" type="submit">${botonguardari18n}</button>
+                <a class="btn btn-danger" href="/familia/" role="button">${botoncancelari18n}</a>
             </div>
 
 

@@ -26,7 +26,7 @@
 
     <section class="content-header">
         <h1 class="text-center">
-            <strong>Editar equipo</strong>
+            <strong>${editarequipoi18n}</strong>
         </h1>
 
         <br>
@@ -36,7 +36,7 @@
         <div class="row">
 
             <div class="form-group">
-                <label for="nombre" class="control-label col-md-3">Nombre:</label>
+                <label for="nombre" class="control-label col-md-3">${nombreequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="nombre" value="${equipo.nombre}" class="form-control" placeholder="Nombre...">
@@ -47,7 +47,7 @@
 
 
             <div class="form-group">
-                <label for="marca" class="control-label col-md-3">Marca:</label>
+                <label for="marca" class="control-label col-md-3">${marcaequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="marca" value="${equipo.marca}" class="form-control" placeholder="Marca...">
@@ -57,7 +57,7 @@
 
 
             <div class="form-group">
-                <label for="cantidadExistencia" class="control-label col-md-3">Cantidad en existencia:</label>
+                <label for="cantidadExistencia" class="control-label col-md-3">${cantidadequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="number" name="cantidadExistencia" value="${equipo.cantidadExistencia}" class="form-control" placeholder="Cantidad en existencia...">
@@ -68,7 +68,7 @@
 
 
             <div class="form-group">
-                <label for="costoAlquilerPorDia" class="control-label col-md-3">Costo del alquiler:</label>
+                <label for="costoAlquilerPorDia" class="control-label col-md-3">${costoequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="number" name="costoAlquilerPorDia" value="${equipo.costoAlquilerPorDia}" class="form-control" placeholder="Costo del alquiler por dia...">
@@ -80,7 +80,7 @@
             <!--De esta forma manejo la seleccion de la familia elegida para conseguirla de nuevo aqui en el edit
              y mediante este codigo me aseguro que se elija la correcta-->
             <div class="form-group">
-                <label for="familia" class="control-label col-md-3">Seleccione la familia del equipo:</label>
+                <label for="familia" class="control-label col-md-3">${familiaequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select class="form-control" name="familia">
@@ -99,7 +99,7 @@
 
 
             <div class="form-group">
-                <label for="subFamilia" class="control-label col-md-3">Seleccione la subfamilia del equipo:</label>
+                <label for="subFamilia" class="control-label col-md-3">${subfamiliaequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select class="form-control" name="subFamilia">
@@ -119,7 +119,7 @@
             </div>
 
             <div class="form-group">
-                <label for="file" class="control-label col-md-3">Foto del equipo:</label>
+                <label for="file" class="control-label col-md-3">${imagenequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="file" name="files" value="${equipo.imagenEquipo}" class="form-control" placeholder="Foto del equipo...">
@@ -129,8 +129,8 @@
 
 
             <div class="form-group">
-                <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
-                <a class="btn btn-danger" href="/equipo/" role="button">Cancelar</a>
+                <button class="btn btn-primary col-md-offset-5" type="submit">${botonguardari18n}</button>
+                <a class="btn btn-danger" href="/equipo/" role="button">${botoncancelari18n}</a>
             </div>
 
 

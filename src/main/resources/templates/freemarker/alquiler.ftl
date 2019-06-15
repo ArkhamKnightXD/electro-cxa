@@ -162,28 +162,28 @@ desired effect
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/cliente/"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
-                <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>Equipos</span></a></li>
+                <li><a href="/cliente/"><i class="fa fa-users"></i> <span>${clientesi18n}</span></a></li>
+                <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>${equiposi18n}</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-briefcase"></i> <span>Negocio</span>
+                    <a href="#"><i class="fa fa-briefcase"></i> <span>${negocioi18n}</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="/alquiler/">Alquiler</a></li>
-                        <li><a href="/familia/">Familia</a></li>
+                        <li class="active"><a href="/alquiler/">${alquileri18n}</a></li>
+                        <li><a href="/familia/">${familiasi18n}</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-user"></i> <span>Administrador</span>
+                    <a href="#"><i class="fa fa-user"></i> <span>${administradori18n}</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/usuario/">Usuarios</a></li>
+                        <li><a href="/usuario/">${usuariosi18n}</a></li>
                     </ul>
                 </li>
             </ul>

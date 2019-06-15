@@ -121,7 +121,7 @@
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>user</p>
+                    <p>User</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -134,28 +134,28 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li ><a href="/cliente/"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
-                <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>Equipos</span></a></li>
+                <li><a href="/cliente/"><i class="fa fa-users"></i> <span>${clientesi18n}</span></a></li>
+                <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>${equiposi18n}</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-briefcase""></i> <span>Negocio</span>
+                    <a href="#"><i class="fa fa-briefcase"></i> <span>${negocioi18n}</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/alquiler/">Alquiler</a></li>
-                        <li class="active"><a href="/familia/">Familia</a></li>
+                        <li><a href="/alquiler/">${alquileri18n}</a></li>
+                        <li class="active"><a href="/familia/">${familiasi18n}</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-user"></i> <span>Administrador</span>
+                    <a href="#"><i class="fa fa-user"></i> <span>${administradori18n}</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/usuario/">Usuarios</a></li>
+                        <li><a href="/usuario/">${usuariosi18n}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -170,9 +170,9 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Listado de familias</strong>
+                <strong>${listafamiliai18n}</strong>
             </h1>
-            <a class="btn btn-primary" href="/familia/creacion" role="button">Agregar nueva familia</a>
+            <a class="btn btn-primary" href="/familia/creacion" role="button">${agregarfamiliai18n}</a>
         </section>
 
         <!-- Main content -->
@@ -188,10 +188,10 @@
                         <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
 
-                            <th>Nombre</th>
-                            <th>Es una subfamilia</th>
-                            <th>Familia a la que pertenece</th>
-                            <th>Opciones</th>
+                            <th>${nombrefamiliai18n}</th>
+                            <th>${subfamiliai18n}</th>
+                            <th>${familiai18n}</th>
+                            <th>${opcionei18n}</th>
                             </thead>
 
                                 <#list familias as familia>

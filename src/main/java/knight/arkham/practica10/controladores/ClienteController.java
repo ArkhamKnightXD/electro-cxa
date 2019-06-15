@@ -47,8 +47,6 @@ public class ClienteController {
         return "/freemarker/greetings";
     }
 
-
-
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
     // para implementar las traducciones de i18n debo utilizar Locale
     @RequestMapping("/")
@@ -86,7 +84,6 @@ public class ClienteController {
         // Aqui le mando a la vista el nombre del usuario que esta logeado mediante principal consigo esos datos
      //   model.addAttribute("usuario", principal.getName());
 
-
         return "/freemarker/cliente";
     }
 
@@ -103,7 +100,8 @@ public class ClienteController {
         model.addAttribute("direccionclientei18n", messageSource.getMessage("direccionclientei18n", null, locale));
         model.addAttribute("telefonoclientei18n", messageSource.getMessage("telefonoclientei18n", null, locale));
         model.addAttribute("fotoclientei18n", messageSource.getMessage("fotoclientei18n", null, locale));
-
+        model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
+        model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
         return "/freemarker/crearcliente";
     }
@@ -132,7 +130,9 @@ public class ClienteController {
 
 
     @RequestMapping(value = "/edicion" )
-    public String edicionCliente(Model model,  @RequestParam(name = "id") long id ){
+    public String edicionCliente(Model model, Locale locale,  @RequestParam(name = "id") long id ){
+
+
 
         //Aqui obtengo el cliente que voy a editar
         Cliente clienteToEdit = clienteServices.encontrarClientePorId(id);
@@ -143,10 +143,19 @@ public class ClienteController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
 
+        model.addAttribute("editarclientei18n", messageSource.getMessage("editarclientei18n", null, locale));
+        model.addAttribute("nombreclientei18n", messageSource.getMessage("nombreclientei18n", null, locale));
+        model.addAttribute("apellidoclientei18n", messageSource.getMessage("apellidoclientei18n", null, locale));
+        model.addAttribute("cedulaclientei18n", messageSource.getMessage("cedulaclientei18n", null, locale));
+        model.addAttribute("direccionclientei18n", messageSource.getMessage("direccionclientei18n", null, locale));
+        model.addAttribute("telefonoclientei18n", messageSource.getMessage("telefonoclientei18n", null, locale));
+        model.addAttribute("fotoclientei18n", messageSource.getMessage("fotoclientei18n", null, locale));
+        model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
+        model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
+
+
         return "/freemarker/editarcliente";
     }
-
-
 
 
 

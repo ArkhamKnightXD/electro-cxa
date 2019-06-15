@@ -4,6 +4,7 @@ import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
 import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +24,40 @@ public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices;
 
+    @Autowired
+    private MessageSource messageSource;
+
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
     @RequestMapping("/")
-    public String index(Model model, Principal principal){
+    public String index(Model model, Principal principal, Locale locale){
 
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
+
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
+
+        model.addAttribute("listausuarioi18n", messageSource.getMessage("listausuarioi18n", null, locale));
+        model.addAttribute("agregarusuarioi18n", messageSource.getMessage("agregarusuarioi18n", null, locale));
+        model.addAttribute("nombreusuarioi18n", messageSource.getMessage("nombreusuarioi18n", null, locale));
+        model.addAttribute("activousuarioi18n", messageSource.getMessage("activousuarioi18n", null, locale));
+
         model.addAttribute("usuarios",usuarioServices.listarUsuarios());
 
       //  model.addAttribute("usuario", principal.getName());
@@ -41,10 +68,17 @@ public class UsuarioController {
 
 
     @RequestMapping("/creacion")
-    public String creacionUsuario(Model model){
+    public String creacionUsuario(Model model, Locale locale){
 
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
+
+        model.addAttribute("agregarusuarioi18n", messageSource.getMessage("agregarusuarioi18n", null, locale));
+        model.addAttribute("nombreusuarioi18n", messageSource.getMessage("nombreusuarioi18n", null, locale));
+        model.addAttribute("passwordusuarioi18n", messageSource.getMessage("passwordusuarioi18n", null, locale));
+        model.addAttribute("rolusuarioi18n", messageSource.getMessage("rolusuarioi18n", null, locale));
+        model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
+        model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
         //Aqui mando los roles a la ventana de crear usuario
         model.addAttribute("roles", usuarioServices.listarRoles());

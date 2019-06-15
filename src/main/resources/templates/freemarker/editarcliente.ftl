@@ -26,7 +26,7 @@
 
     <section class="content-header">
         <h1 class="text-center">
-            <strong>Editar cliente</strong>
+            <strong>${editarclientei18n}</strong>
         </h1>
 
         <br>
@@ -38,7 +38,7 @@
 
             <!--En value indico el valor que tiene este cliente antes de ser editados -->
             <div class="form-group">
-                <label for="nombre" class="control-label col-md-3">Nombre:</label>
+                <label for="nombre" class="control-label col-md-3">${nombreclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="nombre" value="${cliente.nombre}" class="form-control" placeholder="Nombre...">
@@ -48,7 +48,7 @@
 
 
             <div class="form-group">
-                <label for="apellido" class="control-label col-md-3">Apellido:</label>
+                <label for="apellido" class="control-label col-md-3">${apellidoclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="apellido" value="${cliente.apellido}" class="form-control" placeholder="Apellido...">
@@ -59,7 +59,7 @@
 
 
             <div class="form-group">
-                <label for="cedula" class="control-label col-md-3">Cedula:</label>
+                <label for="cedula" class="control-label col-md-3">${cedulaclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="cedula" value="${cliente.cedula}" class="form-control" placeholder="Cedula...">
@@ -69,9 +69,8 @@
 
 
 
-
             <div class="form-group">
-                <label for="telefono" class="control-label col-md-3">Telefono:</label>
+                <label for="telefono" class="control-label col-md-3">${telefonoclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="telefono" value="${cliente.telefono}" class="form-control" placeholder="Telefono...">
@@ -81,7 +80,7 @@
 
 
             <div class="form-group">
-                <label for="direccion" class="control-label col-md-3">Direccion:</label>
+                <label for="direccion" class="control-label col-md-3">${direccionclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="text" name="direccion" value="${cliente.direccion}" class="form-control" placeholder="Direccion...">
@@ -91,7 +90,7 @@
 
 
             <div class="form-group">
-                <label for="file" class="control-label col-md-3">Foto del cliente:</label>
+                <label for="file" class="control-label col-md-3">${fotoclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="file" name="files" value="${cliente.foto}" class="form-control" placeholder="Foto del cliente...">
@@ -102,8 +101,8 @@
 
 
             <div class="form-group">
-                <button class="btn btn-primary col-md-offset-5" type="submit">Guardar</button>
-                <a class="btn btn-danger" href="/cliente/" role="button">Cancelar</a>
+                <button class="btn btn-primary col-md-offset-5" type="submit">${botonguardari18n}</button>
+                <a class="btn btn-danger" href="/cliente/" role="button">${botoncancelari18n}</a>
             </div>
 
 

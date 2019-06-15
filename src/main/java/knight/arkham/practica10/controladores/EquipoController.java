@@ -6,6 +6,7 @@ import knight.arkham.practica10.servicios.EquipoServices;
 import knight.arkham.practica10.servicios.FamiliaService;
 import knight.arkham.practica10.servicios.FileUploadServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/equipo")
@@ -28,12 +30,43 @@ public class EquipoController {
     @Autowired
     private FileUploadServices fileUploadServices;
 
+    @Autowired
+    private MessageSource messageSource;
+
 
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
 
     @RequestMapping("/")
-    public String index(Model model, Principal principal){
+    public String index(Model model, Principal principal, Locale locale){
+
+
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        model.addAttribute("listaequipoi18n", messageSource.getMessage("listaequipoi18n", null, locale));
+
+        model.addAttribute("agregarequipoi18n", messageSource.getMessage("agregarequipoi18n", null, locale));
+        model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
+        model.addAttribute("marcaequipoi18n", messageSource.getMessage("marcaequipoi18n", null, locale));
+        model.addAttribute("imagenequipoi18n", messageSource.getMessage("imagenequipoi18n", null, locale));
+        model.addAttribute("cantidadequipoi18n", messageSource.getMessage("cantidadequipoi18n", null, locale));
+        model.addAttribute("costoequipoi18n", messageSource.getMessage("costoequipoi18n", null, locale));
+        model.addAttribute("familiaequipoindexi18n", messageSource.getMessage("familiaequipoindexi18n", null, locale));
+        model.addAttribute("subfamiliaequipoindexi18n", messageSource.getMessage("subfamiliaequipoindexi18n", null, locale));
+        model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("equipos",equipoServices.listarEquipos());
@@ -44,7 +77,19 @@ public class EquipoController {
 
 
     @RequestMapping("/creacion")
-    public String creacionEquipo(Model model){
+    public String creacionEquipo(Model model, Locale locale){
+
+
+        model.addAttribute("agregarequipoi18n", messageSource.getMessage("agregarequipoi18n", null, locale));
+        model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
+        model.addAttribute("marcaequipoi18n", messageSource.getMessage("marcaequipoi18n", null, locale));
+        model.addAttribute("imagenequipoi18n", messageSource.getMessage("imagenequipoi18n", null, locale));
+        model.addAttribute("cantidadequipoi18n", messageSource.getMessage("cantidadequipoi18n", null, locale));
+        model.addAttribute("costoequipoi18n", messageSource.getMessage("costoequipoi18n", null, locale));
+        model.addAttribute("familiaequipoi18n", messageSource.getMessage("familiaequipoi18n", null, locale));
+        model.addAttribute("subfamiliaequipoi18n", messageSource.getMessage("subfamiliaequipoi18n", null, locale));
+        model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
+        model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
 
         model.addAttribute("familias", familiaService.listarFamilias());
@@ -75,7 +120,20 @@ public class EquipoController {
 
 
     @RequestMapping("/edicion")
-    public String edicionEquipo(Model model,  @RequestParam(name = "id") long id ){
+    public String edicionEquipo(Model model,Locale locale,  @RequestParam(name = "id") long id ){
+
+
+        model.addAttribute("editarequipoi18n", messageSource.getMessage("editarequipoi18n", null, locale));
+        model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
+        model.addAttribute("marcaequipoi18n", messageSource.getMessage("marcaequipoi18n", null, locale));
+        model.addAttribute("imagenequipoi18n", messageSource.getMessage("imagenequipoi18n", null, locale));
+        model.addAttribute("cantidadequipoi18n", messageSource.getMessage("cantidadequipoi18n", null, locale));
+        model.addAttribute("costoequipoi18n", messageSource.getMessage("costoequipoi18n", null, locale));
+        model.addAttribute("familiaequipoi18n", messageSource.getMessage("familiaequipoi18n", null, locale));
+        model.addAttribute("subfamiliaequipoi18n", messageSource.getMessage("subfamiliaequipoi18n", null, locale));
+        model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
+        model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
+
 
         Equipo equipoToEdit = equipoServices.encontrarEquipoPorId(id);
 
