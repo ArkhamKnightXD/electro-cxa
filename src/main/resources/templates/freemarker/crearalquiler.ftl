@@ -32,7 +32,7 @@
     <section class="content-header">
         <h1 class="text-center">
             <!--Aqui agregare el texto de la pagina -->
-            <strong>Agregar nuevo alquiler</strong>
+            <strong>${agregaralquileri18n}</strong>
         </h1>
 
         <br>
@@ -43,7 +43,7 @@
 
 
             <div class="form-group">
-                <label for="idCliente" class="control-label col-md-3">Cliente</label>
+                <label for="idCliente" class="control-label col-md-3">${clientealquileri18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select name="idCliente" class="form-control" id="idCliente">
@@ -58,7 +58,7 @@
 
 
             <div class="form-group">
-                <label for="idEquipo" class="control-label col-md-3">Equipo a alquilar</label>
+                <label for="idEquipo" class="control-label col-md-3">${equipoalquileri18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <select multiple class="form-control" name="equipos">
@@ -77,7 +77,7 @@
             <!--Por ahora validare las fechas con min y max luego intentare implementar la funcion de javascript que encontre
              Que te calcula el dia que es hoy y eso lo puedo establecer como valor min-->
             <div class="form-group">
-                <label for="fecha" class="control-label col-md-3">Fecha:</label>
+                <label for="fecha" class="control-label col-md-3">${fechaalquileri18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="date" name="fecha" min="2019-06-12" max="2019-08-29" required class="form-control" placeholder="Fecha...">
@@ -87,7 +87,7 @@
 
 
             <div class="form-group">
-                <label for="fechaEntrega" class="control-label col-md-3">Fecha de entrega:</label>
+                <label for="fechaEntrega" class="control-label col-md-3">${fechaentregaalquileri18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                     <input type="date" name="fechaEntrega" min="2019-06-12" max="2019-08-29" required class="form-control" placeholder="Fecha de entrega...">

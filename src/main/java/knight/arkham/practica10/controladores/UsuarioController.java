@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.security.Principal;
 import java.util.*;
 
@@ -70,9 +69,7 @@ public class UsuarioController {
     @RequestMapping("/creacion")
     public String creacionUsuario(Model model, Locale locale){
 
-
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
         model.addAttribute("agregarusuarioi18n", messageSource.getMessage("agregarusuarioi18n", null, locale));
         model.addAttribute("nombreusuarioi18n", messageSource.getMessage("nombreusuarioi18n", null, locale));
         model.addAttribute("passwordusuarioi18n", messageSource.getMessage("passwordusuarioi18n", null, locale));
@@ -85,7 +82,6 @@ public class UsuarioController {
 
         return "/freemarker/crearusuario";
     }
-
 
 
     @RequestMapping( value = "/crear", method = RequestMethod.POST)

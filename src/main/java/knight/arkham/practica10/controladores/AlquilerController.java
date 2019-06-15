@@ -63,6 +63,13 @@ public class AlquilerController {
 
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
+        model.addAttribute("listaalquileri18n", messageSource.getMessage("listaalquileri18n", null, locale));
+        model.addAttribute("agregaralquileri18n", messageSource.getMessage("agregaralquileri18n", null, locale));
+        model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
+        model.addAttribute("totalalquileri18n", messageSource.getMessage("totalalquileri18n", null, locale));
+        model.addAttribute("equipoalquileri18n", messageSource.getMessage("equipoalquileri18n", null, locale));
+        model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
+
         model.addAttribute("equipos", equipoServices.listarEquipos());
         model.addAttribute("alquileres", alquilerServices.listarAlquileres());
 
@@ -78,6 +85,11 @@ public class AlquilerController {
 
 
 
+        model.addAttribute("agregaralquileri18n", messageSource.getMessage("agregaralquileri18n", null, locale));
+        model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
+        model.addAttribute("equipoalquileri18n", messageSource.getMessage("equipoalquileri18n", null, locale));
+        model.addAttribute("fechaalquileri18n", messageSource.getMessage("fechaalquileri18n", null, locale));
+        model.addAttribute("fechaentregaalquileri18n", messageSource.getMessage("fechaentregaalquileri18n", null, locale));
         model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
         model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 

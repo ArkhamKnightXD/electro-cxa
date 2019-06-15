@@ -198,9 +198,9 @@ desired effect
         <section class="content-header">
             <h1 class="text-center">
                 <!--Aqui agregare el texto de la pagina -->
-                <strong>Listado de alquileres</strong>
+                <strong>${listaalquileri18n}</strong>
             </h1>
-            <a class="btn btn-primary" href="/alquiler/creacion" role="button">Agregar nuevo alquiler</a>
+            <a class="btn btn-primary" href="/alquiler/creacion" role="button">${agregaralquileri18n}</a>
         </section>
 
         <!-- Main content -->
@@ -215,10 +215,10 @@ desired effect
                         <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
 
-                            <th>Cliente</th>
-                            <th>Equipo Alquilado</th>
-                            <th>Total</th>
-                            <th>Opciones</th>
+                            <th>${clientealquileri18n}</th>
+                            <th>${equipoalquileri18n}</th>
+                            <th>${totalalquileri18n}</th>
+                            <th>${opcionei18n}</th>
                             </thead>
 
                             <!--De esta forma se crea un foreach en freemarker -->
