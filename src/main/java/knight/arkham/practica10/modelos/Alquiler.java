@@ -36,6 +36,13 @@ public class Alquiler implements Serializable {
         this.total = total;
     }
 
+    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, long total) {
+        this.fecha = fecha;
+        this.fechaEntrega = fechaEntrega;
+        this.cliente = cliente;
+        this.total = total;
+    }
+
     public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, List<Equipo> equiposNoDevueltos, long total) {
         this.fecha = fecha;
         this.fechaEntrega = fechaEntrega;

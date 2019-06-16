@@ -63,14 +63,14 @@ public class AlquilerController {
 
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
+        model.addAttribute("fechaalquileri18n", messageSource.getMessage("fechaalquileri18n", null, locale));
+        model.addAttribute("fechaentregaalquileri18n", messageSource.getMessage("fechaentregaalquileri18n", null, locale));
         model.addAttribute("listaalquileri18n", messageSource.getMessage("listaalquileri18n", null, locale));
         model.addAttribute("agregaralquileri18n", messageSource.getMessage("agregaralquileri18n", null, locale));
         model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
         model.addAttribute("totalalquileri18n", messageSource.getMessage("totalalquileri18n", null, locale));
-        model.addAttribute("equipoalquileri18n", messageSource.getMessage("equipoalquileri18n", null, locale));
         model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
 
-        model.addAttribute("equipos", equipoServices.listarEquipos());
         model.addAttribute("alquileres", alquilerServices.listarAlquileres());
 
         // Comento esto para no tener que estar utilizando el login siempre que toy jarto
@@ -108,17 +108,29 @@ public class AlquilerController {
     // error de fecha solucionado, para solucionarlo utilice @DatimeFormat, ya que spring me da error a la hora de mandar
     // fechas por el controlador, y con este metodo es posible solucionar este problema, en pattern pongo el formate que mi fecha tendra
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearAlquiler(@RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente, @RequestParam(name = "idEquipo") long idEquipo) {
+    public String crearAlquiler(@RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente, @RequestParam(name = "idEquipos" , required = false) List<Long> idEquipos) {
 
-        Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(idEquipo);
+        List<Equipo> listaEquiposAlquilados = new ArrayList<>();
 
-        List<Equipo> listaEquipo = new ArrayList<>();
-        listaEquipo.add(equipoAlquilado);
+
+        // Aqui me encargo de restar la cantidad existencia de los distintos equipos que recibire
+        for (Long equipo : idEquipos) {
+
+            // primero encuentro el equipo
+            Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(equipo);
+            //Aqui me encargo de restar su cantidad de existencia
+            equipoAlquilado.setCantidadExistencia(equipoAlquilado.getCantidadExistencia() - 1);
+            //Aqui lo guardo ya que crear sirve tanto para crear desde 0 como para guardar los cambios
+            equipoServices.crearEquipo(equipoAlquilado);
+
+            //Y finalmente lo agrego a la lista
+            listaEquiposAlquilados.add(equipoAlquilado);
+        }
 
         Cliente clienteQueAlquila = clienteServices.encontrarClientePorId(idCliente);
 
         // seteare el total en 500 solo para probar la correcta de un alquiler con todos sus campos
-        Alquiler alquilerToCreate = new Alquiler(fecha, fechaEntrega, clienteQueAlquila, listaEquipo, 500);
+        Alquiler alquilerToCreate = new Alquiler(fecha, fechaEntrega, clienteQueAlquila, listaEquiposAlquilados,0);
 
         alquilerServices.crearAlquiler(alquilerToCreate);
 

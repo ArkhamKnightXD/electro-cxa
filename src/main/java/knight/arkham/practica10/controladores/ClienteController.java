@@ -36,16 +36,6 @@ public class ClienteController {
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
 
-    // Prueba de i18n Aqui le mando los datos para  implementar i18n a la vista greetings , lo principal es que aqui se
-    // trabaje con locale
-    @RequestMapping("/greetings")
-    public String pruebaI18n(Model model, Locale locale){
-
-        //De esta forma se manda los datos que tendra implementan i18n
-        model.addAttribute("saludo", messageSource.getMessage("saludo", null, locale));
-
-        return "/freemarker/greetings";
-    }
 
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
     // para implementar las traducciones de i18n debo utilizar Locale

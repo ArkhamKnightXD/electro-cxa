@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.Locale;
 
 @Controller
 public class IndexController {
@@ -30,5 +31,13 @@ public class IndexController {
         //Aqui redirecciono hacia cliente para que realice el proceso creacion del usuario y no me muestre el
         // posible error que se encuentra en la ruta localhost:8080/
         return "redirect:/cliente/";
+    }
+
+
+    //Aqui manejo indico el login de mi aplicacion y trabajo en conjunto con la configuracion de seguridad
+    @RequestMapping("/login")
+    public String login(Model model, Locale locale){
+
+        return "/freemarker/login";
     }
 }

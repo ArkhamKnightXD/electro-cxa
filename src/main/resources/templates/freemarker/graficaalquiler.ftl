@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,6 +18,7 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../../style/style.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +64,7 @@
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">user</span>
+                            <span class="hidden-xs">User</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -73,6 +73,7 @@
 
                                 <p>
 
+                                    User
                                     <!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
@@ -167,69 +168,22 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1 class="text-center">
-
-                <strong>${listaequipoi18n}</strong>
-            </h1>
-            <a class="btn btn-primary" href="/equipo/creacion" role="button">${agregarequipoi18n}</a>
-
-            <a class="btn btn-success" href="/equipo/grafica" role="button">${graficaequipoi18n}</a>
-        </section>
-
         <!-- Main content -->
         <section class="content container-fluid">
 
             <!--------------------------
               | Your Page Content Here |
               -------------------------->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-condensed table-hover">
-                            <thead>
+            <div style="width: 55%">
+                <h3>Promedio de dias alquilados por familia y sub familia</h3>
 
-                            <th>${nombreequipoi18n}</th>
-                            <th>${marcaequipoi18n}</th>
-                            <th>${cantidadequipoi18n}</th>
-                            <th>${costoequipoi18n}</th>
-                            <th>${familiaequipoindexi18n}</th>
-                            <th>${subfamiliaequipoindexi18n}</th>
-                            <th>${imagenequipoi18n}</th>
-                            <th>${opcionei18n}</th>
-                            </thead>
-
-                            <#list equipos as equipo>
-                            <tr>
-                                <td>${equipo.nombre}</td>
-                                <td>${equipo.marca}</td>
-                                <td>${equipo.cantidadExistencia}</td>
-                                <td>${equipo.costoAlquilerPorDia}</td>
-                                <!--
-                                Esta es la forma correcta para mostrar las familias y subfamilia del equipo, primero compruebo mediante
-                                un if su existencia y si existe muestro el nombre de la familia accedo a esto mediante equipo-->
-                                <#if equipo.familia??>
-                                    <td>${equipo.familia.nombre}</td>
-                                </#if>
-                                <#if equipo.subFamilia??>
-                                    <td>${equipo.subFamilia.nombre}</td>
-                                </#if>
-
-                                <td>
-                                    <img src="../../../../../uploads/${equipo.imagenEquipo}" alt="${equipo.imagenEquipo}" height="128px" width="128px">
-                                </td>
-                                <td>
-                                    <a href="/equipo/edicion/?id=${equipo.id}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                    <a href="/equipo/borrar/?id=${equipo.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
-                                </td>
-                            </tr>
-                            </#list>
-                        </table>
-
-                    </div>
-                </div>
-
+                <!--Aqui esta el canvas en el que se manejara la grafica aqui le especifico un id para poder trabajar con el script de abajo
+                 y asi configurar y poner en funcionamiento la grafica-->
+                <canvas id="canvas"  height="450" width="600"></canvas>
             </div>
+
+
+
 
         </section>
         <!-- /.content -->
@@ -244,7 +198,8 @@
     </footer>
 
     <!-- Control Sidebar -->
-     <!-- /.control-sidebar -->
+
+    <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
@@ -259,6 +214,46 @@
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+
+<script src="../../bower_components/chart.js/Chart.js"></script>
+
+<script>
+    //Funcion para generar valores aleatorios
+    var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+
+    var barChartData = {
+        //Aqui especifico los label de mi grafica
+        labels : ["PlayStation 2","Consolas","Portatiles","PlayStation 3","PlayStation 4","PlayStation","PlayStation Portable"],
+        datasets : [
+            {
+
+                //Aqui los colores
+                fillColor : "rgba(255,128,0,0.5)",
+                strokeColor : "rgba(0,204,204,0.8)",
+                highlightFill: "rgba(51,51,255,0.75)",
+                highlightStroke: "rgba(153,255,153,1)",
+
+
+
+                //Aqui especifico los datos que tendra cada barra debo ver como insertar datos aqui de mi aplicacion,
+                //Aunque supongo que esto se hace agregando id
+                data:[5, 7, 8, 3, 5, 2, 5]
+            },
+
+        ]
+
+    }
+
+
+    //Aqui inicializo la grafica y utlizo el id que especifique en el canvas, para aclararle a esta funcion donde se mostrara la grafica
+    window.onload = function(){
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+        });
+    }
+
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

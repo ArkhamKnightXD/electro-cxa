@@ -216,7 +216,8 @@ desired effect
                             <thead>
 
                             <th>${clientealquileri18n}</th>
-                            <th>${equipoalquileri18n}</th>
+                            <th>${fechaalquileri18n}</th>
+                            <th>${fechaentregaalquileri18n}</th>
                             <th>${totalalquileri18n}</th>
                             <th>${opcionei18n}</th>
                             </thead>
@@ -228,12 +229,15 @@ desired effect
                                 <!-- Como ya tengo una relacion establecida con la clase cliente, puedo llamarlo de esta forma  -->
                                 <td>${alquiler.cliente.nombre}</td>
 
-                                <!-- Esta no es la forma correcta de trabajar para presentar equipo ya que lo unico que hace
-                                 Es mandarme todos los equipos para ser presentados uno por uno y esto hasta me
-                                 daña el espacio en que se muestran los distintos componentes del index, asi que por ahora
-                                 solo mostrare un texto estatico-->
+                                <!-- Como equipos representraba una lista no es correcto mostrarse en el index ya que son varios elementos
+                                y en la cuadriculas del index normalmente solo se guarda 1 elemento-->
 
-                                <td>PlayStation 2</td>
+
+                                <!--De esta forma puedo representar fechas en el index como texto -->
+                                <td>${alquiler.fecha?date}</td>
+                                <td>${alquiler.fechaEntrega}</td>
+
+
                                 <td>${alquiler.total}</td>
                                 <td>
                                     <a href="/alquiler/borrar/?id=${alquiler.id}" data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>

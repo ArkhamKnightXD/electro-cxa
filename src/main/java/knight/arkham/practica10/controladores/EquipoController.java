@@ -37,6 +37,31 @@ public class EquipoController {
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
 
+
+    @RequestMapping("/grafica")
+    public String pruebaGrafica(Model model, Locale locale){
+
+        model.addAttribute("titulo", "Electrodomesticos CXA");
+
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        return "/freemarker/graficaalquiler";
+    }
+
+
     @RequestMapping("/")
     public String index(Model model, Principal principal, Locale locale){
 
@@ -57,6 +82,8 @@ public class EquipoController {
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
         model.addAttribute("listaequipoi18n", messageSource.getMessage("listaequipoi18n", null, locale));
+
+        model.addAttribute("graficaequipoi18n", messageSource.getMessage("graficaequipoi18n", null, locale));
 
         model.addAttribute("agregarequipoi18n", messageSource.getMessage("agregarequipoi18n", null, locale));
         model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));

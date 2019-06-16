@@ -68,7 +68,7 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
                // .anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
-                //.loginPage("/login") //indicando la ruta que estaremos utilizando, sino vamos a utilizar el login por defecto.
+                .loginPage("/login") //indicando la ruta que estaremos utilizando, sino vamos a utilizar el login por defecto.
                 //.failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina, esta url la utilizare para
                 // indicar cuando hay algun error en la aplicacion y mandare la pagina que aqui designe
                 .permitAll()

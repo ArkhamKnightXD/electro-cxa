@@ -58,13 +58,13 @@
 
 
             <div class="form-group">
-                <label for="idEquipo" class="control-label col-md-3">${equipoalquileri18n}:</label>
+                <label for="idEquipos" class="control-label col-md-3">${equipoalquileri18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <select multiple class="form-control" name="equipos">
+                    <select multiple class="form-control" name="idEquipos">
                         <#list equipos as equipo>
                             <#if equipo.cantidadExistencia gt 0>
-                                <option value="${equipo.id}" class="equipo-option" >${equipo.nombre} (${equipo.cantidadExistencia}) - $${equipo.costoAlquilerPorDia}/${dia}</option>
+                                <option value="${equipo.id}" class="equipo-option" >${equipo.nombre} (${equipo.cantidadExistencia}) - $${equipo.costoAlquilerPorDia}/Dia</option>
                             </#if>
                         </#list>
                     </select>
@@ -113,12 +113,6 @@
 
 </body>
 <!--Este script se encarga de que se puedan seleccionar multiple equipos, ademas de que se pueda visualizar la imagen -->
-<script>
-    $(document).ready(function() {
-        $('.equipo-option').on('click', function() {
-            $("#img-equipo").prop("src", $(this).data("img"));
-        });
-    });
-</script>
+
 </html>
 
