@@ -174,6 +174,8 @@
 
             <a class="btn btn-primary" href="/cliente/creacion" role="button">${agregarclientei18n}</a>
 
+            <a class="btn btn-success" href="/cliente/default" role="button">Default creator</a>
+
         </section>
 
         <!-- Main content -->

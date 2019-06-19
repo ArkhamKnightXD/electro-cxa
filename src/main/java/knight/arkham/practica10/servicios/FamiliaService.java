@@ -37,12 +37,6 @@ public class FamiliaService {
         familiaRepo.delete(familiaToDelete);
     }
 
-    public long calcularPromedioDiasDeAlquiler(){
-
-        Familia familiaPromedio = new Familia();
-
-        return familiaPromedio.getPromedio();
-    }
 
 
 }

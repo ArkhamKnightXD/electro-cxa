@@ -1,7 +1,11 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Cliente;
+import knight.arkham.practica10.modelos.Equipo;
+import knight.arkham.practica10.modelos.Familia;
 import knight.arkham.practica10.servicios.ClienteServices;
+import knight.arkham.practica10.servicios.EquipoServices;
+import knight.arkham.practica10.servicios.FamiliaService;
 import knight.arkham.practica10.servicios.FileUploadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -23,6 +27,12 @@ public class ClienteController {
     @Autowired
     private ClienteServices clienteServices;
 
+    @Autowired
+    private EquipoServices equipoServices;
+
+    @Autowired
+    private FamiliaService familiaService;
+
     // Instancio este servicio para poder trabajar los archivos o imagenes
     @Autowired
     private FileUploadServices fileUploadServices;
@@ -36,6 +46,38 @@ public class ClienteController {
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
 
+
+    //Este boton se encargara de crear clientes equipos y familias por defecto, ya que es un trabajo muy tedioso tener que hacer esto
+    //siempre que se reinicie la aplicaion
+    @RequestMapping("/default")
+    public String defaultCreate(Model model){
+
+
+        //Creacion de cliente por defecto
+        Cliente clientePorDefecto = new Cliente("Karvin","Jimenez","402-222445","Calle 9","809-227-3540","foto.jpg");
+        Cliente clientePorDefecto2 = new Cliente("Samuel","Jimenez","402-231145","Calle 9","809-257-3940","foto1.jpg");
+        clienteServices.crearCliente(clientePorDefecto);
+        clienteServices.crearCliente(clientePorDefecto2);
+
+        //Creacion de las familias por defecto
+        Familia familiaPorDefecto = new Familia("Videojuegos",false);
+
+        familiaService.crearFamilia(familiaPorDefecto);
+
+        Familia subFamiliaPorDefecto = new Familia("Consolas",true,familiaPorDefecto);
+        familiaService.crearFamilia(subFamiliaPorDefecto);
+
+        Familia subFamiliaPorDefecto2 = new Familia("Portatiles",true,familiaPorDefecto);
+        familiaService.crearFamilia(subFamiliaPorDefecto2);
+
+
+        //Creacion de equipos por defecto
+        Equipo equipoPorDefecto = new Equipo("PlayStation 2","Sony","play.jpg",7,250,familiaPorDefecto,subFamiliaPorDefecto);
+
+        equipoServices.crearEquipo(equipoPorDefecto);
+
+        return "redirect:/cliente/";
+    }
 
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
     // para implementar las traducciones de i18n debo utilizar Locale

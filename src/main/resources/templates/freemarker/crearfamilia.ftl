@@ -23,7 +23,7 @@
 <body background="../../pictures/fondo.png">
 
 
-<div class="container-form center">
+<div class=" container-form-familia center">
 
 
     <section class="content-header">
@@ -51,8 +51,8 @@
 
             <div class="form-group">
 
-                <label class="form-check-label col-md-1" for="subFamilia">${subfamiliai18n}:</label>
-                <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                <label class="control-label col-md-3" for="subFamilia">${subfamiliai18n}:</label>
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
                     <input class="form-check-input" type="checkbox" name="subFamilia" id="subFamilia" onclick="cambiar()" />
                 </div>
             </div>
@@ -80,7 +80,7 @@
 
 
             <div class="form-group">
-                <button class="btn btn-primary col-md-offset-3" type="submit">${botonguardari18n}</button>
+                <button class="btn btn-primary col-md-offset-1" type="submit">${botonguardari18n}</button>
                 <a class="btn btn-danger" href="/familia/" role="button">${botoncancelari18n}</a>
             </div>
 

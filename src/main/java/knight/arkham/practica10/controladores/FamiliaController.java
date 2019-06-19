@@ -52,6 +52,8 @@ public class FamiliaController {
 
         model.addAttribute("familias", familiaService.listarFamilias());
 
+
+
       //  model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/familia";

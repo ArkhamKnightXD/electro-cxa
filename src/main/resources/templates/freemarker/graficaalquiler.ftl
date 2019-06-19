@@ -218,12 +218,24 @@
 <script src="../../bower_components/chart.js/Chart.js"></script>
 
 <script>
+
+    //Aqui defino dos arreglos en una guardare los distintos nombres de las familias y subfamilia y en el
+    //Otro arreglo guardare los promedios calculados
+    var nombresDeFamilias = [];
+    var promediosDeFamilias = [];
+
+    //Aqui me encargo de insertar los datos en los arreglos
+    <#list familias as familia>
+    nombresDeFamilias.push("${familia.nombre}");
+  //  promediosDeFamilias.push(${familia.promedio});
+    </#list>
+
     //Funcion para generar valores aleatorios
-    var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+   // var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 
     var barChartData = {
-        //Aqui especifico los label de mi grafica
-        labels : ["PlayStation 2","Consolas","Portatiles","PlayStation 3","PlayStation 4","PlayStation","PlayStation Portable"],
+        //Aqui especifico los label de mi grafica que en este caso son los nombre obteneidos de las familias creadas
+        labels : nombresDeFamilias,
         datasets : [
             {
 
@@ -237,7 +249,7 @@
 
                 //Aqui especifico los datos que tendra cada barra debo ver como insertar datos aqui de mi aplicacion,
                 //Aunque supongo que esto se hace agregando id
-                data:[5, 7, 8, 3, 5, 2, 5]
+                data:[5, 7, 8, 3]
             },
 
         ]

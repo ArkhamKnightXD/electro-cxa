@@ -58,6 +58,8 @@ public class EquipoController {
 
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
+        model.addAttribute("familias", familiaService.listarFamilias());
+
         return "/freemarker/graficaalquiler";
     }
 
