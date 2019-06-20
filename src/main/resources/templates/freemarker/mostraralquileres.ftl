@@ -1,5 +1,11 @@
 <!DOCTYPE html>
+<!--Nota no se pueden copiar y pegar la misma plantilla para usarse, pues dara error, por lo tanto es necesario poner una plantilla
+ de base y que las demas hereden-->
 
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
 <head>
     <meta charset="utf-8">
@@ -8,6 +14,9 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+    <!-- Nota importante para agregar recursos. los recursos se guardan en la carpeta static y esta no es necesario que se mencione
+     cuando se esta agregando el link como se ve en el link de abajo no mencione static en ningun momento
+     por ultimo para indicar que saldremos de una carpeta para ir para atras esto se indica con ../ -->
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
@@ -31,7 +40,26 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -64,7 +92,7 @@
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">${usuario}</span>
+                            <span class="hidden-xs">User</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -121,7 +149,7 @@
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>${usuario}</p>
+                    <p>User</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -134,7 +162,7 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/cliente/"><i class="fa fa-users"></i> <span>${clientesi18n}</span></a></li>
+                <li class="active"><a href="/cliente/"><i class="fa fa-users"></i> <span>${clientesi18n}</span></a></li>
                 <li><a href="/equipo/"><i class="fa fa-desktop"></i> <span>${equiposi18n}</span></a></li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-briefcase"></i> <span>${negocioi18n}</span>
@@ -155,7 +183,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="/usuario/">${usuariosi18n}</a></li>
+                        <li><a href="/usuario/">${usuariosi18n}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -169,11 +197,10 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
-
-                <strong>${listausuarioi18n}</strong>
+                <!--Aqui agregare el texto de la pagina -->
+                <strong>Listado de alquileres hecho por el cliente: ${cliente.nombre}</strong>
             </h1>
-            <a class="btn btn-primary" href="/usuario/creacion" role="button">${agregarusuarioi18n}</a>
-            <a class="btn btn-success" href="/usuario/default" role="button">Default creator</a>
+
         </section>
 
         <!-- Main content -->
@@ -187,25 +214,23 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
-
-                            <th>${nombreusuarioi18n}</th>
-                            <th>${activousuarioi18n}</th>
-                            <th>${opcionei18n}</th>
+                            <th>${clientealquileri18n}</th>
+                            <th>${fechaalquileri18n}</th>
+                            <th>${fechaentregaalquileri18n}</th>
                             </thead>
 
-                            <#list usuarios as usuario>
-
+                            <!--De esta forma se crea un foreach en freemarker -->
+                            <#list alquileres as alquiler >
                             <tr>
-                                <!-- Para los campos esAdmin y active es necesario poner un ?c para representar
-                                 estos campos en el index ya que estos campos son boolean y a la hora de presentarlos
-                                 da error, ?c lo que hace es transformar estos boolean a un String "true" y false
-                                 solo para ser presentados aqui-->
-                                <td>${usuario.username}</td>
-                                <td>${usuario.active?c}</td>
-                                <td>
-                                    <a href="/usuario/borrar/?id=${usuario.id}"  data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
-                                </td>
+
+                                <#if cliente.id == alquiler.cliente.id>
+                                    <td>${alquiler.cliente.nombre}</td>
+                                    <td>${alquiler.fecha?date}</td>
+                                    <td>${alquiler.fechaEntrega?date}</td>
+                                </#if>
+
                             </tr>
+                            <!--Aqui cierro el foreach -->
                             </#list>
                         </table>
 
@@ -213,6 +238,7 @@
                 </div>
 
             </div>
+
 
         </section>
         <!-- /.content -->
@@ -227,6 +253,7 @@
     </footer>
 
     <!-- Control Sidebar -->
+
      <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->

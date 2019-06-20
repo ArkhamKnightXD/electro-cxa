@@ -43,7 +43,7 @@
                 <label for="nombre" class="control-label col-md-3">${nombrefamiliai18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                    <input type="text" name="nombre" class="form-control" required placeholder="Nombre...">
                 </div>
 
             </div>
@@ -51,7 +51,7 @@
 
             <div class="form-group">
 
-                <label class="control-label col-md-3" for="subFamilia">${subfamiliai18n}:</label>
+                <label class="control-label col-md-3" for="subFamilia">${subfamiliai18n} ?:</label>
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
                     <input class="form-check-input" type="checkbox" name="subFamilia" id="subFamilia" onclick="cambiar()" />
                 </div>

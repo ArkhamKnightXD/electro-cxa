@@ -100,7 +100,7 @@ public class EquipoController {
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("equipos",equipoServices.listarEquipos());
 
-       // model.addAttribute("usuario", principal.getName());
+        model.addAttribute("usuario", principal.getName());
         return "/freemarker/equipo";
     }
 

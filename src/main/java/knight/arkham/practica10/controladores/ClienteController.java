@@ -1,11 +1,8 @@
 package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Cliente;
-import knight.arkham.practica10.modelos.Equipo;
-import knight.arkham.practica10.modelos.Familia;
+import knight.arkham.practica10.servicios.AlquilerServices;
 import knight.arkham.practica10.servicios.ClienteServices;
-import knight.arkham.practica10.servicios.EquipoServices;
-import knight.arkham.practica10.servicios.FamiliaService;
 import knight.arkham.practica10.servicios.FileUploadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -28,10 +25,7 @@ public class ClienteController {
     private ClienteServices clienteServices;
 
     @Autowired
-    private EquipoServices equipoServices;
-
-    @Autowired
-    private FamiliaService familiaService;
+    private AlquilerServices alquilerServices;
 
     // Instancio este servicio para poder trabajar los archivos o imagenes
     @Autowired
@@ -45,39 +39,6 @@ public class ClienteController {
     // Con esta variable indicaremos el directorio donde se subiran nuestros archivos
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
-
-
-    //Este boton se encargara de crear clientes equipos y familias por defecto, ya que es un trabajo muy tedioso tener que hacer esto
-    //siempre que se reinicie la aplicaion
-    @RequestMapping("/default")
-    public String defaultCreate(Model model){
-
-
-        //Creacion de cliente por defecto
-        Cliente clientePorDefecto = new Cliente("Karvin","Jimenez","402-222445","Calle 9","809-227-3540","foto.jpg");
-        Cliente clientePorDefecto2 = new Cliente("Samuel","Jimenez","402-231145","Calle 9","809-257-3940","foto1.jpg");
-        clienteServices.crearCliente(clientePorDefecto);
-        clienteServices.crearCliente(clientePorDefecto2);
-
-        //Creacion de las familias por defecto
-        Familia familiaPorDefecto = new Familia("Videojuegos",false);
-
-        familiaService.crearFamilia(familiaPorDefecto);
-
-        Familia subFamiliaPorDefecto = new Familia("Consolas",true,familiaPorDefecto);
-        familiaService.crearFamilia(subFamiliaPorDefecto);
-
-        Familia subFamiliaPorDefecto2 = new Familia("Portatiles",true,familiaPorDefecto);
-        familiaService.crearFamilia(subFamiliaPorDefecto2);
-
-
-        //Creacion de equipos por defecto
-        Equipo equipoPorDefecto = new Equipo("PlayStation 2","Sony","play.jpg",7,250,familiaPorDefecto,subFamiliaPorDefecto);
-
-        equipoServices.crearEquipo(equipoPorDefecto);
-
-        return "redirect:/cliente/";
-    }
 
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
     // para implementar las traducciones de i18n debo utilizar Locale
@@ -114,7 +75,7 @@ public class ClienteController {
         model.addAttribute("clientes", clienteServices.listarClientes());
 
         // Aqui le mando a la vista el nombre del usuario que esta logeado mediante principal consigo esos datos
-     //   model.addAttribute("usuario", principal.getName());
+        model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/cliente";
     }
@@ -216,6 +177,39 @@ public class ClienteController {
 
         //Ubicando la vista desde resources/templates
         return "redirect:/cliente/";
+    }
+
+
+    @RequestMapping( value = "/mostrar")
+    public String mostrarHistorialAlquileres(Model model, Locale locale, @RequestParam(name = "id") long id){
+
+        Cliente clienteToShow = clienteServices.encontrarClientePorId(id);
+
+        model.addAttribute("titulo", "Electrodomesticos CXA");
+
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
+        model.addAttribute("fechaalquileri18n", messageSource.getMessage("fechaalquileri18n", null, locale));
+        model.addAttribute("fechaentregaalquileri18n", messageSource.getMessage("fechaentregaalquileri18n", null, locale));
+
+        model.addAttribute("cliente", clienteToShow);
+        model.addAttribute("alquileres", alquilerServices.listarAlquileres());
+
+        return "/freemarker/mostraralquileres";
     }
 
 

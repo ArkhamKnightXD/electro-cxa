@@ -44,7 +44,7 @@ de subfamilia-->
                     <label for="nombre" class="control-label col-md-3">${nombreequipoi18n}:</label>
 
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                        <input type="text" name="nombre" class="form-control" required placeholder="Nombre...">
                     </div>
 
                 </div>
@@ -65,7 +65,7 @@ de subfamilia-->
                     <label for="cantidadExistencia" class="control-label col-md-3">${cantidadequipoi18n}:</label>
 
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                        <input type="number" name="cantidadExistencia" class="form-control" placeholder="Cantidad en existencia...">
+                        <input type="number" name="cantidadExistencia" class="form-control" required placeholder="Cantidad en existencia...">
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ de subfamilia-->
                     <label for="costoAlquilerPorDia" class="control-label col-md-3">${costoequipoi18n}:</label>
 
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                        <input type="number" name="costoAlquilerPorDia" class="form-control" placeholder="Costo del alquiler por dia...">
+                        <input type="number" name="costoAlquilerPorDia" class="form-control" required placeholder="Costo del alquiler por dia...">
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@ de subfamilia-->
                     <label for="familia" class="control-label col-md-3">${familiaequipoi18n}:</label>
 
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                        <select class="form-control" name="familia" id="familia" onchange="filtrarSubFamilias()">
+                        <select class="form-control" name="familia" id="familia"  onchange="filtrarSubFamilias()">
                             <#list familias as familia>
                                 <#if !familia.subFamilia>
                                     <option value="${familia.id}">${familia.nombre}</option>

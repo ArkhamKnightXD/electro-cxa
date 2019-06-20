@@ -40,7 +40,7 @@
                 <label for="username" class="control-label col-md-3">${nombreusuarioi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="username" class="form-control" placeholder="Nombre de usuario...">
+                    <input type="text" name="username" class="form-control" required placeholder="Nombre de usuario...">
                 </div>
 
             </div>
@@ -50,7 +50,7 @@
                 <label for="password" class="control-label col-md-3">${passwordusuarioi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="password" name="password" class="form-control" placeholder="Password...">
+                    <input type="password" name="password" class="form-control" required placeholder="Password...">
                 </div>
 
             </div>

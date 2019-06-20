@@ -74,7 +74,7 @@ public class AlquilerController {
         model.addAttribute("alquileres", alquilerServices.listarAlquileres());
 
         // Comento esto para no tener que estar utilizando el login siempre que toy jarto
-        // model.addAttribute("usuario", principal.getName());
+         model.addAttribute("usuario", principal.getName());
         //Ubicando la vista desde resources/templates
         return "/freemarker/alquiler";
     }
@@ -118,8 +118,11 @@ public class AlquilerController {
 
             // primero encuentro el equipo
             Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(equipo);
+
             //Aqui me encargo de restar su cantidad de existencia
+
             equipoAlquilado.setCantidadExistencia(equipoAlquilado.getCantidadExistencia() - 1);
+
             //Aqui lo guardo ya que crear sirve tanto para crear desde 0 como para guardar los cambios
             equipoServices.crearEquipo(equipoAlquilado);
 
@@ -135,6 +138,40 @@ public class AlquilerController {
         alquilerServices.crearAlquiler(alquilerToCreate);
 
         return "redirect:/alquiler/";
+    }
+
+
+
+    @RequestMapping( value = "/mostrar")
+    public String mostrarEquiposAlquilados(Model model, Locale locale, @RequestParam(name = "id") long id){
+
+        Alquiler alquilerToShow = alquilerServices.encontrarAlquilerPorId(id);
+
+        model.addAttribute("titulo", "Electrodomesticos CXA");
+
+        //Aqui mandare las distintas traducciones de i18n al index
+        model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
+
+        model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
+
+        model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
+
+        model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
+
+        model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
+
+        model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
+
+        model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
+        model.addAttribute("fechaalquileri18n", messageSource.getMessage("fechaalquileri18n", null, locale));
+        model.addAttribute("fechaentregaalquileri18n", messageSource.getMessage("fechaentregaalquileri18n", null, locale));
+
+        model.addAttribute("alquiler", alquilerToShow);
+        model.addAttribute("equipos", equipoServices.listarEquipos());
+
+        return "/freemarker/mostrarequiposalquilados";
     }
 
 

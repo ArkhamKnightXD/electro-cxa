@@ -39,7 +39,7 @@
                 <label for="nombre" class="control-label col-md-3">${nombreequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="nombre" value="${equipo.nombre}" class="form-control" placeholder="Nombre...">
+                    <input type="text" name="nombre" value="${equipo.nombre}" required class="form-control" placeholder="Nombre...">
                 </div>
 
             </div>
@@ -60,7 +60,7 @@
                 <label for="cantidadExistencia" class="control-label col-md-3">${cantidadequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="number" name="cantidadExistencia" value="${equipo.cantidadExistencia}" class="form-control" placeholder="Cantidad en existencia...">
+                    <input type="number" name="cantidadExistencia"  value="${equipo.cantidadExistencia}" required class="form-control" placeholder="Cantidad en existencia...">
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                 <label for="costoAlquilerPorDia" class="control-label col-md-3">${costoequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="number" name="costoAlquilerPorDia" value="${equipo.costoAlquilerPorDia}" class="form-control" placeholder="Costo del alquiler por dia...">
+                    <input type="number" name="costoAlquilerPorDia" value="${equipo.costoAlquilerPorDia}" required class="form-control" placeholder="Costo del alquiler por dia...">
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
                 <label for="file" class="control-label col-md-3">${imagenequipoi18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="file" name="files" value="${equipo.imagenEquipo}" class="form-control" placeholder="Foto del equipo...">
+                    <input type="file" name="files" value="${equipo.imagenEquipo}" required class="form-control" placeholder="Foto del equipo...">
                 </div>
 
             </div>

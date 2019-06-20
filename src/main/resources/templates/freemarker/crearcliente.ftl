@@ -44,7 +44,7 @@
                 <label for="nombre" class="control-label col-md-3">${nombreclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                    <input type="text" name="nombre" class="form-control" required placeholder="Nombre...">
                 </div>
 
             </div>

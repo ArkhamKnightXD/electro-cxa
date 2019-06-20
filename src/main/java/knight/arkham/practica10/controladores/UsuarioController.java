@@ -1,7 +1,9 @@
 package knight.arkham.practica10.controladores;
 
-import knight.arkham.practica10.modelos.Rol;
-import knight.arkham.practica10.modelos.Usuario;
+import knight.arkham.practica10.modelos.*;
+import knight.arkham.practica10.servicios.ClienteServices;
+import knight.arkham.practica10.servicios.EquipoServices;
+import knight.arkham.practica10.servicios.FamiliaService;
 import knight.arkham.practica10.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -24,9 +26,54 @@ public class UsuarioController {
     private UsuarioServices usuarioServices;
 
     @Autowired
+    private ClienteServices clienteServices;
+
+    @Autowired
+    private EquipoServices equipoServices;
+
+    @Autowired
+    private FamiliaService familiaService;
+
+
+    @Autowired
     private MessageSource messageSource;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+
+
+    //Este boton se encargara de crear clientes equipos y familias por defecto, ya que es un trabajo muy tedioso tener que hacer esto
+    //siempre que se reinicie la aplicaion
+    @RequestMapping("/default")
+    public String defaultCreate(Model model){
+
+
+        //Creacion de cliente por defecto
+        Cliente clientePorDefecto = new Cliente("Karvin","Jimenez","402-222445","Calle 9","809-227-3540","foto.jpg");
+        Cliente clientePorDefecto2 = new Cliente("Samuel","Jimenez","402-231145","Calle 9","809-257-3940","foto1.jpg");
+        clienteServices.crearCliente(clientePorDefecto);
+        clienteServices.crearCliente(clientePorDefecto2);
+
+        //Creacion de las familias por defecto
+        Familia familiaPorDefecto = new Familia("Videojuegos",false);
+
+        familiaService.crearFamilia(familiaPorDefecto);
+
+        Familia subFamiliaPorDefecto = new Familia("Consolas",true,familiaPorDefecto);
+        familiaService.crearFamilia(subFamiliaPorDefecto);
+
+        Familia subFamiliaPorDefecto2 = new Familia("Portatiles",true,familiaPorDefecto);
+        familiaService.crearFamilia(subFamiliaPorDefecto2);
+
+
+        //Creacion de equipos por defecto
+        Equipo equipoPorDefecto = new Equipo("PlayStation 2","Sony","play.jpg",7,250,familiaPorDefecto,subFamiliaPorDefecto);
+
+        equipoServices.crearEquipo(equipoPorDefecto);
+
+        return "redirect:/usuario/";
+    }
+
 
 
     @RequestMapping("/")
@@ -59,7 +106,7 @@ public class UsuarioController {
 
         model.addAttribute("usuarios",usuarioServices.listarUsuarios());
 
-      //  model.addAttribute("usuario", principal.getName());
+        model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/usuario";
     }

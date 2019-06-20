@@ -41,7 +41,7 @@
                 <label for="nombre" class="control-label col-md-3">${nombreclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="nombre" value="${cliente.nombre}" class="form-control" placeholder="Nombre...">
+                    <input type="text" name="nombre" value="${cliente.nombre}" required class="form-control" placeholder="Nombre...">
                 </div>
 
             </div>
@@ -62,7 +62,7 @@
                 <label for="cedula" class="control-label col-md-3">${cedulaclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="text" name="cedula" value="${cliente.cedula}" class="form-control" placeholder="Cedula...">
+                    <input type="text" name="cedula" value="${cliente.cedula}" required class="form-control" placeholder="Cedula...">
                 </div>
 
             </div>
@@ -93,7 +93,7 @@
                 <label for="file" class="control-label col-md-3">${fotoclientei18n}:</label>
 
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                    <input type="file" name="files" value="${cliente.foto}" class="form-control" placeholder="Foto del cliente...">
+                    <input type="file" name="files" value="${cliente.foto}" required class="form-control" placeholder="Foto del cliente...">
                 </div>
 
             </div>
