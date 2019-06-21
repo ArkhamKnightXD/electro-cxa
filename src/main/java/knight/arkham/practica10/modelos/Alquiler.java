@@ -52,13 +52,6 @@ public class Alquiler implements Serializable {
     }
 
 
-    //En este metodo manejare lo que es la existencia de los distintos equipos a la hora de hacer el alquiler de un equioo
-    public int controlarCantidadExistencia(int cantidadExistencia){
-
-        cantidadExistencia--;
-
-        return cantidadExistencia;
-    }
 
     public long getId() {
         return id;

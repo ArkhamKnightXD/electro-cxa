@@ -240,6 +240,7 @@ desired effect
 
                                 <td>${alquiler.total}</td>
                                 <td>
+                                    <a href="/alquiler/mostrar/?id=${alquiler.id}">  <i class="fa fa-eye" style="font-size:25px"></i></a>
                                     <a href="/alquiler/borrar/?id=${alquiler.id}" data-toggle="modal"> <i class="fa fa-trash" style="font-size:23px;color:red"></i> </a>
                                 </td>
                             </tr>

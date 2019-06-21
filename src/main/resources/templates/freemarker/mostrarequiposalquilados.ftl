@@ -198,7 +198,7 @@ desired effect
         <section class="content-header">
             <h1 class="text-center">
                 <!--Aqui agregare el texto de la pagina -->
-                <strong>Equipos alquilados</strong>
+                <strong>Equipos alquilados </strong>
             </h1>
 
         </section>
@@ -214,24 +214,31 @@ desired effect
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
-                            <th>${clientealquileri18n}</th>
-                            <th>${fechaalquileri18n}</th>
-                            <th>${fechaentregaalquileri18n}</th>
+                            <th>${nombreequipoi18n}</th>
+                            <th>${marcaequipoi18n}</th>
+                            <th>${cantidadequipoi18n}</th>
+                            <th>${costoequipoi18n}</th>
+
                             </thead>
 
-                            <!--De esta forma se crea un foreach en freemarker -->
-                            <#list alquileres as alquiler >
+                            <!--Aqui itero los equipos obtenidos del alquiler -->
+                            <#list equipos as equipo >
                             <tr>
-
-                                <#if cliente.id == alquiler.cliente.id>
-                                    <td>${alquiler.cliente.nombre}</td>
-                                    <td>${alquiler.fecha?date}</td>
-                                    <td>${alquiler.fechaEntrega?date}</td>
-                                </#if>
+                                <td>${equipo.nombre}</td>
+                                <td>${equipo.marca}</td>
+                                <td>${equipo.cantidadExistencia}</td>
+                                <td>${equipo.costoAlquilerPorDia}</td>
 
                             </tr>
-                            <!--Aqui cierro el foreach -->
                             </#list>
+                                <tfoot>
+                                <tr>
+                                    <th>${fechaalquileri18n}: ${alquiler.fecha?date}</th>
+                                    <th>${fechaentregaalquileri18n}: ${alquiler.fechaEntrega?date}</th>
+                                </tr>
+                                </tfoot>
+                            <!--Aqui cierro el foreach -->
+
                         </table>
 
                     </div>

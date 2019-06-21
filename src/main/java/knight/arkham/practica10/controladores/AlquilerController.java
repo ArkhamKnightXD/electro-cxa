@@ -164,12 +164,19 @@ public class AlquilerController {
 
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
-        model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
+        model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
+        model.addAttribute("marcaequipoi18n", messageSource.getMessage("marcaequipoi18n", null, locale));
+        model.addAttribute("cantidadequipoi18n", messageSource.getMessage("cantidadequipoi18n", null, locale));
+        model.addAttribute("costoequipoi18n", messageSource.getMessage("costoequipoi18n", null, locale));
+
         model.addAttribute("fechaalquileri18n", messageSource.getMessage("fechaalquileri18n", null, locale));
         model.addAttribute("fechaentregaalquileri18n", messageSource.getMessage("fechaentregaalquileri18n", null, locale));
 
+
         model.addAttribute("alquiler", alquilerToShow);
-        model.addAttribute("equipos", equipoServices.listarEquipos());
+
+        //Aqui mando los equipos que estan almacenado en el alquiler mediante la lista equipos
+        model.addAttribute("equipos", alquilerToShow.getEquipos());
 
         return "/freemarker/mostrarequiposalquilados";
     }

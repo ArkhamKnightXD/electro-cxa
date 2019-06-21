@@ -50,11 +50,5 @@ public class AlquilerServices {
     }
 
 
-    public int calcularLaCantidadDeExistencia(int cantidadExistencia){
-
-        Alquiler alquiler = new Alquiler();
-
-        return alquiler.controlarCantidadExistencia(cantidadExistencia);
-    }
 
 }
