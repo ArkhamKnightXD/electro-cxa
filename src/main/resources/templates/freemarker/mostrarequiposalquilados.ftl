@@ -198,7 +198,7 @@ desired effect
         <section class="content-header">
             <h1 class="text-center">
                 <!--Aqui agregare el texto de la pagina -->
-                <strong>Equipos alquilados </strong>
+                <strong>Equipos alquilados por el cliente: ${alquiler.cliente.nombre}</strong>
             </h1>
 
         </section>
