@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @RequestMapping("/alquiler")
@@ -108,13 +105,23 @@ public class AlquilerController {
     // error de fecha solucionado, para solucionarlo utilice @DatimeFormat, ya que spring me da error a la hora de mandar
     // fechas por el controlador, y con este metodo es posible solucionar este problema, en pattern pongo el formate que mi fecha tendra
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearAlquiler(@RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente, @RequestParam(name = "idEquipos" , required = false) List<Long> idEquipos) {
+    public String crearAlquiler(@RequestParam(name = "total", required = false)  int total, @RequestParam(name = "fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam(name = "fechaEntrega") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaEntrega, @RequestParam(name = "idCliente") long idCliente, @RequestParam(name = "idEquipos" , required = false) List<Long> idEquipos) {
 
         List<Equipo> listaEquiposAlquilados = new ArrayList<>();
 
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+
+        Calendar calendarEntrega = Calendar.getInstance();
+        calendarEntrega.setTime(fechaEntrega);
+
+        int dias = (calendarEntrega.get(Calendar.DAY_OF_MONTH)- calendar.get(Calendar.DAY_OF_MONTH));
+
+
         // Aqui me encargo de restar la cantidad existencia de los distintos equipos que recibire
         for (Long equipo : idEquipos) {
+
 
             // primero encuentro el equipo
             Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(equipo);
@@ -122,6 +129,13 @@ public class AlquilerController {
             //Aqui me encargo de restar su cantidad de existencia
 
             equipoAlquilado.setCantidadExistencia(equipoAlquilado.getCantidadExistencia() - 1);
+
+            //Aqui basicamente obtuve de las fechas sus dias y a estos dias los reste para obtener los dias que
+            // tuvo alquilador el equipo y esto los multiplico por el costo por dia y esto lo voy sumand en la variable total
+           // Al final funciona a la perfeccion para resolver esto siempre es recomendable, imprimir por consola los resultados
+           // para ver asi si el error esta en los calculos
+            total  += dias * equipoAlquilado.getCostoAlquilerPorDia();
+
 
             //Aqui lo guardo ya que crear sirve tanto para crear desde 0 como para guardar los cambios
             equipoServices.crearEquipo(equipoAlquilado);
@@ -132,8 +146,7 @@ public class AlquilerController {
 
         Cliente clienteQueAlquila = clienteServices.encontrarClientePorId(idCliente);
 
-        // seteare el total en 500 solo para probar la correcta de un alquiler con todos sus campos
-        Alquiler alquilerToCreate = new Alquiler(fecha, fechaEntrega, clienteQueAlquila, listaEquiposAlquilados,0);
+        Alquiler alquilerToCreate = new Alquiler(fecha, fechaEntrega, clienteQueAlquila, listaEquiposAlquilados,total);
 
         alquilerServices.crearAlquiler(alquilerToCreate);
 

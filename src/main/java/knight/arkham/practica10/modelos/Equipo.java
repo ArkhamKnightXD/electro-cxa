@@ -14,7 +14,7 @@ public class Equipo implements Serializable {
     private String marca;
     private String imagenEquipo;
     private int cantidadExistencia;
-    private float costoAlquilerPorDia;
+    private int costoAlquilerPorDia;
 
 
     // Relaciones 1 a mucho con familia y subFamilia.
@@ -24,9 +24,7 @@ public class Equipo implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Familia subFamilia;
 
-
-
-    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, float costoAlquilerPorDia, Familia familia, Familia subFamilia) {
+    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, int costoAlquilerPorDia, Familia familia, Familia subFamilia) {
         this.nombre = nombre;
         this.marca = marca;
         this.imagenEquipo = imagenEquipo;
@@ -34,16 +32,6 @@ public class Equipo implements Serializable {
         this.costoAlquilerPorDia = costoAlquilerPorDia;
         this.familia = familia;
         this.subFamilia = subFamilia;
-    }
-
-
-    public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, float costoAlquilerPorDia, Familia familia) {
-        this.nombre = nombre;
-        this.marca = marca;
-        this.imagenEquipo = imagenEquipo;
-        this.cantidadExistencia = cantidadExistencia;
-        this.costoAlquilerPorDia = costoAlquilerPorDia;
-        this.familia = familia;
     }
 
     public Equipo() {
@@ -89,11 +77,11 @@ public class Equipo implements Serializable {
         this.cantidadExistencia = cantidadExistencia;
     }
 
-    public float getCostoAlquilerPorDia() {
+    public int getCostoAlquilerPorDia() {
         return costoAlquilerPorDia;
     }
 
-    public void setCostoAlquilerPorDia(float costoAlquilerPorDia) {
+    public void setCostoAlquilerPorDia(int costoAlquilerPorDia) {
         this.costoAlquilerPorDia = costoAlquilerPorDia;
     }
 

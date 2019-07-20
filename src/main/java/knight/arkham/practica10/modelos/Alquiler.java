@@ -23,34 +23,18 @@ public class Alquiler implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Equipo> equipos;
 
-    private long total;
+    private int total;
+
+    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, int total) {
+        this.fecha = fecha;
+        this.fechaEntrega = fechaEntrega;
+        this.cliente = cliente;
+        this.equipos = equipos;
+        this.total = total;
+    }
 
     public Alquiler() {
     }
-
-    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, long total) {
-        this.fecha = fecha;
-        this.fechaEntrega = fechaEntrega;
-        this.cliente = cliente;
-        this.equipos = equipos;
-        this.total = total;
-    }
-
-    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, long total) {
-        this.fecha = fecha;
-        this.fechaEntrega = fechaEntrega;
-        this.cliente = cliente;
-        this.total = total;
-    }
-
-    public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, List<Equipo> equiposNoDevueltos, long total) {
-        this.fecha = fecha;
-        this.fechaEntrega = fechaEntrega;
-        this.cliente = cliente;
-        this.equipos = equipos;
-        this.total = total;
-    }
-
 
 
     public long getId() {
@@ -93,11 +77,11 @@ public class Alquiler implements Serializable {
         this.equipos = equipos;
     }
 
-    public long getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 }

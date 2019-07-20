@@ -130,7 +130,7 @@ public class EquipoController {
 
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia, @RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
+    public String crearEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia, @RequestParam(name = "costoAlquilerPorDia") int costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long idSubFamilia ){
 
         //Manejando la imagen para conseguir su nombre y almacenarla
         String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
@@ -178,7 +178,7 @@ public class EquipoController {
 
 
     @RequestMapping("/editar")
-    public String editarEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") float costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long subFamilia ){
+    public String editarEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") int costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long subFamilia ){
 
 
         String imagenEquipo = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);

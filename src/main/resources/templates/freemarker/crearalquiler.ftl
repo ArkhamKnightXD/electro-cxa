@@ -97,6 +97,15 @@
 
 
             <div class="form-group">
+                <label for="total" class="control-label col-md-3">Total:</label>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                    <input type="number" name="total" required class="form-control" placeholder="Total...">
+                </div>
+
+            </div>
+
+            <div class="form-group">
                 <button class="btn btn-primary col-md-offset-5" type="submit">${botonguardari18n}</button>
                 <a class="btn btn-danger" href="/alquiler/" role="button">${botoncancelari18n}</a>
             </div>

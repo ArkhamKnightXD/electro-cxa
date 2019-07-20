@@ -227,7 +227,7 @@
     //Aqui me encargo de insertar los datos en los arreglos
     <#list familias as familia>
     nombresDeFamilias.push("${familia.nombre}");
-  //  promediosDeFamilias.push(${familia.promedio});
+    //promediosDeFamilias.push(${familia.promedio});
     </#list>
 
     //Funcion para generar valores aleatorios
