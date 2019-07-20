@@ -227,7 +227,9 @@
     //Aqui me encargo de insertar los datos en los arreglos
     <#list familias as familia>
     nombresDeFamilias.push("${familia.nombre}");
-    //promediosDeFamilias.push(${familia.promedio});
+    // Debo crear un campo para mandarle, pues me va a fallar la aplicacion si le mando una funcion o comportamiento
+    //ya no me da error, pero todavia no me manda los datos
+    promediosDeFamilias.push(${familia.promedio});
     </#list>
 
     //Funcion para generar valores aleatorios
@@ -248,8 +250,7 @@
 
 
                 //Aqui especifico los datos que tendra cada barra debo ver como insertar datos aqui de mi aplicacion,
-                //Aunque supongo que esto se hace agregando id
-                data:[5, 7, 8, 3]
+                data:[promediosDeFamilias]
             },
 
         ]

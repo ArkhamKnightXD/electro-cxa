@@ -118,6 +118,10 @@ public class AlquilerController {
 
         int dias = (calendarEntrega.get(Calendar.DAY_OF_MONTH)- calendar.get(Calendar.DAY_OF_MONTH));
 
+        List<Integer> diasAlquilados = new ArrayList<>();
+
+        diasAlquilados.add(dias);
+
 
         // Aqui me encargo de restar la cantidad existencia de los distintos equipos que recibire
         for (Long equipo : idEquipos) {
@@ -125,6 +129,13 @@ public class AlquilerController {
 
             // primero encuentro el equipo
             Equipo equipoAlquilado = equipoServices.encontrarEquipoPorId(equipo);
+
+            //Aqui le estoy mandando a la familia de este equipo los dias que este equipo duro alquilado
+            // Y como esto esta dentro de un foreach esto se ira agregando a las demas familias
+            // de los demas equipos
+            equipoAlquilado.getFamilia().setDiasAlquiler(diasAlquilados);
+
+
 
             //Aqui me encargo de restar su cantidad de existencia
 

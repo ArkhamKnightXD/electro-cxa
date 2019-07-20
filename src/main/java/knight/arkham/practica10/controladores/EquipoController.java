@@ -2,6 +2,7 @@ package knight.arkham.practica10.controladores;
 
 import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.modelos.Familia;
+import knight.arkham.practica10.servicios.AlquilerServices;
 import knight.arkham.practica10.servicios.EquipoServices;
 import knight.arkham.practica10.servicios.FamiliaService;
 import knight.arkham.practica10.servicios.FileUploadServices;
@@ -15,11 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.Locale;
 
 @Controller
 @RequestMapping("/equipo")
 public class EquipoController {
+
+    @Autowired
+    private AlquilerServices alquilerServices;
 
     @Autowired
     private EquipoServices equipoServices;
@@ -57,6 +62,8 @@ public class EquipoController {
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
 
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
+
+        model.addAttribute("alquileres", alquilerServices.listarAlquileres());
 
         model.addAttribute("familias", familiaService.listarFamilias());
 

@@ -13,13 +13,15 @@ public class Familia implements Serializable {
 
     private String nombre;
     private boolean subFamilia;
+    // verificar porque no me calcula el promedio todavia pues en la base de datos se guarda como 0
+    private int promedio;
 
     // La familia se asocia con sigo misma
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Familia familia;
 
     @ElementCollection
-    private List<Long> diasAlquiler;
+    private List<Integer> diasAlquiler;
 
     public Familia() {
     }
@@ -39,27 +41,16 @@ public class Familia implements Serializable {
         }
     }
 
-    // En este metodo calculo el promedio de alquiler dependiendo de los dias que fue alquilado el equipo
-    public long getPromedio(){
-        if(this.diasAlquiler.size() == 0){
-            return 0;
-        }
-
-        long suma = 0;
-        for(long dias: this.diasAlquiler){
-            suma += dias;
-        }
-        return suma/this.diasAlquiler.size();
+    public void setPromedio(int promedio) {
+        this.promedio = promedio;
     }
 
-
-
-    public List<Long> getDiasAlquilados() {
+    public List<Integer> getDiasAlquiler() {
         return diasAlquiler;
     }
 
-    public void setDiasAlquilados(List<Long> diasAlquilados) {
-        this.diasAlquiler = diasAlquilados;
+    public void setDiasAlquiler(List<Integer> diasAlquiler) {
+        this.diasAlquiler = diasAlquiler;
     }
 
     public long getId() {
@@ -92,6 +83,22 @@ public class Familia implements Serializable {
 
     public void setFamiliaPadre(Familia familiaPadre) {
         this.familia = familiaPadre;
+    }
+
+    // En este metodo calculo el promedio de alquiler dependiendo de los dias que fue alquilado el equipo
+    public int getPromedio(){
+        if(this.diasAlquiler.size() == 0){
+            return 0;
+        }
+
+        int suma = 0;
+        for(int dias: this.diasAlquiler){
+            suma += dias;
+        }
+
+        //setiando el promedio con el resultado de esta funcion
+        setPromedio(suma/this.diasAlquiler.size());
+        return suma/this.diasAlquiler.size();
     }
 }
 

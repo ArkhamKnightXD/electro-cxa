@@ -57,6 +57,14 @@ public class UsuarioController {
         //Creacion de las familias por defecto
         Familia familiaPorDefecto = new Familia("Videojuegos",false);
 
+        //Aqui agregare dias de alquiler por defecto  las familias por defecto
+        List<Integer> diasAlquiladosPorDefault = new ArrayList<>();
+        diasAlquiladosPorDefault.add(5);
+        diasAlquiladosPorDefault.add(4);
+        diasAlquiladosPorDefault.add(7);
+
+        familiaPorDefecto.setDiasAlquiler(diasAlquiladosPorDefault);
+
         familiaService.crearFamilia(familiaPorDefecto);
 
         Familia subFamiliaPorDefecto = new Familia("Consolas",true,familiaPorDefecto);
