@@ -96,8 +96,6 @@ public class Familia implements Serializable {
             suma += dias;
         }
 
-        //setiando el promedio con el resultado de esta funcion
-        setPromedio(suma/this.diasAlquiler.size());
         return suma/this.diasAlquiler.size();
     }
 }

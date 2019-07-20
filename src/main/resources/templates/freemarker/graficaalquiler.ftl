@@ -250,7 +250,7 @@
 
 
                 //Aqui especifico los datos que tendra cada barra debo ver como insertar datos aqui de mi aplicacion,
-                data:[promediosDeFamilias]
+                data:[3,6,5]
             },
 
         ]

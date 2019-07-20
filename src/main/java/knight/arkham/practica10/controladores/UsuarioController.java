@@ -63,14 +63,26 @@ public class UsuarioController {
         diasAlquiladosPorDefault.add(4);
         diasAlquiladosPorDefault.add(7);
 
+
         familiaPorDefecto.setDiasAlquiler(diasAlquiladosPorDefault);
+
+        familiaPorDefecto.setPromedio(familiaPorDefecto.getPromedio());
+
 
         familiaService.crearFamilia(familiaPorDefecto);
 
         Familia subFamiliaPorDefecto = new Familia("Consolas",true,familiaPorDefecto);
+
+        subFamiliaPorDefecto.setDiasAlquiler(diasAlquiladosPorDefault);
+        subFamiliaPorDefecto.setPromedio(subFamiliaPorDefecto.getPromedio());
+
         familiaService.crearFamilia(subFamiliaPorDefecto);
 
         Familia subFamiliaPorDefecto2 = new Familia("Portatiles",true,familiaPorDefecto);
+
+        subFamiliaPorDefecto2.setDiasAlquiler(diasAlquiladosPorDefault);
+        subFamiliaPorDefecto2.setPromedio(subFamiliaPorDefecto.getPromedio());
+
         familiaService.crearFamilia(subFamiliaPorDefecto2);
 
 
