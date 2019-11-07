@@ -1,5 +1,4 @@
 package knight.arkham.practica10.controladores;
-
 import knight.arkham.practica10.modelos.*;
 import knight.arkham.practica10.servicios.ClienteServices;
 import knight.arkham.practica10.servicios.EquipoServices;
@@ -16,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.*;
 
-
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
-
 
     @Autowired
     private UsuarioServices usuarioServices;
@@ -34,19 +31,15 @@ public class UsuarioController {
     @Autowired
     private FamiliaService familiaService;
 
-
     @Autowired
     private MessageSource messageSource;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
-
     //Este boton se encargara de crear clientes equipos y familias por defecto, ya que es un trabajo muy tedioso tener que hacer esto
     //siempre que se reinicie la aplicaion
     @RequestMapping("/default")
     public String defaultCreate(Model model){
-
 
         //Creacion de cliente por defecto
         Cliente clientePorDefecto = new Cliente("Karvin","Jimenez","402-222445","Calle 9","809-227-3540","foto.jpg");
@@ -63,11 +56,9 @@ public class UsuarioController {
         diasAlquiladosPorDefault.add(4);
         diasAlquiladosPorDefault.add(7);
 
-
         familiaPorDefecto.setDiasAlquiler(diasAlquiladosPorDefault);
 
         familiaPorDefecto.setPromedio(familiaPorDefecto.getPromedio());
-
 
         familiaService.crearFamilia(familiaPorDefecto);
 
@@ -85,7 +76,6 @@ public class UsuarioController {
 
         familiaService.crearFamilia(subFamiliaPorDefecto2);
 
-
         //Creacion de equipos por defecto
         Equipo equipoPorDefecto = new Equipo("PlayStation 2","Sony","play.jpg",7,250,familiaPorDefecto,subFamiliaPorDefecto);
 
@@ -95,30 +85,18 @@ public class UsuarioController {
     }
 
 
-
     @RequestMapping("/")
     public String index(Model model, Principal principal, Locale locale){
 
-
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
-        //Aqui mandare las distintas traducciones de i18n al index
         model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
-
         model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
-
         model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
-
         model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
-
         model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
-
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
-
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
-
         model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
-
         model.addAttribute("listausuarioi18n", messageSource.getMessage("listausuarioi18n", null, locale));
         model.addAttribute("agregarusuarioi18n", messageSource.getMessage("agregarusuarioi18n", null, locale));
         model.addAttribute("nombreusuarioi18n", messageSource.getMessage("nombreusuarioi18n", null, locale));
@@ -130,7 +108,6 @@ public class UsuarioController {
 
         return "/freemarker/usuario";
     }
-
 
 
     @RequestMapping("/creacion")
@@ -153,7 +130,6 @@ public class UsuarioController {
 
     @RequestMapping( value = "/crear", method = RequestMethod.POST)
     public String crearUsuario(@RequestParam(name = "username") String username,@RequestParam(name = "password") String password, @RequestParam(name = "idRoles") long idRoles ){
-
 
         // Aqui le mando el id para que me busque el rol creado
         Rol rolCreated = usuarioServices.encontrarRolPorId(idRoles);
@@ -178,16 +154,12 @@ public class UsuarioController {
         return "redirect:/usuario/";
     }
 
-
     // Considero que editar usuario no es necesario, por lo tanto no creare estas funciones
     @RequestMapping("/borrar")
     public String eliminarUsuario(@RequestParam(name = "id") long id){
-
 
         usuarioServices.eliminarUsuario(id);
 
         return "redirect:/usuario/";
     }
-
-
 }

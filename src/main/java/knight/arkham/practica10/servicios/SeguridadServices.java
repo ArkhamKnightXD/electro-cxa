@@ -1,5 +1,4 @@
 package knight.arkham.practica10.servicios;
-
 import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
 import knight.arkham.practica10.repositorios.RolRepositorio;
@@ -12,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -26,9 +24,7 @@ public class SeguridadServices implements UserDetailsService {
     private RolRepositorio rolRepositorio;
 
     //Para encriptar la información
-
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
 
 
     @Transactional
@@ -50,13 +46,10 @@ public class SeguridadServices implements UserDetailsService {
         usuarioAdmin.setRoles(new HashSet<>(Arrays.asList(rolAdmin)));
 
         // Aqui creo la passwrod, pero tambien la encripto con el password encoder, que basicamente recibe un string y lo codifica
-
         usuarioAdmin.setPassword(passwordEncoder.encode("1234"));
 
         usuarioRepo.save(usuarioAdmin);
     }
-
-
 
     // ES necesario implementar este metodo cuando se implementa user details service
     @Override
@@ -73,11 +66,8 @@ public class SeguridadServices implements UserDetailsService {
         //
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
 
-
-
         // Hay que retornar un objeto de tipo userdetails por lo tanto hacemos esto y le mandamos los datos del usuario
         // UserDetails userDetails = new User(usuario.getUsername(),usuario.getPassword(),roles);
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(), user.isActive(), true, true, true, grantedAuthorities);
     }
-
 }

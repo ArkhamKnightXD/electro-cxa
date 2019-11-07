@@ -1,5 +1,4 @@
 package knight.arkham.practica10.modelos;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class Familia implements Serializable {
     @ElementCollection
     private List<Integer> diasAlquiler;
 
+
     public Familia() {
     }
 
@@ -40,6 +40,22 @@ public class Familia implements Serializable {
             this.familia = familia;
         }
     }
+
+
+    // En este metodo calculo el promedio de alquiler dependiendo de los dias que fue alquilado el equipo
+    public int getPromedio(){
+        if(this.diasAlquiler.size() == 0){
+            return 0;
+        }
+
+        int suma = 0;
+        for(int dias: this.diasAlquiler){
+            suma += dias;
+        }
+
+        return suma/this.diasAlquiler.size();
+    }
+
 
     public void setPromedio(int promedio) {
         this.promedio = promedio;
@@ -83,20 +99,6 @@ public class Familia implements Serializable {
 
     public void setFamiliaPadre(Familia familiaPadre) {
         this.familia = familiaPadre;
-    }
-
-    // En este metodo calculo el promedio de alquiler dependiendo de los dias que fue alquilado el equipo
-    public int getPromedio(){
-        if(this.diasAlquiler.size() == 0){
-            return 0;
-        }
-
-        int suma = 0;
-        for(int dias: this.diasAlquiler){
-            suma += dias;
-        }
-
-        return suma/this.diasAlquiler.size();
     }
 }
 

@@ -1,5 +1,4 @@
 package knight.arkham.practica10.controladores;
-
 import knight.arkham.practica10.modelos.Familia;
 import knight.arkham.practica10.servicios.FamiliaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.security.Principal;
 import java.util.Locale;
 
@@ -23,6 +21,7 @@ public class FamiliaController {
     @Autowired
     private MessageSource messageSource;
 
+
     @RequestMapping("/")
     public String index(Model model, Principal principal, Locale locale){
 
@@ -30,20 +29,13 @@ public class FamiliaController {
 
         //Aqui mandare las distintas traducciones de i18n al index
         model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
-
         model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
-
         model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
-
         model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
-
         model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
-
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
-
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
         model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
-
         model.addAttribute("listafamiliai18n", messageSource.getMessage("listafamiliai18n", null, locale));
         model.addAttribute("agregarfamiliai18n", messageSource.getMessage("agregarfamiliai18n", null, locale));
         model.addAttribute("nombrefamiliai18n", messageSource.getMessage("nombrefamiliai18n", null, locale));
@@ -51,9 +43,6 @@ public class FamiliaController {
         model.addAttribute("familiai18n", messageSource.getMessage("familiai18n", null, locale));
 
         model.addAttribute("familias", familiaService.listarFamilias());
-
-
-
         model.addAttribute("usuario", principal.getName());
 
         return "/freemarker/familia";
@@ -63,12 +52,10 @@ public class FamiliaController {
     @RequestMapping("/creacion")
     public String creacionFamilia(Model model, Locale locale){
 
-
         model.addAttribute("agregarfamiliai18n", messageSource.getMessage("agregarfamiliai18n", null, locale));
         model.addAttribute("nombrefamiliai18n", messageSource.getMessage("nombrefamiliai18n", null, locale));
         model.addAttribute("subfamiliai18n", messageSource.getMessage("subfamiliai18n", null, locale));
         model.addAttribute("familiai18n", messageSource.getMessage("familiai18n", null, locale));
-
         model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
         model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
@@ -95,9 +82,7 @@ public class FamiliaController {
             Familia familiaToCreate = new Familia(nombre,subFamilia);
 
             familiaService.crearFamilia(familiaToCreate);
-
         }
-
 
         // Este es el caso mas complejo aqui creo la subfamilia con su respectiva familia padre
         if (subFamilia == true){
@@ -121,12 +106,8 @@ public class FamiliaController {
     @RequestMapping("/borrar")
     public String eliminarFamilia(@RequestParam(name = "id") long id){
 
-
         familiaService.eliminarFamilia(id);
 
         return "redirect:/familia/";
     }
-
-
-
 }

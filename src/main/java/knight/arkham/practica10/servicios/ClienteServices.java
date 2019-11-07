@@ -1,5 +1,4 @@
 package knight.arkham.practica10.servicios;
-
 import knight.arkham.practica10.modelos.Cliente;
 import knight.arkham.practica10.repositorios.ClienteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +19,18 @@ public class ClienteServices {
          clienteRepo.save(cliente);
     }
 
+
     public List<Cliente> listarClientes(){
 
         return clienteRepo.findAll();
     }
 
+
     public Cliente encontrarClientePorId(long id){
 
         return clienteRepo.findClienteById(id);
     }
+
 
     public void eliminarCliente(long id){
 

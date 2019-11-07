@@ -1,13 +1,10 @@
 package knight.arkham.practica10.controladores;
-
 import knight.arkham.practica10.servicios.SeguridadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.security.Principal;
-import java.util.Locale;
 
 @Controller
 public class IndexController {
@@ -15,12 +12,12 @@ public class IndexController {
     @Autowired
     private SeguridadServices seguridadServices;
 
+
     @RequestMapping("/")
     public String index(Model model, Principal principal ){
 
         // Aqui creo el usuario administrador lo creo aqui ya que basicamente este es la primera url de entrada y por lo tanto
         // el usuario se creara al comienzo.
-
 
         seguridadServices.crearUsuarioAdmin();
 
@@ -33,10 +30,9 @@ public class IndexController {
         return "redirect:/cliente/";
     }
 
-
     //Aqui manejo indico el login de mi aplicacion y trabajo en conjunto con la configuracion de seguridad
     @RequestMapping("/login")
-    public String login(Model model, Locale locale){
+    public String login(){
 
         return "/freemarker/login";
     }

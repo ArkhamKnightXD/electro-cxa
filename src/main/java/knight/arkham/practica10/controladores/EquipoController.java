@@ -1,5 +1,4 @@
 package knight.arkham.practica10.controladores;
-
 import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.modelos.Familia;
 import knight.arkham.practica10.servicios.AlquilerServices;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.security.Principal;
-import java.util.Calendar;
 import java.util.Locale;
 
 @Controller
@@ -38,29 +35,19 @@ public class EquipoController {
     @Autowired
     private MessageSource messageSource;
 
-
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
-
 
 
     @RequestMapping("/grafica")
     public String pruebaGrafica(Model model, Locale locale){
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
-        //Aqui mandare las distintas traducciones de i18n al index
         model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
-
         model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
-
         model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
-
         model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
-
         model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
-
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
-
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
 
         model.addAttribute("alquileres", alquilerServices.listarAlquileres());
@@ -74,26 +61,15 @@ public class EquipoController {
     @RequestMapping("/")
     public String index(Model model, Principal principal, Locale locale){
 
-
-        //Aqui mandare las distintas traducciones de i18n al index
         model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
-
         model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
-
         model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
-
         model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
-
         model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
-
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
-
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
-
         model.addAttribute("listaequipoi18n", messageSource.getMessage("listaequipoi18n", null, locale));
-
         model.addAttribute("graficaequipoi18n", messageSource.getMessage("graficaequipoi18n", null, locale));
-
         model.addAttribute("agregarequipoi18n", messageSource.getMessage("agregarequipoi18n", null, locale));
         model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
         model.addAttribute("marcaequipoi18n", messageSource.getMessage("marcaequipoi18n", null, locale));
@@ -103,18 +79,18 @@ public class EquipoController {
         model.addAttribute("familiaequipoindexi18n", messageSource.getMessage("familiaequipoindexi18n", null, locale));
         model.addAttribute("subfamiliaequipoindexi18n", messageSource.getMessage("subfamiliaequipoindexi18n", null, locale));
         model.addAttribute("opcionei18n", messageSource.getMessage("opcionei18n", null, locale));
-
         model.addAttribute("titulo", "Electrodomesticos CXA");
+
         model.addAttribute("equipos",equipoServices.listarEquipos());
 
         model.addAttribute("usuario", principal.getName());
+
         return "/freemarker/equipo";
     }
 
 
     @RequestMapping("/creacion")
     public String creacionEquipo(Model model, Locale locale){
-
 
         model.addAttribute("agregarequipoi18n", messageSource.getMessage("agregarequipoi18n", null, locale));
         model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
@@ -126,11 +102,9 @@ public class EquipoController {
         model.addAttribute("subfamiliaequipoi18n", messageSource.getMessage("subfamiliaequipoi18n", null, locale));
         model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
         model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
-
-
-        model.addAttribute("familias", familiaService.listarFamilias());
         model.addAttribute("titulo", "Electrodomesticos CXA");
 
+        model.addAttribute("familias", familiaService.listarFamilias());
 
         return "/freemarker/crearequipo";
     }
@@ -154,11 +128,10 @@ public class EquipoController {
     }
 
 
-
     @RequestMapping("/edicion")
     public String edicionEquipo(Model model,Locale locale,  @RequestParam(name = "id") long id ){
 
-
+        model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("editarequipoi18n", messageSource.getMessage("editarequipoi18n", null, locale));
         model.addAttribute("nombreequipoi18n", messageSource.getMessage("nombreequipoi18n", null, locale));
         model.addAttribute("marcaequipoi18n", messageSource.getMessage("marcaequipoi18n", null, locale));
@@ -170,23 +143,17 @@ public class EquipoController {
         model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
         model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
-
         Equipo equipoToEdit = equipoServices.encontrarEquipoPorId(id);
-
 
         model.addAttribute("equipo",equipoToEdit);
         model.addAttribute("familias", familiaService.listarFamilias());
-        model.addAttribute("titulo", "Electrodomesticos CXA");
-
 
         return "/freemarker/editarequipo";
     }
 
 
-
     @RequestMapping("/editar")
     public String editarEquipo(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "id") long id, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "cantidadExistencia") int cantidadExistencia,@RequestParam(name = "costoAlquilerPorDia") int costoAlquilerPorDia, @RequestParam(name = "familia", required = false) Long idFamilia, @RequestParam(name = "subFamilia", required = false) Long subFamilia ){
-
 
         String imagenEquipo = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
 
@@ -206,23 +173,17 @@ public class EquipoController {
         equipoToEdit.setFamilia(familiaToEdit);
         equipoToEdit.setSubFamilia(subFamiliaToEdit);
 
-
         equipoServices.crearEquipo(equipoToEdit);
 
         return "redirect:/equipo/";
     }
 
 
-
-
     @RequestMapping("/borrar")
     public String eliminarEquipo(@RequestParam(name = "id") long id){
-
 
         equipoServices.eliminarEquipo(id);
 
         return "redirect:/equipo/";
     }
-
-
 }

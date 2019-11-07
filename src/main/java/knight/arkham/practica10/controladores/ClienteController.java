@@ -1,5 +1,4 @@
 package knight.arkham.practica10.controladores;
-
 import knight.arkham.practica10.modelos.Cliente;
 import knight.arkham.practica10.servicios.AlquilerServices;
 import knight.arkham.practica10.servicios.ClienteServices;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.security.Principal;
 import java.util.Locale;
-
 
 @Controller
 @RequestMapping("/cliente")
@@ -35,10 +32,8 @@ public class ClienteController {
     @Autowired
     private MessageSource messageSource;
 
-
     // Con esta variable indicaremos el directorio donde se subiran nuestros archivos
     public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
-
 
     // Para conseguir el nombre de usuario mediante spring security debo especificar un objeto de la clase principal aqui
     // para implementar las traducciones de i18n debo utilizar Locale
@@ -46,22 +41,13 @@ public class ClienteController {
     public String index(Model model, Principal principal, Locale locale){
 
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
-        //Aqui mandare las distintas traducciones de i18n al index
         model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
-
         model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
-
         model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
-
         model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
-
         model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
-
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
-
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
-
         model.addAttribute("listaclientei18n", messageSource.getMessage("listaclientei18n", null, locale));
         model.addAttribute("agregarclientei18n", messageSource.getMessage("agregarclientei18n", null, locale));
         model.addAttribute("nombreclientei18n", messageSource.getMessage("nombreclientei18n", null, locale));
@@ -84,7 +70,6 @@ public class ClienteController {
     @RequestMapping("/creacion")
     public String creacionCliente(Model model, Locale locale){
 
-
         model.addAttribute("titulo", "Electrodomesticos CXA");
         model.addAttribute("agregarclientei18n", messageSource.getMessage("agregarclientei18n", null, locale));
         model.addAttribute("nombreclientei18n", messageSource.getMessage("nombreclientei18n", null, locale));
@@ -100,14 +85,12 @@ public class ClienteController {
     }
 
 
-
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearCliente(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "cedula") String cedula, @RequestParam(name = "direccion") String direccion,  @RequestParam(name = "telefono") String telefono){
 
         //Primero manejo la imagen esta funcion me devuelve un string con el nombre
         // del archivo que fue insertado en el formulario
         String nombreDeLaFoto = fileUploadServices.almacenarAndDepurarImagen(files,uploadDirectory);
-
 
         // Agregando los parametros al cliente, no es necesario agregar el parametro id ya que anteriormente especificamos
         // que este se autogenerara cuando especificamos la entidad
@@ -125,8 +108,6 @@ public class ClienteController {
     @RequestMapping(value = "/edicion" )
     public String edicionCliente(Model model, Locale locale,  @RequestParam(name = "id") long id ){
 
-
-
         //Aqui obtengo el cliente que voy a editar
         Cliente clienteToEdit = clienteServices.encontrarClientePorId(id);
 
@@ -134,8 +115,6 @@ public class ClienteController {
         // modificarlos de manera correcta
         model.addAttribute("cliente",clienteToEdit);
         model.addAttribute("titulo", "Electrodomesticos CXA");
-
-
         model.addAttribute("editarclientei18n", messageSource.getMessage("editarclientei18n", null, locale));
         model.addAttribute("nombreclientei18n", messageSource.getMessage("nombreclientei18n", null, locale));
         model.addAttribute("apellidoclientei18n", messageSource.getMessage("apellidoclientei18n", null, locale));
@@ -146,11 +125,8 @@ public class ClienteController {
         model.addAttribute("botonguardari18n", messageSource.getMessage("botonguardari18n", null, locale));
         model.addAttribute("botoncancelari18n", messageSource.getMessage("botoncancelari18n", null, locale));
 
-
         return "/freemarker/editarcliente";
     }
-
-
 
     // Como tengo que obtener el cliente de la vista aqui necesito un requesparam y le mando el parametro con /?id=cliente.id
     // desde la vista hacia esta funcion mediante la url
@@ -189,29 +165,20 @@ public class ClienteController {
 
         //Aqui mandare las distintas traducciones de i18n al index
         model.addAttribute("clientesi18n", messageSource.getMessage("clientesi18n", null, locale));
-
         model.addAttribute("equiposi18n", messageSource.getMessage("equiposi18n", null, locale));
-
         model.addAttribute("negocioi18n", messageSource.getMessage("negocioi18n", null, locale));
-
         model.addAttribute("alquileri18n", messageSource.getMessage("alquileri18n", null, locale));
-
         model.addAttribute("familiasi18n", messageSource.getMessage("familiasi18n", null, locale));
-
         model.addAttribute("administradori18n", messageSource.getMessage("administradori18n", null, locale));
-
         model.addAttribute("usuariosi18n", messageSource.getMessage("usuariosi18n", null, locale));
-
         model.addAttribute("clientealquileri18n", messageSource.getMessage("clientealquileri18n", null, locale));
         model.addAttribute("fechaalquileri18n", messageSource.getMessage("fechaalquileri18n", null, locale));
         model.addAttribute("fechaentregaalquileri18n", messageSource.getMessage("fechaentregaalquileri18n", null, locale));
-
         model.addAttribute("cliente", clienteToShow);
         model.addAttribute("alquileres", alquilerServices.listarAlquileres());
 
         return "/freemarker/mostraralquileres";
     }
-
 
     // Como tengo que obtener el id de la vista aqui necesito un requesparam, tengo que ver como hacer funcionar el editar
     // Para obtener el id mediante la vista tengo que mandarselo a la url mediante un href de esta forma ?id=
@@ -219,12 +186,9 @@ public class ClienteController {
     @RequestMapping( value = "/borrar")
     public String eliminarCliente(@RequestParam(name = "id") long id){
 
-
         // Aqui elimino el cliente mandandole el id obtenido mediante la url en el requesparam
           clienteServices.eliminarCliente(id);
 
         return "redirect:/cliente/";
     }
-
-
 }

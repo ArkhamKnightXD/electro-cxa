@@ -1,12 +1,10 @@
 package knight.arkham.practica10.servicios;
-
 import knight.arkham.practica10.modelos.Rol;
 import knight.arkham.practica10.modelos.Usuario;
 import knight.arkham.practica10.repositorios.RolRepositorio;
 import knight.arkham.practica10.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -32,10 +30,12 @@ public class UsuarioServices  {
         return usuarioRepo.findAll();
     }
 
+
     public Usuario encontrarUsuarioPorId(long id){
 
         return usuarioRepo.findUsuarioById(id);
     }
+
 
     public void eliminarUsuario(long id){
 
@@ -63,6 +63,4 @@ public class UsuarioServices  {
 
         return rolRepo.findRolById(id);
     }
-
-
 }

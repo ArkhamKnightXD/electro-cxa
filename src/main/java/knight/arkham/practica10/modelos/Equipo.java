@@ -1,5 +1,4 @@
 package knight.arkham.practica10.modelos;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -24,6 +23,7 @@ public class Equipo implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Familia subFamilia;
 
+
     public Equipo(String nombre, String marca, String imagenEquipo, int cantidadExistencia, int costoAlquilerPorDia, Familia familia, Familia subFamilia) {
         this.nombre = nombre;
         this.marca = marca;
@@ -36,6 +36,7 @@ public class Equipo implements Serializable {
 
     public Equipo() {
     }
+
 
     public long getId() {
         return id;

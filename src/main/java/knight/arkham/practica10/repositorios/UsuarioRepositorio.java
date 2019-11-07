@@ -1,5 +1,4 @@
 package knight.arkham.practica10.repositorios;
-
 import knight.arkham.practica10.modelos.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

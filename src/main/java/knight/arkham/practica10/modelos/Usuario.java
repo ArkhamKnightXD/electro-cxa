@@ -1,9 +1,7 @@
 package knight.arkham.practica10.modelos;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-
 
 @Entity
 public class Usuario implements Serializable {
@@ -19,16 +17,14 @@ public class Usuario implements Serializable {
     private String password;
     private boolean active;
 
-
-
     // Para solucionar el problema de que no me creaba los nuevos usuarios solo tuve que cambiar el cascadeType
     // que estaba en .all por .merge
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private
     Set<Rol> roles;
 
-    public Usuario(){ }
 
+    public Usuario(){ }
 
     public Usuario(String username, String password, boolean active, Set<Rol> roles) {
         this.username = username;
@@ -36,6 +32,7 @@ public class Usuario implements Serializable {
         this.active = active;
         this.roles = roles;
     }
+
 
     public long getId() {
         return id;

@@ -1,5 +1,4 @@
 package knight.arkham.practica10.servicios;
-
 import knight.arkham.practica10.modelos.Equipo;
 import knight.arkham.practica10.repositorios.EquipoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,13 @@ public class EquipoServices {
     @Autowired
     private EquipoRepositorio equipoRepo;
 
+
     @Transactional
     public void crearEquipo(Equipo equipo){
 
          equipoRepo.save(equipo);
     }
+
 
     public List<Equipo> listarEquipos(){
 

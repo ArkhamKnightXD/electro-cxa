@@ -1,5 +1,4 @@
 package knight.arkham.practica10.modelos;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,6 +30,7 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
         this.foto = foto;
     }
+
 
     public long getId() {
         return id;

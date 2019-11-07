@@ -10,21 +10,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-
 @Configurable
 @EnableGlobalMethodSecurity(securedEnabled = true) // De esta forma indico que esta clase estara implementando springsecurity
 public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // esta clase nos exige sobresscribir un metodo, que sera el metodo donde se especificara el usuario
-
 
     //Configuracion para jpa debemos implementar el servicio usuario para trabajar con el user details service
     @Autowired
     private SeguridadServices seguridadServices;
 
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
     //Clase para encriptar contraseña
     @Bean
@@ -32,21 +27,16 @@ public class ConfiguracionDeSeguridad extends WebSecurityConfigurerAdapter { // 
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
-
     // Esta clase sirve para cargar el usuario en memoria, es parecido a cuando se crea el usuario en aplication properties
     // pero esta es la forma correcta de hacer
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
 
         //Configuracion y carga de usuarios metodo JPA de esta forma agregaremos nuestro usuario a la base de datos c
         auth
                 .userDetailsService(seguridadServices)
                 .passwordEncoder(bCryptPasswordEncoder);
     }// aqui quede
-
-
-
 
     //Aqui especifico las reglas para permitir unicamente los usuarios y cuales rutas  este podra acceder
 

@@ -1,5 +1,4 @@
 package knight.arkham.practica10.modelos;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,8 +11,8 @@ public class Alquiler implements Serializable {
     private long id;
 
     private Date fecha;
-
     private Date fechaEntrega;
+    private int total;
 
     // Relacion uno a mucho
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -23,7 +22,6 @@ public class Alquiler implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Equipo> equipos;
 
-    private int total;
 
     public Alquiler(Date fecha, Date fechaEntrega, Cliente cliente, List<Equipo> equipos, int total) {
         this.fecha = fecha;

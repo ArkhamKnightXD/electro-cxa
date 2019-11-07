@@ -1,5 +1,4 @@
 package knight.arkham.practica10.servicios;
-
 import knight.arkham.practica10.modelos.Alquiler;
 import knight.arkham.practica10.repositorios.AlquilerRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +14,11 @@ public class AlquilerServices {
     // Por cada repositorio se debe de crear un servicio e implementar cada repositorio en su respectivo servicio
     // ya que los servicios son los encargados de manejar las reglas de negocios y por lo tanto de aqui sera que se obtendran
     // los datos para trabajar en los respectivos controladores
-
     @Autowired
     private AlquilerRepositorio alquilerRepo;
 
     // Aqui manejare las funciones que utilizare en la vista para el manejo de datos, las funciones que especificare
     // y estas seran las 4 funciones basicas de los CRUD
-
 
 // Como en el create ni en el delete deseo que me retorne algo estas funciones seran void
     @Transactional
@@ -42,13 +39,11 @@ public class AlquilerServices {
 
     }
 
+
     public void eliminarAlquiler(long id){
 
         Alquiler alquilerToDelete = alquilerRepo.findAlquilerById(id);
 
         alquilerRepo.delete(alquilerToDelete);
     }
-
-
-
 }
